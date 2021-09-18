@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "İletişim";
+}
+<h1>@ViewData["Title"]</h1>
+
+<style>
+
+    .form-group{
+        width: 450px;
+        height: 370px;
+        align-content: center;
+        margin: 20px;
+        margin-top: 0px;
+        
+    }
+    .form-control{
+        padding: 10px;
+        margin: 10px;
+        width: 300px;
+    }
+    button{
+        width: 300px;
+        padding: 10px;
+        font-size: 18px;
+        border-radius: 20px;
+        border: none;
+    }
+
+</style>
+<p>Buradan benimle iletişim kurabilirsiniz. Gelen mesajları kısa sürede cevaplamaya çalışacağım.</p>
+
+<form action="" class="form-group">
+
+    <input class="form-control" type="password" placeholder="Parola" autofocus/>
+    <input class="form-control" type="email" placeholder="E-posta" autofocus />
+    <input class="form-control" type="tel" placeholder="Telefon" autofocus/>
+    <input class="form-control" type="date" placeholder="Tarih" />
+    <input class="form-control" type="url" placeholder="Web Site" />
+    <input class="form-control" type="text" placeholder="Mesajınız" autofocus/>
+    <button class="btn-primary" type="submit">Gönder Gelsin</button>
+    <input class="form-control" type="checkbox" title="Kullanım Sözleşmesini ve KVKK Politikasını kabul ediyorum."/>
+
+</form>
