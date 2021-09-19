@@ -10,7 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="EntityFramework\" />
     <Folder Include="ValidationRules\" />
   </ItemGroup>
 

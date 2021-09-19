@@ -11,7 +11,8 @@ namespace DataAccessLayer.Repositories
     public class GenericRepository<T> : IGenericDal<T> where T : class
     {
         Context C = new Context();
-        public void Delete<T1>(T1 t)
+
+        public void Delete<T1>(T1 t)   // Tüm Repository'lere bağlı olan Generic Repository'de CRUD işlemleri yapılıyor
         {
             C.Remove(t);
             C.SaveChanges();

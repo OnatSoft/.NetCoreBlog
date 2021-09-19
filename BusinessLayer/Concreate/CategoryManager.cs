@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Abstract;
+using DataAccessLayer.EntityFramework;
 using DataAccessLayer.Repositories;
 using EntityLayer.Concreate;
 using System;
@@ -11,34 +12,36 @@ namespace BusinessLayer.Concreate
 {
     public class CategoryManager : ICategoryService
     {
-        GenericRepository<Category> CR = new GenericRepository<Category>();
+        EFCategoryRepository efCategoryRepo;
+
+        public CategoryManager()  // Category Manager Constracter Metodu ile EFCategory Repository tanımlıyoruz
+        {
+            efCategoryRepo = new EFCategoryRepository();
+        }
+
         public void AddCategory(Category addcategory)
         {
-            if (addcategory.Name != "" && addcategory.Description != "" && addcategory.Status == true)
-            {
-                CR.Insert(addcategory);
-            }
-           
+            efCategoryRepo.Insert(addcategory);  // Entity Framework Category Repository CRUD ekleme işlemi
         }
 
         public void DeleteCategory(Category delcategory)
         {
-            CR.Delete(delcategory);
+            efCategoryRepo.Delete(delcategory);  // Entity Framework Category Repository CRUD silme işlemi
         }
 
         public Category GetById(int id)
         {
-            throw new NotImplementedException();
+            return efCategoryRepo.GetById(id);  // Entity Framework Category Repository Id'ye göre arama işlemi
         }
 
         public List<Category> GetList()
         {
-            throw new NotImplementedException();
+            return efCategoryRepo.GetList();  // Entity Framework Category Repository listeleme işlemi
         }
 
         public void UpdateCategory(Category upcategory)
         {
-            throw new NotImplementedException();
+            efCategoryRepo.Update(upcategory);  // Entity Framework Category Repository güncelleme işlemi
         }
     }
 }

@@ -7,16 +7,8 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Abstract
 {
-   public interface ICategoryDal
+   public interface ICategoryDal:IGenericDal<Category>
     {
-        // Category sınıfında CRUD işlemlerini yapmak için interface'ler tanımlanıyor.
-        // Category ekleme/silme/güncelleme işlemlerini VOİD metoduyla tanımladık ve category işlemlerini bir ID ile kontrol edebilmek için GetById tanımlıyoruz.
-
-        List<Category> ListAllCategory();
-        void AddCategory(Category categoryname);
-        void DeleteCategory(Category categorydel);
-        void UpdateCategory(Category categoryup);
-        Category GetById(int id);
-
+        
     }
 }
