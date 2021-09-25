@@ -1,0 +1,32 @@
+﻿@using EntityLayer.Concreate;
+@model List<Category>
+
+@{
+    ViewData["Title"] = "Kategoriler";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" /> <!-- Bootstrap Kütüphanesi -->
+<h1>Veritabanında ki Kategoriler</h1>          <!---- Kategori İndex ve Düzenleme / Tasarım Sayfası ---->
+
+<table class="table table-success">
+    <tr>
+        <th>ID</th>
+        <th>Adı</th>
+        <th>Açıklama</th>
+        <th>Durumu</th>
+        <th>Açıklama</th>
+        <th>Sil</th>
+    </tr>
+    @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CategoryID</td>    <!---- Burada eklenen Kategorileri veritabanından çekip listeleme işlemi yapıldı ---->
+                    <td>@item.Name</td>
+                    <td>@item.Description</td>
+                    <td>@item.Status</td>
+                    <td><a href="#" class="btn btn-warning">Detay</a></td>
+                    <td><a href="#" class="btn btn-danger">Sil</a></td>
+                </tr>
+            }
+
+</table>

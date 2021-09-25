@@ -13,6 +13,7 @@ namespace EntityLayer.Concreate
         public int BlogID { get; set; }
         public string Title { get; set; }
         public string Auth { get; set; }
+        public string İmage { get; set; }
         public string Content { get; set; }
         public DateTime CreateDate { get; set; }
         public bool Status { get; set; }

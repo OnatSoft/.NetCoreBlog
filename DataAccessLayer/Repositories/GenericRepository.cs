@@ -3,6 +3,7 @@ using DataAccessLayer.Concreate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,9 +24,14 @@ namespace DataAccessLayer.Repositories
             return C.Set<T>().Find(id);
         }
 
-        public List<T> GetList()
+        public List<T> GetListAll()
         {
             return C.Set<T>().ToList();
+        }
+
+        public List<T> GetListAll(Expression<Func<T, bool>> filter)
+        {
+            return C.Set<T>().Where(filter).ToList();  // IGenericDal interface'ne tanımladığımız metodu burada implement edip direkt listelemek yerine "filter" şartına göre listeleme yaptık.
         }
 
         public void Insert<T1>(T1 t)

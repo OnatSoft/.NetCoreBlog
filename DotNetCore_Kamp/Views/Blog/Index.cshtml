@@ -1,0 +1,137 @@
+﻿@using EntityLayer.Concreate;
+@model List<Blog>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<!DOCTYPE html>          <!---- Blog İndex ve Düzenleme / Tasarım Sayfası ---->
+<html lang="tr_TR">
+
+<head>
+    <title>ASP.Net Core Blog Projesi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Weblog a Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link href="~/CoreBlogTema/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="~/CoreBlogTema/css/single.css">
+    <link href="~/CoreBlogTema/css/style.css" rel='stylesheet' type='text/css' />
+    <link href="~/CoreBlogTema/css/fontawesome-all.css" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
+          rel="stylesheet">
+</head>
+
+<body>
+    <!--Header-->
+
+
+    <!--//header-->
+    
+    <!--/main-->
+    <section class="main-content-w3layouts-agileits">
+        <div class="container">
+            <h3 class="tittle">Bloglar</h3>
+            <div class="inner-sec">
+                <!--left-->
+                <div class="left-blog-info-w3layouts-agileits text-left">
+                    <div class="row">
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-lg-4 card">
+                            <a href="#">
+                                <img src="@item.İmage" class="card-img-top img-fluid" alt="">
+                            </a>
+                            <div class="card-body">
+                                <ul class="blog-icons my-4">    <!---- Blog içerikleri foreach döngüsüyle veritabanında kaç tane blog varsa sayfa da o içerikli ve o kadar blog gönderisi oluşuyor ---->
+                                    <li>
+                                        <a href="#">
+                                            <i class="far fa-calendar-alt"></i> @(((DateTime)item.CreateDate).ToString("dd.MMM.yyyy"))  <!-- Veritabanından çekilen oluşturulma tarihi -->
+                                        </a>
+                                    </li>
+                                    <li class="mx-2">
+                                        <a href="#">
+                                            <i class="far fa-comment"></i> @item.Comments 0 <!--- Veritabanından çekilen yazar bilgisi --->
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fas fa-info-circle"></i> @item.Category.Name  <!--- Veritabanından çekilen kategori adı --->
+                                        </a>
+                                    </li>
+
+                                </ul>
+                                <h5 class="card-title">
+                                    <a href="/Blog/BlogDetails/@item.BlogID">@item.Title</a>
+                                </h5>
+                                <p class="card-text mb-3">@item.Content.Substring(0, item.Content.Substring(0, 120).LastIndexOf(" "))...</p>
+                                <a href="/Blog/BlogDetails/@item.BlogID" class="btn btn-primary read-m">Devamını Oku</a>
+                            </div>
+                            <br />
+                        </div>
+                        }
+                    </div>
+                    <!--//left-->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--//main-->
+    <!---->
+    <!-- js -->
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <!-- //js -->
+    <!--/ start-smoth-scrolling -->
+    <script src="js/move-top.js"></script>
+    <script src="js/easing.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 900);
+            });
+        });
+    </script>
+    <!--// end-smoth-scrolling -->
+
+    <script>
+        $(document).ready(function () {
+            /*
+                                    var defaults = {
+                                            containerID: 'toTop', // fading element id
+                                        containerHoverID: 'toTopHover', // fading element hover id
+                                        scrollSpeed: 1200,
+                                        easingType: 'linear'
+                                        };
+                                    */
+
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+        });
+    </script>
+    <a href="#home" class="scroll" id="toTop" style="display: block;">
+        <span id="toTopHover" style="opacity: 1;"> </span>
+    </a>
+
+    <!-- //Custom-JavaScript-File-Links -->
+    <script src="js/bootstrap.js"></script>
+
+
+</body>
+
+</html>

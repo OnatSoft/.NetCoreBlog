@@ -71,6 +71,9 @@ namespace DataAccessLayer.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("İmage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("BlogID");
 
                     b.HasIndex("CategoryID");

@@ -14,7 +14,7 @@ namespace BusinessLayer.Concreate
     {
         EFCategoryRepository efCategoryRepo;
 
-        public CategoryManager()  // Category Manager Constracter Metodu ile EFCategory Repository tanımlıyoruz
+        public CategoryManager(EFCategoryRepository eFCategoryRepository)  // Category Manager Constracter Metodu ile EFCategory Repository tanımlıyoruz
         {
             efCategoryRepo = new EFCategoryRepository();
         }
@@ -36,7 +36,7 @@ namespace BusinessLayer.Concreate
 
         public List<Category> GetList()
         {
-            return efCategoryRepo.GetList();  // Entity Framework Category Repository listeleme işlemi
+            return efCategoryRepo.GetListAll();  // Entity Framework Category Repository listeleme işlemi
         }
 
         public void UpdateCategory(Category upcategory)
