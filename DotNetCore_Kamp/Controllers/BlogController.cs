@@ -21,7 +21,8 @@ namespace DotNetCore_Kamp.Controllers
 
         public IActionResult BlogDetails(int id)
         {
-            /*--- Blog Detayları sayfasına Blogları Id'ye göre getirme metodu ---*/
+            /*--- Blog Detayları sayfasına Bloğu Id'ye göre getirme metodu ve tıklanan bloğa göre yorum getirme ---*/
+            ViewBag.i = id;
             var List = bm.GetBlogById(id);
             return View(List);
 

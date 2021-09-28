@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DotNetCore_Kamp.Controllers
 {
-    public class Category : Controller
+    public class CategoryController : Controller
     {
         CategoryManager cm = new CategoryManager(new EFCategoryRepository());
         public IActionResult Index()

@@ -47,6 +47,7 @@ namespace BusinessLayer.Concreate
         {
             return _BlogDal.GetListAll(x => x.BlogID == id);
         }
+
         public void UpdateBlog(Blog upblog)  /*--- Blog güncelleme metodu ---*/
         {
             throw new NotImplementedException();
