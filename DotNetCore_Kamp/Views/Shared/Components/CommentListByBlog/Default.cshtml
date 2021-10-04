@@ -1,29 +1,25 @@
 ﻿@model IEnumerable<EntityLayer.Concreate.Comment>
-
 <!----- Burası blog detaylarında yorumlar listesi için çağrılan Component View Sayfası ----->
 <!-- Shared > Components klasörü içindeki Comment List By Blog klasörü View Sayfası -->
 
 <div class="comment-top">
     <h4>Yorumlar</h4>
+    @if (Model.Count() == 0)
+    {
+        <p class="alert alert-danger">Bu blogda hiç yorum yok. İlk yorumu sen yap.</p>
+    }
     @foreach (var item in Model)
     {
-    <div class="media">
-        <div class="media-body">
-
+        <div class="media">
+            <img src="~/CoreBlogTema/images/user_icon.png" alt="usericon" width="60" height="60" class="img-fluid" />
             <div class="media-body">
-                <img src="~/CoreBlogTema/images/t3.jpg" alt="" class="img-fluid" />
-                <h5 class="mt-0">@item.UserName</h5>
-                <h5 class="mt-0">@(((DateTime)item.CreateDate).ToString("dd.MM.yyyy"))</h5>
-                @if (Model.Count()==0)
-                {
-                    <p>Bu blogda hiç yorum yok. İlk yorumu sen yap.</p>
-                }
-                <p>
+                <h5 class="mt-0">@item.UserName - @(((DateTime)item.CreateDate).ToString("dd.MM.yyyy"))</h5>
+
+                <p class="mb-sm-n2">
                     @item.Content
                 </p>
             </div>
 
         </div>
-    </div>
     }
 </div>

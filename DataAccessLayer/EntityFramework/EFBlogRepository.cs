@@ -13,12 +13,13 @@ namespace DataAccessLayer.EntityFramework
 {
     public class EFBlogRepository : GenericRepository<Blog>, IBlogDal
     {
-        public List<Blog> GetListWithCategory()
+        public List<Blog> GetBlogListWithCategory()
         {
             using (var c = new Context())  // Concreate klasöründen Context'te ki veritabanı bağlantısını kullan.
             {
                 return c.Blogs.Include(x => x.Category).ToList();  // Context'te Blogs tanımından Kategori tablosundan ait isimleri getir.
             }
         }
+
     }
 }

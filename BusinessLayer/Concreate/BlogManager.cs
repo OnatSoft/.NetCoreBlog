@@ -28,9 +28,9 @@ namespace BusinessLayer.Concreate
             throw new NotImplementedException();
         }
 
-        public List<Blog> GetBlogListwithCategory()  /*--- Bloglar listesinde Kategori adının yazması için yapılan kod satırı. Blog Listesini Kategoriyle Birlikte Getir ---*/
+        public List<Blog> GetBlogListwithCategory()  /*--- Bloglar listesinde Kategori adını yazmak için yapılmış kod satırı, "Blog Listesini Kategoriyle Birlikte Getirme" metodu ---*/
         {
-            return _BlogDal.GetListWithCategory();
+            return _BlogDal.GetBlogListWithCategory();
         }
 
         public Blog GetById(int id)  /*--- Blogları Id'ye göre çağırma / arama ---*/
@@ -56,6 +56,11 @@ namespace BusinessLayer.Concreate
         public List<Blog> GetListAll()  /*--- Tümünü listeleme metodu ---*/
         {
             throw new NotImplementedException();
+        }
+
+        public List<Blog> GetBlogListByWriter(int id)  /*--- Blog Detayda ki sağ kenarda bulunan bölüm için, "Blog Listesini Yazara Göre Getirme Metodu" ---*/
+        {
+            return _BlogDal.GetListAll(x => x.WriterID == id);
         }
     }
 }

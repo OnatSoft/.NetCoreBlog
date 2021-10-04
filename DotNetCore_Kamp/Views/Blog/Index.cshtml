@@ -13,8 +13,7 @@
     <title>ASP.Net Core Blog Projesi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
-    <meta name="keywords" content="Weblog a Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <meta name="keywords" content="" />
 
     <script>
         addEventListener("load", function () {
@@ -42,7 +41,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--/main-->
     <section class="main-content-w3layouts-agileits">
         <div class="container">
-            <h3 class="tittle">Bloglar</h3>
+            <h3 class="tittle">Blog Listesi</h3>
             <div class="inner-sec">
                 <!--left-->
                 <div class="left-blog-info-w3layouts-agileits text-left">
@@ -57,7 +56,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <ul class="blog-icons my-4">    <!---- Blog içerikleri foreach döngüsüyle veritabanında kaç tane blog varsa sayfa da o içerikli ve o kadar blog gönderisi oluşuyor ---->
                                     <li>
                                         <a href="#">
-                                            <i class="far fa-calendar-alt"></i> @(((DateTime)item.CreateDate).ToString("dd.MMM.yyyy"))  <!-- Veritabanından çekilen oluşturulma tarihi -->
+                                            <i class="far fa-calendar-alt"></i> @(((DateTime)item.CreateDate).ToString("dd.MM.yyyy"))  <!-- Veritabanından çekilen oluşturulma tarihi -->
                                         </a>
                                     </li>
                                     <li class="mx-2">

@@ -8,7 +8,9 @@
 <!DOCTYPE html>
 <html lang="tr_TR">
 
-<body>                 <!----- Blog Detay Sayfası ----->
+<body>
+    <!--************************ Blog Detay Sayfası ****************************-->
+    
     <section class="banner-bottom">
         <!--/blog-->
         <div class="container">
@@ -31,7 +33,7 @@
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <i class="far fa-calendar-alt"></i> @(((DateTime)item.CreateDate).ToString("dd.MMM.yyyy"))
+                                                <i class="far fa-calendar-alt"></i> @(((DateTime)item.CreateDate).ToString("dd.MM.yyyy"))
                                             </a>
                                         </li>
                                         <li class="mx-2">
@@ -53,7 +55,7 @@
                         </div>
                     }
 
-                    @await Component.InvokeAsync("CommentListByBlog", new { id= ViewBag.i })  <!--- Yorumları id ile listeleyen sayfayı çağırma ve Tıklanan bloğa göre yorumları getirme --->
+                    @await Component.InvokeAsync("CommentListByBlog", new { id = ViewBag.i })  <!--- Yorumları id ile listeleyen sayfayı çağırma ve Tıklanan bloğa göre yorumları getirme --->
 
                     @await Html.PartialAsync("~/Views/Comment/PartialAddComment.cshtml")  <!--- Oluşturulan partial sayfasını ilgili ana index sayfasına çağırmanın İkinci yolu dosya yolunu yazmak --->
                 </div>
@@ -75,76 +77,13 @@
 
                         </div>
                         <!-- Mini Kategoriler listesi Başlangıç -->
-                        @await Component.InvokeAsync("CategoryList")  <!--- View Components > Blog Category List klasörü içindeki Class çağrılıyor --->
+                        @await Component.InvokeAsync("CategoryList")  <!--- View Components > Blog Category List klasörü içindeki CategoryList Class'ı' çağrılıyor --->
                         <!-- Mini Kategoriler listesi Bitiş -->
-                        <div class="tech-btm">
-                            <h4>Haftanın En Popüler Blogları</h4>
-
-                            <div class="blog-grids row mb-3">
-                                <div class="col-md-5 blog-grid-left">
-                                    <a href="single.html">
-                                        <img src="~/CoreBlogTema/images/1.jpg" class="img-fluid" alt="">
-                                    </a>
-                                </div>
-                                <div class="col-md-7 blog-grid-right">
-
-                                    <h5>
-                                        <a href="single.html">Pellentesque dui, non felis. Maecenas male non felis </a>
-                                    </h5>
-                                    <div class="sub-meta">
-                                        <span>
-                                            <i class="far fa-clock"></i> 20 Jan, 2018
-                                        </span>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="blog-grids row mb-3">
-                                <div class="col-md-5 blog-grid-left">
-                                    <a href="single.html">
-                                        <img src="~/CoreBlogTema/images/6.jpg" class="img-fluid" alt="">
-                                    </a>
-                                </div>
-                                <div class="col-md-7 blog-grid-right">
-                                    <h5>
-                                        <a href="single.html">Pellentesque dui, non felis. Maecenas male non felis </a>
-                                    </h5>
-                                    <div class="sub-meta">
-                                        <span>
-                                            <i class="far fa-clock"></i> 20 Feb, 2018
-                                        </span>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="single-gd my-5 tech-btm">
-                            <h4>Our Progress</h4>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0"
-                                     aria-valuemax="100"></div>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
-                                     aria-valuemax="100"></div>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                     aria-valuemax="100"></div>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
-                                     aria-valuemax="100"></div>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0"
-                                     aria-valuemax="100"></div>
-                            </div>
-                        </div>
+                        
+                        @await Component.InvokeAsync("WriterByBlog")  <!-- Shared klasöründe ki WriterByBlog sayfası çağrılıyor -->
 
                         <div class="single-gd tech-btm">
-                            <h4>Yazarın Son 2 Blogları</h4>
+                            <h4>Son Yazılan Bloglar</h4>
                             <div class="blog-grids">
                                 <div class="blog-grid-left">
                                     <a href="#">

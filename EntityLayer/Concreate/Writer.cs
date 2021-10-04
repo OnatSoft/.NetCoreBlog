@@ -16,7 +16,10 @@ namespace EntityLayer.Concreate
         public string İmage { get; set; }
         public string EMail { get; set; }
         public string Password { get; set; }
+        public string PasswordRepeat { get; set; }
+        public string Captcha { get; set; }
         public bool Status { get; set; }
+        public List<Blog> Blogs { get; set; }
 
     }
 }

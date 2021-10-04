@@ -1,0 +1,32 @@
+﻿<!--*** Blog Detay Sayfasında sağ kenarda bulunan "Yazarın Son 2 Bloğu" bölümü View Component ***-->
+<!--*** Views > Shared klasörü içerisinde ki Yazar id'ye göre son 2 bloğu görüntüleme sayfası ***-->
+
+
+@model List<Blog>
+@using EntityLayer.Concreate
+
+<div class="tech-btm">
+    <h4>Yazarın Son 2 Bloğu</h4>
+
+    @foreach (var item in Model)
+    {
+        <div class="blog-grids row mb-3">
+            <div class="col-md-5 blog-grid-left">
+                <a href="#">
+                    <img src="@item.İmage" class="img-fluid" alt="">
+                </a>
+            </div>
+            <div class="col-md-7 blog-grid-right">
+                <h5>
+                    <a href="#">@item.Title</a>
+                </h5>
+                <div class="sub-meta">
+                    <span>
+                        <i class="far fa-calendar"></i> @(((DateTime)item.CreateDate).ToString("dd.MM.yyyy"))
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
