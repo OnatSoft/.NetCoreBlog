@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DotNetCore_Kamp.ViewComponents
 {
-    public class CommentListByBlog: ViewComponent  /*==== Comment Manager'dan gelen id ile bloğa göre yorumları listeleyen Class ====*/
+    public class CommentListByBlog: ViewComponent  /*==== Comment Manager'dan gelen id ile bloğa göre yorumları listeleyen Component View ====*/
     {
         CommentManager cm = new CommentManager(new EFCommentRepository());
         public IViewComponentResult Invoke(int id)

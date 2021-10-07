@@ -26,20 +26,20 @@ namespace DotNetCore_Kamp.Controllers
              * Ve Yorum Ekleme kısmını yeni sayfaya aldık ---*/
             return PartialView();
         }
-        [HttpPost]
 
 
-        public PartialViewResult PartialAddComment(Comment p)
+        [HttpPost] // Method Post olduğunda
+        public PartialViewResult PartialAddComment(Comment p)   //*** Bloglara yorum yaparken ekleneceği zaman yapılacak işlemler ***//
         {
             p.CreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            p.BlogID = 3;
+            p.BlogID = 4;
             p.Status = true;
             cm.CommentAdd(p);
             return PartialView();
         }
 
 
-        public PartialViewResult PartialCommentList(int id)
+        public PartialViewResult PartialCommentList(int id)   //*** Bloğa yapılan yorumları id'ye göre Listeleme ***//
         {
             var values= cm.GetList(id);
             return PartialView(values);

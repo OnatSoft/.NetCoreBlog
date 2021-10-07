@@ -1,0 +1,68 @@
+﻿@using EntityLayer.Concreate
+@model List<About>
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+                                <!--********** Burası Hakkımızda Ana Sayfası **********-->
+
+<!DOCTYPE html>
+<html lang="tr_TR">
+
+<body>
+    <!--/main-->
+    <section class="main-content-w3layouts-agileits">
+        <div class="container">
+            <h3 class="tittle">Hakkımızda</h3>
+            <div class="row inner-sec">
+                <!--left-->
+                <div class="col-lg-8 left-blog-info-w3layouts-agileits text-left">
+                    <div class="blog-grid-top">
+
+                        <div class="blog_info_left_grid">
+                            <a href="#">
+                                <img src="~/CoreBlogTema/images/b5.jpg" class="img-fluid" alt="">
+                            </a>
+                        </div>
+                        <h3>
+                            Biz Kimiz? & Misyonumuz & Vizyonumuz
+                        </h3>
+                        @foreach (var item in Model)
+                        {
+                        <p>
+                            @item.Content1
+                        </p>
+                        <p>
+                            @item.Content2
+                        </p>
+                        }
+                    </div>
+                </div>
+                <!--//left-->
+                <!--right-->
+                <aside class="col-lg-4 agileits-w3ls-right-blog-con text-right">
+                    <div class="right-blog-info text-left">
+
+                        <div class="tech-btm">
+                            @await Html.PartialAsync("~/Views/Newsletter/SubscribeMail.cshtml")  <!-- Bültene Abone Olma Partial View'i Hakkımızda sayfasında da çağrılıyor -->
+                        </div>
+
+                        @await Html.PartialAsync("~/Views/About/SocialMediaAbout.cshtml")  <!-- Hakkımızda sayfasında ki Sosyal Medya hesapları Partial View'den çağrılıyor -->
+                        
+                    <div class="tech-btm">
+
+                        @await Component.InvokeAsync("WriterByBlog")  <!-- Yazarın Son Blogları bölümünü Hakkımızda sayfasında da çağrılıyor -->
+
+                    </div>
+                    </div>
+                </aside>
+                <!--//right-->
+            </div>
+        </div>
+    </section>
+    <!--//main-->
+
+</body>
+</html>

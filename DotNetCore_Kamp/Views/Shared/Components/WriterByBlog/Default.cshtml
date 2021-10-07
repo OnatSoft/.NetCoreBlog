@@ -1,4 +1,4 @@
-﻿<!--*** Blog Detay Sayfasında sağ kenarda bulunan "Yazarın Son 2 Bloğu" bölümü View Component ***-->
+﻿<!--*** Blog Detay Sayfasında sağ kenarda bulunan "Yazarın Son Blogları" bölümü View Component ***-->
 <!--*** Views > Shared klasörü içerisinde ki Yazar id'ye göre son 2 bloğu görüntüleme sayfası ***-->
 
 
@@ -6,7 +6,7 @@
 @using EntityLayer.Concreate
 
 <div class="tech-btm">
-    <h4>Yazarın Son 2 Bloğu</h4>
+    <h4>Yazarın Son Blogları</h4>
 
     @foreach (var item in Model)
     {
@@ -16,7 +16,9 @@
                     <img src="@item.İmage" class="img-fluid" alt="">
                 </a>
             </div>
+
             <div class="col-md-7 blog-grid-right">
+
                 <h5>
                     <a href="#">@item.Title</a>
                 </h5>
@@ -25,8 +27,8 @@
                         <i class="far fa-calendar"></i> @(((DateTime)item.CreateDate).ToString("dd.MM.yyyy"))
                     </span>
                 </div>
+
             </div>
         </div>
-
     }
 </div>

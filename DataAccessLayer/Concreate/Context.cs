@@ -12,6 +12,7 @@ namespace DataAccessLayer.Concreate
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            //** Veritabanı bağlantı adresi**//
             optionsBuilder.UseSqlServer("server=ONAT-PC09\\;database=CoreBlogDB; integrated security=true;");
         }
 

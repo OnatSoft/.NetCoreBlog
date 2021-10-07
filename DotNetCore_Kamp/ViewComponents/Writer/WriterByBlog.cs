@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace DotNetCore_Kamp.ViewComponents.Writer
 {
-    public class WriterByBlog: ViewComponent
+    public class WriterByBlog: ViewComponent     //*** Kenar çubuğunda sadece yazara ait blogları getiriliyor. View Component Sayfası
     {
         BlogManager bm = new BlogManager(new EFBlogRepository());
 
         public IViewComponentResult Invoke()
         {
-            var values = bm.GetBlogListByWriter(3);  //** Blog detay sayfasında olan Yazarın son blogları bölümünde sadece Yazar ID'si 1 olan blogları getiriyor.
+            var values = bm.GetBlogListByWriter(2);  //** Blog detay sayfasında olan Yazarın son blogları bölümünde sadece Yazar ID'si 1 olan blogları getiriyor.
             return View(values);
         }
     }
