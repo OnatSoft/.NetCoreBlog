@@ -20,7 +20,7 @@ namespace BusinessLayer.Concreate
 
         public void CommentAdd(Comment addcomment)
         {
-            throw new NotImplementedException();
+            _CommentDal.Insert(addcomment);
         }
 
         public List<Comment> GetList(int id)

@@ -18,11 +18,13 @@
     <!--** Burada Method POST olduğunda form oluşturduk ve TextBoxFor ile veri girişi sağlayıp ValidationMessageFor ile özel hata mesajlarını kullanıp renklendirdik. **-->
                 @using (Html.BeginForm("Index", "Register", FormMethod.Post))
                 {
+                    <i class="text-danger">Gerekli Alanlar *</i>
+                    <br />
                     <div class="form-row">
-
+                        
                         <div class="col-md-6 mb-3">
                             <label for="validationCustom01">Adı Soyadı*</label>
-                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @type="text", @autofocus=""})
                             @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
 
                             @*<input type="text" class="form-control" id="validationDefault01" name="Name" autofocus required="">*@
@@ -30,7 +32,7 @@
 
                         <div class="col-md-6 mb-3">
                             <label for="validationCustom02">E-posta Adresi*</label>
-                            @Html.TextBoxFor(x => x.EMail, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.EMail, new { @class = "form-control", @type="email", @autocomplete="true", @autofocus = "" })
                             @Html.ValidationMessageFor(x => x.EMail, "", new { @class = "text-danger" })
 
                             @*<input type="email" class="form-control" id="validationDefault02" name="EMail" required="">*@
@@ -41,19 +43,19 @@
 
                         <div class="form-group col-md-6">
                             <label for="exampleInputPassword1 mb-2">Parola*</label>
-                            @Html.TextBoxFor(x => x.Password, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Password, new { @class = "form-control", @type="password", @autocomplete="true", @autofocus = "" })
                             @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group col-md-6">
                             <label for="exampleInputPassword2 mb-2">Parola Tekrar*</label>
-                            @Html.TextBoxFor(x => x.PasswordRepeat, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.PasswordRepeat, new { @class = "form-control", @type="password", @autocomplete="true", @autofocus = "" })
                             @Html.ValidationMessageFor(x => x.PasswordRepeat, "", new { @class = "text-danger" })
                         </div>
 
                     </div>
                     <button type="submit" class="btn btn-success submit mb-4">Kayıt Yap</button>
                     <p>
-                        <a href="#" id="btn1">Yazarlık şartlarımızı okumak için tıklayınız</a>
+                        <a href="#" id="btn1" class="text-primary">Yazarlık şartlarımızı okumak için tıklayınız</a>
                     </p>
                 }
 
