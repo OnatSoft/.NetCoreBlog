@@ -64,13 +64,16 @@
                 <!----- Sağ taraf Başlangıç ----->
                 <aside class="col-lg-4 agileits-w3ls-right-blog-con text-right">
                     <div class="right-blog-info text-left">
-                        
-                        @await Html.PartialAsync("~/Views/Newsletter/SubscribeMail.cshtml")  <!--- Bültene Abone Olma kısmının sayfası çağrılıyor --->
+                        <div class="tech-btm">
+                            <img src="~/CoreBlogTema/images/banner1.jpg" class="img-fluid" alt="Subscribe_İmage">
+                        </div>
 
+                        <h4>Bültene Abone Olun</h4>
+                        @await Html.PartialAsync("~/Views/Newsletter/SubscribeMail.cshtml")  <!--- Bültene Abone Olma kısmının sayfası çağrılıyor --->
                         <!-- Mini Kategoriler listesi Başlangıç -->
                         @await Component.InvokeAsync("CategoryList")  <!--- View Components > Blog Category List klasörü içindeki CategoryList Class'ı' çağrılıyor --->
                         <!-- Mini Kategoriler listesi Bitiş -->
-                        
+
                         @await Component.InvokeAsync("WriterByBlog")  <!-- Shared klasöründe ki WriterByBlog sayfası çağrılıyor, Yazarın son Bloglarını getirme -->
 
                         <div class="single-gd tech-btm">

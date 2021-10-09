@@ -3,6 +3,7 @@ using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concreate;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,11 @@ using System.Threading.Tasks;
 
 namespace DotNetCore_Kamp.Controllers
 {
+    [AllowAnonymous]
     public class RegisterController : Controller
     {
+        
+
         WriterManager wm = new WriterManager(new EFWriterRepository());
 
         [HttpGet]  //*** HTTPGet Attribute komutu, Kayıt sayfası yüklenince çalışır
@@ -21,8 +25,8 @@ namespace DotNetCore_Kamp.Controllers
             return View();
         }
 
-        [HttpPost]  //*** HTTPPost Attribute komutu, Kayıt tamamlanınca butona basıldığı anda çalışır ve veritabanına kaydeder.
 
+        [HttpPost]  //*** HTTPPost Attribute komutu, Kayıt tamamlanınca butona basıldığı anda çalışır ve veritabanına kaydeder.
         public IActionResult Index(Writer p)
         {   //** Yazar kayıt olma işlemi
 

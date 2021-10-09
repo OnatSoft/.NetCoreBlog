@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -11,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace DotNetCore_Kamp
 {
-    public class Startup
+    public class Startup         /**** Startup Sýnýfý, bir projenin MVC'de WebConfig gibi Ayarlar sýnýfý ****/
     {
         public Startup(IConfiguration configuration)
         {
@@ -20,11 +22,24 @@ namespace DotNetCore_Kamp
 
         public IConfiguration Configuration { get; }
 
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddSession();  //*** Yazar Giriþ Sayfasýnda Oturumu Ekle Methodu - Session Ýþlemleri ***//
+
+            services.AddMvc(config =>  //*** Bütün Proje seviyesinde bir Authorize, Authenticate Tanýmlamasý. Yani sitede ki bütün sayfalara kullanýcý giriþ zorunluluðu getiriliyor. ***//
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                            .RequireAuthenticatedUser()
+                            .Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            });
+
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -41,6 +56,8 @@ namespace DotNetCore_Kamp
             }
 
             app.UseStatusCodePagesWithReExecute("/ErrorPage/Error1", "?code={0}");  //--- Özelleþtirilmiþ 404 Sayfasý yapýmýnýn baþlangýç iþi
+            
+            app.UseSession();  //*** Açýlan Oturumu Kullan Methodu ***//
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

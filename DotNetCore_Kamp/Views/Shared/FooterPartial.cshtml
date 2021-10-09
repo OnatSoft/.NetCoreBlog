@@ -5,9 +5,12 @@
         <div class="row">
             <div class="col-lg-4 footer-grid-agileits-w3ls text-left">
                 <h3>Hakkımızda</h3>
-                <p>Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. lacinia eget consectetur sed, convallis at tellus..</p>
+                <p>
+                    Blogların içeriği geleneksel internet içeriğinden farklılık gösterdiği için sadece bloglar için kurulmuş özel indeksleme mekanizmaları ve arama motorları bulunmaktadır.
+                    Technorati en başarılı blog teknolojilerinden biridir. Ayrıca Google Blog Search adında bir blog arama motoru işletmektedir...
+                </p>
                 <div class="read">
-                    <a href="#" class="btn btn-primary read-m">Devamını Oku</a>
+                    <a href="/About/Index" class="btn btn-primary read-m">Devamını Oku</a>
                 </div>
             </div>
 
@@ -72,16 +75,8 @@
 
             <!-- subscribe -->
             <div class="col-lg-4 subscribe-main footer-grid-agileits-w3ls text-left">
-                <h2>E-posta Listesine Abone Olun</h2>
-                <div class="subscribe-main text-left">
-                    <div class="subscribe-form">
-                        <form action="#" method="post" class="subscribe_form">
-                            <input class="form-control" type="email" placeholder="E-posta:" required="">
-                            <button type="submit" class="btn btn-primary submit">Abone Ol</button>
-                        </form>
-                        <div class="clearfix"> </div>
-                    </div>
-                </div>
+                <h4>Bültene Abone Olun</h4>
+                @await Html.PartialAsync("~/Views/Newsletter/SubscribeMail.cshtml")
                 <!-- //subscribe -->
             </div>
         </div>
