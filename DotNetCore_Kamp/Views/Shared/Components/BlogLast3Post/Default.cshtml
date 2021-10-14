@@ -1,0 +1,30 @@
+﻿@using EntityLayer.Concreate
+@model List<Blog>
+                <!--******************* Burası Footer alanında ki "Son 3 Gönderiler" View Component Tasarım sayfası *******************-->
+
+<div class="col-lg-4 footer-grid-agileits-w3ls text-left">
+    <div class="tech-btm">
+        <h3>Son Gönderiler</h3>
+        @foreach (var item in Model)
+        {
+            <div class="blog-grids row mb-3">
+                <div class="col-md-5 blog-grid-left">
+                    <a href="/Blog/BlogDetails/@item.BlogID">
+                        <img src="@item.İmage" class="card-img-top img-fluid" alt="">
+                    </a>
+                </div>
+
+                <div class="col-md-7 blog-grid-right">
+                    <h5>
+                        <a href="/Blog/BlogDetails/@item.BlogID">@item.Content.Substring(0, item.Content.Substring(0, 50).LastIndexOf(" "))...</a>
+                    </h5>
+                    <div class="sub-meta">
+                        <span>
+                            <i class="far fa-calendar-alt"></i> @(((DateTime)item.CreateDate).ToString("dd.MM.yyyy"))
+                        </span>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

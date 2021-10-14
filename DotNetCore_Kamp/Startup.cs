@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,7 +29,7 @@ namespace DotNetCore_Kamp
         {
             services.AddControllersWithViews();
 
-            services.AddSession();  //*** Yazar Giriþ Sayfasýnda Oturumu Ekle Methodu - Session Ýþlemleri ***//
+            services.AddSession(); //*** Yazar Giriþ Sayfasýnda Oturumu Ekle Methodu - Session Ýþlemleri ***//
 
             services.AddMvc(config =>  //*** Bütün Proje seviyesinde bir Authorize, Authenticate Tanýmlamasý. Yani sitede ki bütün sayfalara kullanýcý giriþ zorunluluðu getiriliyor. ***//
             {
@@ -37,6 +38,14 @@ namespace DotNetCore_Kamp
                             .Build();
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
+
+            services.AddMvc();
+            services.AddAuthentication(  //*** Diðer sayfalara geçiþ yaparken kullanýcýnýn karþýsýna hata vermemesi için Giriþ sayfasýnda "Return URL" yapýyor. ***//
+                CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(x =>
+                {
+                    x.LoginPath = "/Login/Index";
+                });
 
         }
 
@@ -57,7 +66,9 @@ namespace DotNetCore_Kamp
 
             app.UseStatusCodePagesWithReExecute("/ErrorPage/Error1", "?code={0}");  //--- Özelleþtirilmiþ 404 Sayfasý yapýmýnýn baþlangýç iþi
             
-            app.UseSession();  //*** Açýlan Oturumu Kullan Methodu ***//
+            //*** app.UseSession();   Açýlan Oturumu Kullan Methodu ***//
+
+            app.UseAuthentication();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

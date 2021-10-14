@@ -43,6 +43,11 @@ namespace BusinessLayer.Concreate
             return _BlogDal.GetListAll();
         }
 
+        public List<Blog> GetLast3Blog()
+        {
+            return _BlogDal.GetListAll().OrderByDescending(x => x.BlogID).Take(3).ToList();  /*--- Footer alanında Son 3 Gönderiyi getirme metodu ---*/
+        }
+
         public List<Blog> GetBlogById(int id)  /*--- Blogları / Blog'u Id'ye göre getirme metodu ---*/
         {
             return _BlogDal.GetListAll(x => x.BlogID == id);

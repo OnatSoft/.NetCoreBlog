@@ -11,6 +11,7 @@ namespace DotNetCore_Kamp.Controllers
     public class BlogController : Controller
     {
         BlogManager bm = new BlogManager(new EFBlogRepository());
+
         public IActionResult Index()
         {
             /*--- Blog Controller'da Blog Manager adlı nesne oluşturup yeni EFBlog Repository tanımladık.

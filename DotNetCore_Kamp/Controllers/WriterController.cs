@@ -14,13 +14,19 @@ namespace DotNetCore_Kamp.Controllers
     public class WriterController : Controller
     {
         //*** Bütün proje seviyesinde kullanıcı giriş zorunluluğu (Authorize) olduğu için Yazar Login sayfasını bu zorunluluktan muaf (devre dışı) bıraktığı için erişilebiliyor. ***//
-        [AllowAnonymous] 
+        
         public IActionResult Index()
         {
             return View();
         }
 
         public IActionResult WriterProfile()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public IActionResult Test()
         {
             return View();
         }
