@@ -25,7 +25,7 @@ namespace DotNetCore_Kamp.Controllers
         {
 
             p.MailStatus = true;
-            subscribe.NewsletterAdd(p);
+            subscribe.TAdd(p);
             return RedirectToAction("Index", "Blog");
         }
     }

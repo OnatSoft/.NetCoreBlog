@@ -56,7 +56,7 @@
                                 <ul class="blog-icons my-4">    <!---- Blog içerikleri foreach döngüsüyle veritabanında kaç tane blog varsa sayfa da o içerikli ve o kadar blog gönderisi oluşuyor ---->
                                     <li>
                                         <a href="#">
-                                            <i class="far fa-calendar-alt"></i> @(((DateTime)item.CreateDate).ToString("dd.MM.yyyy"))  <!-- Veritabanından çekilen oluşturulma tarihi -->
+                                            <i class="far fa-calendar-alt"></i> @item.CreateDate.ToShortDateString()  <!-- Veritabanından çekilen oluşturulma tarihi -->
                                         </a>
                                     </li>
                                     <li class="mx-2">
@@ -74,7 +74,7 @@
                                 <h5 class="card-title">
                                     <a href="/Blog/BlogDetails/@item.BlogID">@item.Title</a>
                                 </h5>
-                                <p class="card-text mb-3">@item.Content.Substring(0, item.Content.Substring(0, 120).LastIndexOf(" "))...</p>
+                                <p class="card-text mb-3">@(item.Content.Length < 120 ? item.Content : item.Content.Substring(0, item.Content.Substring(0, 120).LastIndexOf(" "))) ...</p>
                                 <a href="/Blog/BlogDetails/@item.BlogID" class="btn btn-primary read-m">Devamını Oku</a>
                             </div>
                             <br />

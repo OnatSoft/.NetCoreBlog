@@ -7,9 +7,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface IWriterService
+    public interface IWriterService: IGenericService<Writer>
     {
-        void WriterAdd(Writer addwriter); /*--- Yazar Kaydetmek için en başta Yapılan tanım ---*/
-
     }
 }

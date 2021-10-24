@@ -1,0 +1,31 @@
+﻿@model EntityLayer.Concreate.Blog
+
+<!--************************************* Burası Yazar Panelinde yeni blog ekleme tasarım sayfası ******************************************-->
+@{
+    ViewData["Title"] = "BlogAdd";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<h2>Yeni Blog Oluştur</h2>
+
+@using (Html.BeginForm("BlogAdd", "Blog", FormMethod.Post))
+{
+    @Html.Label("Blog Başlığı")
+    @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Title, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("Blog Görseli")
+    @Html.TextBoxFor(x => x.İmage, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x=>x.İmage, "", new { @class="text-danger" })
+    <br />
+    @Html.Label("Kategori")
+    @Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.cv, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.CategoryID, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("Blog Açıklaması")
+    @Html.TextAreaFor(x => x.Content, 20, 5, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Content, "", new { @class = "text-danger" })
+    <br />
+    <br />
+    <button class="btn btn-success">Kaydet</button>
+}

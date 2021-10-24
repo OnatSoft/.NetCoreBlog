@@ -14,20 +14,11 @@ namespace BusinessLayer.Concreate
     {
         EFCategoryRepository efCategoryRepo;
 
-        public CategoryManager(EFCategoryRepository eFCategoryRepository)  // Category Manager Constracter Metodu ile EFCategory Repository tanımlıyoruz
+        public CategoryManager(EFCategoryRepository eFCategoryRepository)  // Category Manager Constractor Metodu ile EFCategory Repository tanımlıyoruz
         {
             efCategoryRepo = new EFCategoryRepository();
         }
 
-        public void AddCategory(Category addcategory)
-        {
-            efCategoryRepo.Insert(addcategory);  // Entity Framework Category Repository CRUD ekleme işlemi
-        }
-
-        public void DeleteCategory(Category delcategory)
-        {
-            efCategoryRepo.Delete(delcategory);  // Entity Framework Category Repository CRUD silme işlemi
-        }
 
         public Category GetById(int id)
         {
@@ -39,9 +30,19 @@ namespace BusinessLayer.Concreate
             return efCategoryRepo.GetListAll();  // Entity Framework Category Repository listeleme işlemi
         }
 
-        public void UpdateCategory(Category upcategory)
+        public void TAdd(Category tadd)
         {
-            efCategoryRepo.Update(upcategory);  // Entity Framework Category Repository güncelleme işlemi
+            efCategoryRepo.Insert(tadd);  // Entity Framework Category Repository CRUD ekleme işlemi
+        }
+
+        public void TDelete(Category tdelete)
+        {
+            efCategoryRepo.Delete(tdelete);  // Entity Framework Category Repository CRUD silme işlemi
+        }
+
+        public void TUpdate(Category tupdate)
+        {
+            efCategoryRepo.Update(tupdate);  // Entity Framework Category Repository güncelleme işlemi
         }
     }
 }

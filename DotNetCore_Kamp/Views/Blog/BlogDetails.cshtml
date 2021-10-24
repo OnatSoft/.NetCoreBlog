@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EntityLayer.Concreate.Blog>
+﻿@model EntityLayer.Concreate.Blog
 
 @{
     ViewData["Title"] = "BlogDetails";
@@ -17,23 +17,22 @@
             <div class="row">
                 <!----- Blog Ana Bölüm Başlangıç ----->
                 <div class="col-lg-8 left-blog-info-w3layouts-agileits text-left">
-                    @foreach (var item in Model)
-                    {
+         
                         <div class="blog-grid-top">
                             <div class="b-grid-top">
                                 <div class="blog_info_left_grid">
-                                    <img src="~/CoreBlogTema/images/b1.jpg" class="img-fluid" alt="">
+                                    <img src="@Model.İmage" class="img-fluid" alt="">
                                 </div>
                                 <div class="blog-info-middle">
                                     <ul>
                                         <li class="mx-2">
                                             <a href="#">
-                                                <i class="far fa-user"></i> @item.Auth
+                                                <i class="far fa-user"></i> @Model.Auth
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <i class="far fa-calendar-alt"></i> @(((DateTime)item.CreateDate).ToString("dd.MM.yyyy"))
+                                                <i class="far fa-calendar-alt"></i> @Model.CreateDate.ToShortDateString()
                                             </a>
                                         </li>
                                         <li class="mx-2">
@@ -50,12 +49,12 @@
                                 </div>
                             </div>
 
-                            <h3>@item.Title</h3>
-                            <p>@item.Content</p>
+                            <h3>@Model.Title</h3>
+                            <p>@Model.Content</p>
                         </div>
-                    }
+                    
 
-                    @await Component.InvokeAsync("CommentListByBlog", new { id = ViewBag.i })  <!--- Yorumları id ile listeleyen sayfayı çağırma ve Tıklanan bloğa göre yorumları getirme --->
+                    @await Component.InvokeAsync("CommentListByBlog", new { id = Model.BlogID })  <!--- Yorumları id ile listeleyen sayfayı çağırma ve Tıklanan bloğa göre yorumları getirme --->
 
                     @await Html.PartialAsync("~/Views/Comment/PartialAddComment.cshtml")  <!--- Oluşturulan partial sayfasını ilgili ana index sayfasına çağırmanın İkinci yolu dosya yolunu yazmak --->
                 </div>

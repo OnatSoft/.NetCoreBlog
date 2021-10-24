@@ -13,14 +13,14 @@ namespace BusinessLayer.Concreate
     {
         ICommentDal _CommentDal;
 
-        public CommentManager(ICommentDal commentDal)
+        public CommentManager(ICommentDal commentDal)  //*** ICommentDal'dan oluşturulan Constructor metod ***
         {
             _CommentDal = commentDal;
         }
 
-        public void CommentAdd(Comment addcomment)
+        public Comment GetById(int id)
         {
-            _CommentDal.Insert(addcomment);
+            throw new NotImplementedException();
         }
 
         public List<Comment> GetList(int id)
@@ -28,5 +28,24 @@ namespace BusinessLayer.Concreate
             return _CommentDal.GetListAll(x => x.BlogID == id);
         }
 
+        public List<Comment> GetList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void TAdd(Comment tadd)
+        {
+            _CommentDal.Insert(tadd);
+        }
+
+        public void TDelete(Comment tdelete)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void TUpdate(Comment tupdate)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

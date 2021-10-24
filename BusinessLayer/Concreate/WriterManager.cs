@@ -13,14 +13,34 @@ namespace BusinessLayer.Concreate
     {
         IWriterDal _WriterDal;
 
-        public WriterManager(IWriterDal writerDal)  /*--- IWriterDal için oluşturulmuş Contructer ---*/
+        public WriterManager(IWriterDal writerDal)  /*--- IWriterDal için oluşturulmuş Constructor ---*/
         {
             _WriterDal = writerDal;
         }
 
-        public void WriterAdd(Writer addwriter)  /*--- Yazar Kaydetme Metodu, IWriterService Class'ında tanımladığımız metodu burada implement ediyoruz. ---*/
+        public Writer GetById(int id)
         {
-            _WriterDal.Insert(addwriter);
+            throw new NotImplementedException();
+        }
+
+        public List<Writer> GetList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void TAdd(Writer tadd)
+        {
+            _WriterDal.Insert(tadd);
+        }
+
+        public void TDelete(Writer tdelete)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void TUpdate(Writer tupdate)
+        {
+            throw new NotImplementedException();
         }
     }
 }

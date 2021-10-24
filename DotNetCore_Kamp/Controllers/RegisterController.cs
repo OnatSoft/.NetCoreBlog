@@ -37,8 +37,8 @@ namespace DotNetCore_Kamp.Controllers
             {
                 p.Status = true;
                 p.About = "Deneme Kaydı";
-                wm.WriterAdd(p);
-                return RedirectToAction("Index", "Register");  // Kayıt işlemi yapıldığında geri döndürmek üzere bloglar sayfasına git
+                wm.TAdd(p);
+                return RedirectToAction("Index", "Login");  // Kayıt işlemi yapıldığında geri döndürmek üzere bloglar sayfasına git
             }
             else
             {   // Dışarıdan gelen p nesnesinde ki sonuçlar hatalıysa/geçersiz ise belirtilen hata mesajını göster.

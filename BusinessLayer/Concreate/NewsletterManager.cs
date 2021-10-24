@@ -13,17 +13,37 @@ namespace BusinessLayer.Concreate
     {
         INewsletterDal _newslettersubscribe;
 
-        public NewsletterManager(INewsletterDal newslettersubscribe)
+        public NewsletterManager(INewsletterDal newslettersubscribe)  //*** INewsletterDal'dan oluşturulan Constructor metod ***
         {
             _newslettersubscribe = newslettersubscribe;
         }
 
-        public void NewsletterAdd(Newsletter newsletteradd)
+        public Newsletter GetById(int id)
         {
-            _newslettersubscribe.Insert(newsletteradd);
+            throw new NotImplementedException();
+        }
+
+        public List<Newsletter> GetList()
+        {
+            throw new NotImplementedException();
         }
 
         public void NewsletterDelete(Newsletter newsletterdel)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void TAdd(Newsletter tadd)
+        {
+            _newslettersubscribe.Insert(tadd);
+        }
+
+        public void TDelete(Newsletter tdelete)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void TUpdate(Newsletter tupdate)
         {
             throw new NotImplementedException();
         }

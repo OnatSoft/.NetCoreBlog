@@ -30,5 +30,11 @@ namespace DotNetCore_Kamp.Controllers
         {
             return View();
         }
+
+        [AllowAnonymous]
+        public PartialViewResult WriterNavbarPartial()  //** Yazar Paneli yan menülerin partial bölümü **//
+        {
+            return PartialView();
+        }
     }
 }

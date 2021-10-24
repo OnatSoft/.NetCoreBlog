@@ -9,6 +9,8 @@ namespace DataAccessLayer.Abstract
 {
     public interface IBlogDal:IGenericDal<Blog>
     {
-        List<Blog> GetBlogListWithCategory();  // Blog listesinde blogların kategorilerini isimleriyle birlikte getirmesi için İnclude Metodunu ve IBlogDal interface'ine tanımladık.
+        List<Blog> GetListWithCategory();  // Blog listesinde blogların kategorilerini isimleriyle birlikte getirmesi için İnclude Metodunu ve IBlogDal interface'ine tanımladık.
+        
+        List<Blog> GetListWithCategoryByWriter(int id);  // Yazar Panelinde Kategorileri yazara göre getirme metodu //
     }
 }

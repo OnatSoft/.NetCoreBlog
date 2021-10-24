@@ -39,7 +39,7 @@ namespace DotNetCore_Kamp.Controllers
                 var useridentity = new ClaimsIdentity(claims, "d");
                 ClaimsPrincipal principle = new ClaimsPrincipal(useridentity);
                 await HttpContext.SignInAsync(principle); //* Girilen veriyi şifreli formatta çerezlere ekliyor *//
-                return RedirectToAction("Index", "Writer");
+                return RedirectToAction("BlogListByWriter", "Blog");
             }
             else
             {

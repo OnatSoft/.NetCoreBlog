@@ -7,9 +7,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {                           /****** E-posta Bültenine Abone Olmak için ekleme ve silme parametreleri ******/
-    public interface INewsletterService
+    public interface INewsletterService: IGenericService<Newsletter>
     {
-        void NewsletterAdd(Newsletter newsletteradd);
-        void NewsletterDelete(Newsletter newsletterdel);
     }
 }

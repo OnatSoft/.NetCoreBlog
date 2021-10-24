@@ -3490,14 +3490,12 @@ pre {
   display: block;
   width: 100%;
   height: 2.875rem;
-  padding: 0.94rem 1.375rem;
-  font-size: 0.8125rem;
-  font-weight: 400;
-  line-height: 1;
+  padding: 20px 40px;
+  font-size: 12px;
   color: #495057;
   background-color: #ffffff;
   background-clip: padding-box;
-  border: 1px solid #ced4da;
+  border: 3px solid #ced4da;
   border-radius: 2px;
   -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
@@ -3578,10 +3576,9 @@ select.form-control:focus::-ms-value {
 .form-control-plaintext {
   display: block;
   width: 100%;
-  padding: 0.94rem 0;
+  padding: 20px 40px;
   margin-bottom: 0;
-  font-size: 0.8125rem;
-  line-height: 1;
+  font-size: 12px;
   color: #212529;
   background-color: transparent;
   border: solid transparent;
@@ -3592,17 +3589,17 @@ select.form-control:focus::-ms-value {
 
 .form-control-sm {
   height: 2.575rem;
-  padding: 0.5rem 0.81rem;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  border-radius: 0.2rem; }
+  padding: 13px 20px;
+  font-size: 10px;
+  border-radius: 0.2rem; 
+}
 
 .form-control-lg {
   height: 3.175rem;
-  padding: 0.94rem 1.94rem;
-  font-size: 1.25rem;
-  line-height: 1.5;
-  border-radius: 0.3rem; }
+  padding: 30px 50px;
+  font-size: 16px;
+  border-radius: 0.3rem;
+}
 
 select.form-control[size], select.form-control[multiple] {
   height: auto; }

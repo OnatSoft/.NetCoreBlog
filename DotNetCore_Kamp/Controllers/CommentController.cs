@@ -34,7 +34,7 @@ namespace DotNetCore_Kamp.Controllers
             p.CreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
             p.BlogID = 4;
             p.Status = true;
-            cm.CommentAdd(p);
+            cm.TAdd(p);
             return PartialView();
         }
 

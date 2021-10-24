@@ -4,7 +4,7 @@
 
 <div class="col-lg-4 footer-grid-agileits-w3ls text-left">
     <div class="tech-btm">
-        <h3>Son Gönderiler</h3>
+        <h3>En Son Bloglar</h3>
         @foreach (var item in Model)
         {
             <div class="blog-grids row mb-3">
@@ -16,7 +16,7 @@
 
                 <div class="col-md-7 blog-grid-right">
                     <h5>
-                        <a href="/Blog/BlogDetails/@item.BlogID">@item.Content.Substring(0, item.Content.Substring(0, 50).LastIndexOf(" "))...</a>
+                        <a href="/Blog/BlogDetails/@item.BlogID">@(item.Content.Length < 50 ? item.Content: item.Content.Substring(0, item.Content.Substring(0, 50).LastIndexOf(" ")))...</a>
                     </h5>
                     <div class="sub-meta">
                         <span>
