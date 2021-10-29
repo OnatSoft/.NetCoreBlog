@@ -28,7 +28,7 @@ namespace BusinessLayer.Concreate
             return _BlogDal.GetListWithCategoryByWriter(id);
         }
 
-        public Blog GetById(int id)  /*--- Blogları Id'ye göre çağırma / arama ---*/
+        public Blog TGetById(int id)  /*--- Blogları Id'ye göre çağırma / arama ---*/
         {
             return _BlogDal.GetById(id);
         }
@@ -60,12 +60,12 @@ namespace BusinessLayer.Concreate
 
         public void TDelete(Blog tdelete)
         {
-            throw new NotImplementedException();
+            _BlogDal.Delete(tdelete);
         }
 
         public void TUpdate(Blog tupdate)
         {
-            throw new NotImplementedException();
+            _BlogDal.Update(tupdate);
         }
     }
 }

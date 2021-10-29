@@ -20,7 +20,7 @@ namespace BusinessLayer.Concreate
         }
 
 
-        public Category GetById(int id)
+        public Category TGetById(int id)
         {
             return efCategoryRepo.GetById(id);  // Entity Framework Category Repository Id'ye göre arama işlemi
         }

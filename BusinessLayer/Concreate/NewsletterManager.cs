@@ -18,7 +18,7 @@ namespace BusinessLayer.Concreate
             _newslettersubscribe = newslettersubscribe;
         }
 
-        public Newsletter GetById(int id)
+        public Newsletter TGetById(int id)
         {
             throw new NotImplementedException();
         }

@@ -15,6 +15,7 @@ namespace DotNetCore_Kamp.Controllers
     public class BlogController : Controller
     {
         BlogManager bm = new BlogManager(new EFBlogRepository());
+        CategoryManager cm = new CategoryManager(new EFCategoryRepository());
 
         public IActionResult Index()
         {
@@ -29,7 +30,7 @@ namespace DotNetCore_Kamp.Controllers
             /**--- Blog Detayları sayfasına Bloğu Id'ye göre getirme metodu ve tıklanan bloğa göre yorum getirme ---**/
             //ViewBag.i = id;
             //var List = bm.GetBlogById(id);
-            return View(bm.GetById(id));
+            return View(bm.TGetById(id));
         }
 
         public IActionResult BlogListByWriter()
@@ -38,11 +39,42 @@ namespace DotNetCore_Kamp.Controllers
             return View(values);
         }
 
+        public IActionResult DeleteBlog(int id)
+        {
+            var blogValue = bm.TGetById(id);   //** Yazar panelinde dışardan gelen id'ye göre blog silme işlemi **//
+            bm.TDelete(blogValue);
+            return RedirectToAction("BlogListByWriter");
+        }
+
+        [HttpGet]
+        public IActionResult EditBlog(int id)
+        {
+            var blogValue = bm.TGetById(id);  //** Yazar panelinde dışardan gelen id'ye göre önce güncellenecek bloğun bulunması sonra güncelleme işlemi **//
+            ViewBag.cv = GetCategoryList();
+            return View(blogValue);
+        }
+
+        [HttpPost]
+        public IActionResult EditBlog(Blog b)
+        {
+            var x = bm.TGetById(b.BlogID);
+            x.Title = b.Title;
+            x.CategoryID = b.CategoryID;
+            x.İmage = b.İmage;
+            x.Content = b.Content;
+            b.Status = true;
+            b.CreateDate = x.CreateDate;
+            b.Auth = "Onat Somer";
+            b.WriterID = 1;
+            bm.TUpdate(b);
+            return RedirectToAction("BlogListByWriter");
+        }
+
         [HttpGet]
         public IActionResult BlogAdd()
         {
             //** Blog Ekleme işleminden önce "CategoryList" metodunu çağırıyor **//
-            ViewBag.cv = CategoryList();
+            ViewBag.cv = GetCategoryList();
             return View();
         }
 
@@ -57,6 +89,7 @@ namespace DotNetCore_Kamp.Controllers
             {
                 p.Status = true;
                 p.CreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                p.Auth = "Onat Somer";
                 p.WriterID = 1;
                 bm.TAdd(p);
 
@@ -68,17 +101,16 @@ namespace DotNetCore_Kamp.Controllers
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
-                ViewBag.cv = CategoryList();
+                ViewBag.cv = GetCategoryList();
             }
 
             return View();
         }
     
-        public List<SelectListItem> CategoryList()
+        public List<SelectListItem> GetCategoryList()
         {
             //** Blog ekleme sayfasında Kategorileri dropdown şeklinde yazdırma **//
 
-            CategoryManager cm = new CategoryManager(new EFCategoryRepository());
             List<SelectListItem> categories = (from x in cm.GetList()  //** Blog Ekleme sayfasında Kategorileri dropdown list'ten seçimi **//
                                                select new SelectListItem
                                                {
