@@ -42,5 +42,10 @@ namespace BusinessLayer.Concreate
         {
             throw new NotImplementedException();
         }
+
+        public List<Writer> GetWriterById(int id)  //*** Yazar paneli Ana sayfasında yer alan "Yazar Hakkında" kısmı için yazılan komut ***//
+        {
+            return _WriterDal.GetListAll(x => x.WriterID == id); 
+        }
     }
 }

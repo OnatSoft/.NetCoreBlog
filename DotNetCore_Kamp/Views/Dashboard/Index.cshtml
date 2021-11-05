@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+                   <!--********************************** Burası yazar paneli Dashboard Ana Tasarım Sayfası **************************************-->
+
+<!DOCTYPE html>
+<html lang="tr">
+
+<body>
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper">
+            <div class="content-wrapper">
+
+                <div class="page-header">
+                    <h3 class="page-title">
+                        <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                            <i class="mdi mdi-home"></i>
+                        </span> Panelim
+                    </h3>
+                    <nav aria-label="breadcrumb">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-current="page">
+                                <span></span> Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 stretch-card grid-margin">
+                        <div class="card bg-gradient-danger card-img-holder text-white">
+                            <div class="card-body">
+                                <img src="~/WriterPanel/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                                <h4 class="font-weight-normal mb-3">
+                                    Toplam Bloglar <i class="mdi mdi-chart-line mdi-24px float-right"></i>
+                                </h4>
+                                <h2 class="mb-5"> 0 </h2>
+                                @*<h6 class="card-text"> Core 5.0 Proje Kampı </h6>*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 stretch-card grid-margin">
+                        <div class="card bg-gradient-info card-img-holder text-white">
+                            <div class="card-body">
+                                <img src="~/WriterPanel/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                                <h4 class="font-weight-normal mb-3">
+                                    Toplam Yorumlar <i class="mdi mdi-chart-line mdi-24px float-right"></i>
+                                </h4>
+                                <h2 class="mb-5"> 0 </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 stretch-card grid-margin">
+                        <div class="card bg-gradient-success card-img-holder text-white">
+                            <div class="card-body">
+                                <img src="~/WriterPanel/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                                <h4 class="font-weight-normal mb-3">
+                                    Son 7 Günde Yazılan Bloglar <i class="mdi mdi-bookmark mdi-24px float-right"></i>
+                                </h4>
+                                <h2 class="mb-5"> 0 </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 stretch-card grid-margin">
+                        <div class="card bg-gradient-primary card-img-holder text-white">
+                            <div class="card-body">
+                                <img src="~/WriterPanel/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                                <h4 class="font-weight-normal mb-3">
+                                    Son 7 Günde Yapılan Yorumlar <i class="mdi mdi-comment mdi-24px float-right"></i>
+                                </h4>
+                                <h2 class="mb-5"> 0 </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @await Component.InvokeAsync("BlogListDashboard")  <!--*** Yazar Dashboard Sayfasında "Yayınlanan Son Bloglar" View Component Bölümü ***-->
+
+                @await Component.InvokeAsync("WriterAboutOnDashboard")  <!--*** Yazar Paneli Ana sayfasında "Yazar Hakkında" View Component Bölümü ***-->
+                
+                @await Component.InvokeAsync("CategoryListDashboard")  <!--*** Yazar Paneli Ana sayfasında "Kategori Puan Listesi" View Component Bölümü ***-->
+
+            </div>   <!-- Content Wrapper Bitiş -->
+        </div>    <!-- page-body-wrapper ends -->
+    </div>
+</body>
+</html>

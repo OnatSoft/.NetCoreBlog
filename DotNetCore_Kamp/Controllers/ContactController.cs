@@ -26,7 +26,7 @@ namespace DotNetCore_Kamp.Controllers
             p.DateTime = DateTime.Parse(DateTime.Now.ToShortDateString());
             p.Status = true;
             cm.TAdd(p);
-            return RedirectToAction("Index", "Blog");
+            return RedirectToAction("Index", "Contact");
         }
     }
 }

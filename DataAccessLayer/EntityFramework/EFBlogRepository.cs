@@ -17,7 +17,7 @@ namespace DataAccessLayer.EntityFramework
         {
             using (var c = new Context())  // Concreate klasöründen Context'te ki veritabanı bağlantısını kullan.
             {
-                return c.Blogs.Include(x => x.Category).ToList();  // Context'te Blogs tanımından Kategori tablosundan ait isimleri getir.
+                return c.Blogs.Include(x => x.Categories).ToList();  // Context'te Blogs tanımından Kategori tablosundan ait isimleri getir.
             }
         }
 
@@ -25,7 +25,7 @@ namespace DataAccessLayer.EntityFramework
         {
             using (var c = new Context())
             {
-                return c.Blogs.Include(x => x.Category).Where(x=>x.WriterID == id).ToList();  // Yazar Panelinde bloglarım sayfasında ki kategorileri yazara göre getir.
+                return c.Blogs.Include(x => x.Categories).Where(x=>x.WriterID == id).ToList();  // Yazar Panelinde bloglarım sayfasında ki kategorileri yazara göre getir.
             }
         }
     }
