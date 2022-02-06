@@ -3,8 +3,8 @@ Asp.Net Core 5.0 Blog Demo Project Camp
 
 Bu proje kampında ASP.Net Core 5.0 ile Entity Framework Core, N Tier Architechture mimarisi, API'lerle destekleyerek, Codefirst, veritabanı olarak SQL Server, Backend olarak C# programlama dili, Frontend arayüz tasarımında Html-Css-Bootstrap kullanılarak Visual Studio 2019 editöründe Kullanıcı, Yazar ve Admin panelli bir blog sitesi geliştirilmiştir.
 
-Proje kampı YouTube'da 150 dersten oluşmakta ve eğitmen Murat Yücedağ olmaktadır, oynatma listesine buradan ulaşabilirsiniz.
-https://www.youtube.com/playlist?list=PLKnjBHu2xXNNkinaVhPqPZG0ubaLN63ci
+Proje kampı YouTube'da 150 dersten oluşmakta ve eğitmen Murat Yücedağ olmaktadır, oynatma listesine buradan ulaşabilirsiniz. 
+https://is.gd/pNPmtK
 
 
 
