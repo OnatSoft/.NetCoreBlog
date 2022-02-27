@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
+ï»¿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace DotNetCore_Kamp
 {
-    public class Startup         /**** Startup Sýnýfý, bir projenin MVC'de WebConfig gibi Ayarlar sýnýfý ****/
+    public class Startup         /**** Startup SÃ½nÃ½fÃ½, bir projenin MVC'de WebConfig gibi Ayarlar sÃ½nÃ½fÃ½ ****/
     {
         public Startup(IConfiguration configuration)
         {
@@ -29,9 +29,9 @@ namespace DotNetCore_Kamp
         {
             services.AddControllersWithViews();
 
-            services.AddSession(); //*** Yazar Giriþ Sayfasýnda Oturumu Ekle Methodu - Session Ýþlemleri ***//
+            services.AddSession(); //*** Yazar GiriÅŸ SayfasÄ±nda Oturumu Ekle Methodu - Session Ä°ÅŸlemleri ***//
 
-            services.AddMvc(config =>  //*** Bütün Proje seviyesinde bir Authorize, Authenticate Tanýmlamasý. Yani sitede ki bütün sayfalara kullanýcý giriþ zorunluluðu getiriliyor. ***//
+            services.AddMvc(config =>  //*** BÃ¼tÃ¼n Proje seviyesinde bir Authorize, Authenticate TanÄ±mlamasÄ±. Yani sitede ki bÃ¼tÃ¼n sayfalara kullanÄ±cÄ± giriÅŸ zorunluluÄŸu getiriliyor. ***//
             {
                 var policy = new AuthorizationPolicyBuilder()
                             .RequireAuthenticatedUser()
@@ -40,7 +40,7 @@ namespace DotNetCore_Kamp
             });
 
             services.AddMvc();
-            services.AddAuthentication(  //*** Diðer sayfalara geçiþ yaparken kullanýcýnýn karþýsýna hata vermemesi için Giriþ sayfasýnda "Return URL" yapýyor. ***//
+            services.AddAuthentication(  //*** DiÄŸer sayfalara geÃ§iÅŸ yaparken kullanÄ±cÄ±nÄ±n karÅŸÄ±sÄ±na hata vermemesi iÃ§in GiriÅŸ sayfasÄ±nda "Return URL" yapÄ±yor. ***//
                 CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(x =>
                 {
@@ -64,9 +64,9 @@ namespace DotNetCore_Kamp
                 app.UseHsts();
             }
 
-            app.UseStatusCodePagesWithReExecute("/ErrorPage/Error1", "?code={0}");  //--- Özelleþtirilmiþ 404 Sayfasý yapýmýnýn baþlangýç iþi
+            app.UseStatusCodePagesWithReExecute("/ErrorPage/Error1", "?code={0}");  //--- Ã–zelleÃ¾tirilmiÃ¾ 404 SayfasÃ½ yapÃ½mÃ½nÃ½n baÃ¾langÃ½Ã§ iÃ¾i
             
-            //*** app.UseSession();   Açýlan Oturumu Kullan Methodu ***//
+            //*** app.UseSession();   AÃ§Ã½lan Oturumu Kullan Methodu ***//
 
             app.UseAuthentication();
 

@@ -8,34 +8,38 @@
         <div class="col-12 grid-margin">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title"> Yayınlanan Son Bloglar </h4>
+                    <h3 class="card-title"> Yayınlanan Son 15 Blog </h3>
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th> No </th>
                                     <th> Başlık </th>
+                                    <th> Yazar </th>
                                     <th> Kategori </th>
                                     <th> Oluşturma Tarihi </th>
-                                    <th> Detaylar </th>
+                                    <th> İşlemler </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>
+                                        <th>
                                             @item.BlogID
-                                        </td>
+                                        </th>
                                         <td>
                                             @item.Title
                                         </td>
                                         <td>
-                                            <label class="badge badge-gradient-info"> @item.Categories.Name </label>
+                                            @item.Auth
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-info"> @item.Category.Name </label>
                                         </td>
                                         <td> @item.CreateDate.ToShortDateString() </td>
                                         <td>
-                                            <a class="btn-sm btn btn-link" href="/Blog/BlogDetails/@item.BlogID" target="_blank">Detaya Git</a>
+                                            <a class="btn-sm btn btn-link" href="/Blog/BlogDetails/@item.BlogID" target="_blank">Detaylı Gör</a>
                                         </td>
                                     </tr>
                                 }

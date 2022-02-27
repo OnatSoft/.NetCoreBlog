@@ -17,7 +17,6 @@
             <div class="row">
                 <!----- Blog Ana Bölüm Başlangıç ----->
                 <div class="col-lg-8 left-blog-info-w3layouts-agileits text-left">
-         
                         <div class="blog-grid-top">
                             <div class="b-grid-top">
                                 <div class="blog_info_left_grid">
@@ -49,10 +48,10 @@
                                 </div>
                             </div>
 
-                            <h3>@Model.Title</h3>
-                            <p>@Model.Content</p>
+                            <h3> @Model.Title </h3>
+                            <p> @Model.Content </p>
                         </div>
-                    
+
 
                     @await Component.InvokeAsync("CommentListByBlog", new { id = Model.BlogID })  <!--- Yorumları id ile listeleyen sayfayı çağırma ve Tıklanan bloğa göre yorumları getirme --->
 
@@ -79,24 +78,24 @@
                             <h4>Son Yazılan Bloglar</h4>
                             <div class="blog-grids">
                                 <div class="blog-grid-left">
-                                    <a href="#">
-                                        <img src="~/CoreBlogTema/images/b2.jpg" class="img-fluid" alt="">
+                                    <a href="/Blog/BlogDetails/@Model.BlogID">
+                                        <img src="@Model.ThumbnailImage" class="img-fluid" alt="">
                                     </a>
                                 </div>
                                 <div class="blog-grid-right">
-                                    <h5>
-                                        <a href="#">Pellentesque dui, non felis. Maecenas male</a>
+                                    <h5 class="card-description">
+                                        <a>@(Model.Content.Length < 100 ? Model.Content : Model.Content.Substring(0, Model.Content.Substring(0, 100).LastIndexOf(" ")))...</a>
                                     </h5>
                                 </div>
                                 <br />
                                 <div class="blog-grid-left">
-                                    <a href="#">
-                                        <img src="~/CoreBlogTema/images/b3.jpg" class="img-fluid" alt="">
+                                    <a href="/Blog/BlogDetails/@Model.BlogID">
+                                        <img src="@Model.ThumbnailImage" class="img-fluid" alt="">
                                     </a>
                                 </div>
                                 <div class="blog-grid-right">
-                                    <h5>
-                                        <a href="#">Pellentesque dui, non felis. Maecenas male</a>
+                                    <h5 class="card-description">
+                                        <a>@(Model.Content.Length < 100 ? Model.Content : Model.Content.Substring(0, Model.Content.Substring(0, 100).LastIndexOf(" ")))...</a>
                                     </h5>
                                 </div>
                                 <div class="clearfix"> </div>

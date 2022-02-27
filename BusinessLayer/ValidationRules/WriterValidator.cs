@@ -13,14 +13,15 @@ namespace BusinessLayer.ValidationRules
     {
         public WriterValidator() //** Kayıt olurken doğru ve istenilen şekilde girilmesi için Geçerlilik Kuralları yazıldı **//
         {
-            RuleFor(x => x.Name).NotEmpty().WithMessage("Bu alan boş geçilemez!");
-            RuleFor(x => x.EMail).NotEmpty().WithMessage("Bu alan boş geçilemez!");
-            RuleFor(x => x.EMail).EmailAddress().WithMessage("Lütfen geçerli bir E-posta giriniz.");
-            RuleFor(x => x.Password).NotEmpty().WithMessage("Bu alan boş geçilemez!");
-            RuleFor(x => x.PasswordRepeat).NotEmpty().WithMessage("Bu alan boş geçilemez!");
+            RuleFor(x => x.Name).NotEmpty().WithMessage("Lütfen bu alanı doldurun.");
+            RuleFor(x => x.EMail).NotEmpty().WithMessage("Lütfen bu alanı doldurun.");
+            RuleFor(x => x.EMail).EmailAddress().WithMessage("E-posta geçersiz, lütfen geçerli bir E-posta giriniz.");
+            RuleFor(x => x.Password).NotEmpty().WithMessage("Lütfen bu alanı doldurun.");
+            RuleFor(x => x.PasswordRepeat).NotEmpty().WithMessage("Lütfen bu alanı doldurun.");
+            RuleFor(x => x.İmage).NotEmpty().WithMessage("Lütfen profil resminizi sisteme yükleyin.");
 
             RuleFor(x => x.Password).MinimumLength(5).WithMessage("Parola en az 5 karakterli olmalı.");
-            RuleFor(x => x.Password).MaximumLength(10).WithMessage("Parola en az 10 karakterli olmalı.");
+            RuleFor(x => x.Password).MaximumLength(10).WithMessage("Parola en fazla 10 karakterli olmalı.");
             RuleFor(x => x.PasswordRepeat).MinimumLength(5).WithMessage("Parola Tekrar en az 5 karakterli olmalı.");
             RuleFor(x => x.PasswordRepeat).MaximumLength(10).WithMessage("Parola Tekrar en fazla 10 karakterli olmalı.");
 

@@ -1,0 +1,67 @@
+﻿@model DotNetCore_Kamp.Models.AddProfileImage
+
+@{
+    ViewData["Title"] = "WriterAdd";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<form class="form-group" method="post" enctype="multipart/form-data">
+   <div class="content-wrapper">
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    @using (Html.BeginForm("WriterEditProfile", "Writer", FormMethod.Post))
+                    {
+                        <h2> Yazar Profil Resmi Kaydetme </h2>
+                        <br />
+                        @Html.HiddenFor(x => x.WriterID, new { @class = "form-control" })
+                        <div class="forms-sample">
+
+                            <div class="form-group">
+                                <label for="exampleInputName1"> Adı Soyadı </label>
+                                @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail3"> E-posta Adresi </label>
+                                @Html.TextBoxFor(x => x.EMail, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.EMail, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputPassword4"> Parola </label>
+                                @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputPassword4"> Parola (Tekrar) </label>
+                                @Html.PasswordFor(x => x.PasswordRepeat, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.PasswordRepeat, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                <label> Profil Resmi </label>
+                                
+                                <div class="input-group col-xs-12">
+                                    <input type="file" name="İmage" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleTextarea1"> Hakkında </label>
+                                @Html.TextAreaFor(x => x.About, 10, 5, new { @class = "form-control", @placeholder = "Okurlarınıza Kendinizden Kısaca Bahsedin..." })
+                                @Html.ValidationMessageFor(x => x.About, "", new { @class = "text-danger" })
+                            </div>
+                            <br />
+                            <button type="submit" class="btn btn-success mr-2"> Kaydet </button>
+                            <button class="btn btn-light mr-2" asp-action="BlogListByWriter" asp-controller="Blog"> İptal </button>
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

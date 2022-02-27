@@ -9,11 +9,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Security.Claims;
 
 namespace DotNetCore_Kamp.Controllers
 {
     public class BlogController : Controller
     {
+
         BlogManager bm = new BlogManager(new EFBlogRepository());
         CategoryManager cm = new CategoryManager(new EFCategoryRepository());
 
@@ -28,14 +30,14 @@ namespace DotNetCore_Kamp.Controllers
         public IActionResult BlogDetails(int id)
         {
             /**--- Blog Detayları sayfasına Bloğu Id'ye göre getirme metodu ve tıklanan bloğa göre yorum getirme ---**/
-            //ViewBag.i = id;
-            //var List = bm.GetBlogById(id);
+            ViewBag.i = id;
+            var List = bm.GetBlogById(id);
             return View(bm.TGetById(id));
         }
 
         public IActionResult BlogListByWriter()
         {
-            var values = bm.GetListWithCategoryByWriterBm(1);  /** Yazar Panelinde Bloglarım sayfasında kategori isimlerini yazara göre getirme **/
+            var values = bm.GetListWithCategoryByWriterBm(4);  /** Yazar Panelinde Bloglarım sayfasında kategori isimlerini yazara göre getirme **/
             return View(values);
         }
 
@@ -45,6 +47,7 @@ namespace DotNetCore_Kamp.Controllers
             bm.TDelete(blogValue);
             return RedirectToAction("BlogListByWriter");
         }
+
 
         [HttpGet]
         public IActionResult EditBlog(int id)
@@ -57,18 +60,38 @@ namespace DotNetCore_Kamp.Controllers
         [HttpPost]
         public IActionResult EditBlog(Blog b)
         {
-            var x = bm.TGetById(b.BlogID);
-            x.Title = b.Title;
-            x.CategoryID = b.CategoryID;
-            x.İmage = b.İmage;
-            x.Content = b.Content;
-            b.Status = true;
-            b.CreateDate = x.CreateDate;
-            b.Auth = "Onat Somer";
-            b.WriterID = 1;
-            bm.TUpdate(b);
-            return RedirectToAction("BlogListByWriter");
+            BlogValidator bv = new BlogValidator();
+            ValidationResult result = bv.Validate(b);
+
+            if (result.IsValid)
+            {
+                int id = Convert.ToInt32(((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.Name).Value);  //** Blog güncellemek için yazarın id'sini alma **//
+                b.WriterID = id;
+                var x = bm.TGetById(b.BlogID);
+                b.CreateDate = x.CreateDate;
+                b.Status = true;
+                b.Auth = x.Auth;
+                //x.Title = b.Title;
+                //x.CategoryID = b.CategoryID;
+                //x.İmage = b.İmage;
+                //x.ThumbnailImage = b.ThumbnailImage;
+                //x.Content = b.Content;
+                //b.CreateDate = x.CreateDate;
+
+                bm.TUpdate(b);
+                return RedirectToAction("BlogListByWriter");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            ViewBag.cv = GetCategoryList();
+            return View();
         }
+
 
         [HttpGet]
         public IActionResult BlogAdd()
@@ -87,10 +110,11 @@ namespace DotNetCore_Kamp.Controllers
             ValidationResult results = bv.Validate(p);
             if (results.IsValid)
             {
+                p.WriterID = Convert.ToInt32(((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.Name).Value);  //** Yeni Blog yazısı eklerken yazarın id'sini alma / kullanma **//
                 p.Status = true;
                 p.CreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
                 p.Auth = "Onat Somer";
-                p.WriterID = 1;
+
                 bm.TAdd(p);
 
                 return RedirectToAction("BlogListByWriter", "Blog");
@@ -106,7 +130,8 @@ namespace DotNetCore_Kamp.Controllers
 
             return View();
         }
-    
+
+
         public List<SelectListItem> GetCategoryList()
         {
             //** Blog ekleme sayfasında Kategorileri dropdown şeklinde yazdırma **//

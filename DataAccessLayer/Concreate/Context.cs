@@ -13,7 +13,7 @@ namespace DataAccessLayer.Concreate
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //** Veritabanı bağlantı adresi**//
-            optionsBuilder.UseSqlServer("server=ONAT-PC09\\;database=CoreBlogDB; integrated security=true;");
+            optionsBuilder.UseSqlServer("server=LAPTOP-ONATSOFT\\ONATSOFT;database=CoreBlogDB; integrated security=true;");
         }
 
         public DbSet<About> Abouts { get; set; }

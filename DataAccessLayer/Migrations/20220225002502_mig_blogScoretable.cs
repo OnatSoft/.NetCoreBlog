@@ -2,7 +2,7 @@
 
 namespace DataAccessLayer.Migrations
 {
-    public partial class comment_mig : Migration
+    public partial class mig_blogScoretable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

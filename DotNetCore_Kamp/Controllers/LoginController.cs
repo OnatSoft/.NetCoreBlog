@@ -32,14 +32,17 @@ namespace DotNetCore_Kamp.Controllers
 
             if(datavalue!= null)
             {
-                var claims = new List<Claim>
+                var claims = new List<Claim>  //** Eğer datavalue parametresi null (boş) değilse kullanıcının E-posta ve Şifresini alarak giriş yapıyor. **//
                 {
-                    new Claim(ClaimTypes.Name, p.EMail)
+                    new Claim(ClaimTypes.Email, p.EMail),
+                    new Claim(ClaimTypes.Name, datavalue.WriterID.ToString())
                 };
+
                 var useridentity = new ClaimsIdentity(claims, "d");
                 ClaimsPrincipal principle = new ClaimsPrincipal(useridentity);
-                await HttpContext.SignInAsync(principle); //* Girilen veriyi şifreli formatta çerezlere ekliyor *//
-                return RedirectToAction("BlogListByWriter", "Blog");
+                await HttpContext.SignInAsync(principle);    //* Girilen veriyi şifreli formatta çerezlere ekliyor *//
+
+                return RedirectToAction("Index", "Dashboard");
             }
             else
             {

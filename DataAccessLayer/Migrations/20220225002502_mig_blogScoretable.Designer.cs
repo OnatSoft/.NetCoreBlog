@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20211102231256_iliski_mig3")]
-    partial class iliski_mig3
+    [Migration("20220225002502_mig_blogScoretable")]
+    partial class mig_blogScoretable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -91,6 +91,27 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Blogs");
                 });
 
+            modelBuilder.Entity("EntityLayer.Concreate.BlogRayting", b =>
+                {
+                    b.Property<int>("RaytingID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BlogID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BlogRaytingCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalScore")
+                        .HasColumnType("int");
+
+                    b.HasKey("RaytingID");
+
+                    b.ToTable("BlogRaytings");
+                });
+
             modelBuilder.Entity("EntityLayer.Concreate.Category", b =>
                 {
                     b.Property<int>("CategoryID")
@@ -120,6 +141,9 @@ namespace DataAccessLayer.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("BlogID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BlogScore")
                         .HasColumnType("int");
 
                     b.Property<string>("Content")
@@ -230,7 +254,7 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("EntityLayer.Concreate.Blog", b =>
                 {
-                    b.HasOne("EntityLayer.Concreate.Category", "Categories")
+                    b.HasOne("EntityLayer.Concreate.Category", "Category")
                         .WithMany("Blogs")
                         .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -242,20 +266,20 @@ namespace DataAccessLayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Categories");
+                    b.Navigation("Category");
 
                     b.Navigation("Writers");
                 });
 
             modelBuilder.Entity("EntityLayer.Concreate.Comment", b =>
                 {
-                    b.HasOne("EntityLayer.Concreate.Blog", "Blogs")
+                    b.HasOne("EntityLayer.Concreate.Blog", "Blog")
                         .WithMany("Comments")
                         .HasForeignKey("BlogID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Blogs");
+                    b.Navigation("Blog");
                 });
 
             modelBuilder.Entity("EntityLayer.Concreate.Blog", b =>

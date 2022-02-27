@@ -6,8 +6,8 @@
     Layout = "~/Views/Shared/UserLayout.cshtml";
 }
 
-<!DOCTYPE html>                         <!--*** Blog İndex ve Blog Listesinde üç sütun halinde görüntülenmesi ***-->
-<html lang="tr_TR">
+<!--<!DOCTYPE html>-->                         <!--*** Blog İndex ve Blog Listesinde üç sütun halinde görüntülenmesi ***-->
+<!--<html lang="tr_TR">
 
 <head>
     <title>ASP.Net Core Blog Projesi</title>
@@ -32,7 +32,7 @@
           rel="stylesheet">
 </head>
 
-<body>
+<body>-->
     <!--Header-->
 
 
@@ -50,10 +50,11 @@
                         {
                             <div class="col-lg-4 card">
                             <a href="#">
-                                <img src="@item.İmage" class="card-img-top img-fluid" alt="">
+                                <img src="@item.ThumbnailImage" class="card-img-top img-fluid" alt="">
                             </a>
                             <div class="card-body">
-                                <ul class="blog-icons my-4">    <!---- Blog içerikleri foreach döngüsüyle veritabanında kaç tane blog varsa sayfa da o içerikli ve o kadar blog gönderisi oluşuyor ---->
+                                <ul class="blog-icons my-4">
+                                    <!---- Blog içerikleri foreach döngüsüyle veritabanında kaç tane blog varsa sayfa da o içerikli ve o kadar blog gönderisi oluşuyor ---->
                                     <li>
                                         <a href="#">
                                             <i class="far fa-calendar-alt"></i> @item.CreateDate.ToShortDateString()  <!-- Veritabanından çekilen oluşturulma tarihi -->
@@ -61,12 +62,12 @@
                                     </li>
                                     <li class="mx-2">
                                         <a href="#">
-                                            <i class="far fa-comment"></i> @item.Comments 0 <!--- Veritabanından çekilen yazar bilgisi --->
+                                            <i class="far fa-comment"></i> <!--  0  Veritabanından çekilen yazar bilgisi --->
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <i class="fas fa-info-circle"></i> @item.Categories.Name  <!--- Veritabanından çekilen kategori adı --->
+                                            <i class="fas fa-info-circle"></i> @item.Category.Name  <!--- Veritabanından çekilen kategori adı --->
                                         </a>
                                     </li>
 
@@ -74,6 +75,7 @@
                                 <h5 class="card-title">
                                     <a href="/Blog/BlogDetails/@item.BlogID">@item.Title</a>
                                 </h5>
+                                @*<p class="card-text mb-3">@(item.Content.Length < 120 ? item.Content : item.Content.Substring(0, item.Content.Substring(0,120).LastIndexOf(" "))) ...</p>*@
                                 <p class="card-text mb-3">@(item.Content.Length < 120 ? item.Content : item.Content.Substring(0, item.Content.Substring(0, 120).LastIndexOf(" "))) ...</p>
                                 <a href="/Blog/BlogDetails/@item.BlogID" class="btn btn-primary read-m">Devamını Oku</a>
                             </div>
@@ -89,10 +91,14 @@
     <!--//main-->
     <!---->
     <!-- js -->
-    <script src="js/jquery-2.2.3.min.js"></script>
+
+
+
+
+    <!--<script src="js/jquery-2.2.3.min.js"></script>-->
     <!-- //js -->
     <!--/ start-smoth-scrolling -->
-    <script src="js/move-top.js"></script>
+    <!--<script src="js/move-top.js"></script>
     <script src="js/easing.js"></script>
     <script>
         jQuery(document).ready(function ($) {
@@ -103,10 +109,10 @@
                 }, 900);
             });
         });
-    </script>
+    </script>-->
     <!--// end-smoth-scrolling -->
 
-    <script>
+    <!--<script>
         $(document).ready(function () {
             /*
                                     var defaults = {
@@ -125,12 +131,12 @@
     </script>
     <a href="#home" class="scroll" id="toTop" style="display: block;">
         <span id="toTopHover" style="opacity: 1;"> </span>
-    </a>
+    </a>-->
 
     <!-- //Custom-JavaScript-File-Links -->
-    <script src="js/bootstrap.js"></script>
+    <!--<script src="js/bootstrap.js"></script>
 
 
 </body>
 
-</html>
+</html>-->

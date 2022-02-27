@@ -6,39 +6,99 @@
     Layout = "~/Views/Shared/WriterLayout.cshtml";
 }
 
+
 <div class="content-wrapper">
-    <h2>Blog Düzenleme</h2>
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">Yazar</li>
-            <li class="breadcrumb-item">Bloglarım</li>
-            <li class="breadcrumb-item active">Blog Düzenleme</li>
-        </ol>
-    </nav>
-    <br />
-    @using (Html.BeginForm("EditBlog", "Blog", FormMethod.Post))
-    {
-        @Html.Label("Blog No")
-        @Html.TextBoxFor(x => x.BlogID, new { @class = "form-control", @readonly = "" })
-        <br />
-        @Html.Label("Blog Başlığı")
-        @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @autofocus = "" })
-        <br />
-        @Html.Label("Blog Görseli")
-        @Html.TextBoxFor(x => x.İmage, new { @class = "form-control" })
-        <br />
-        @Html.Label("Blog Küçük Görseli")
-        @Html.TextBoxFor(x => x.ThumbnailImage, new { @class = "form-control" })
-        <br />
-        @Html.Label("Kategori")
-        @Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.cv, new { @class = "form-control" })
-        <br />
-        @Html.Label("Blog Açıklaması")
-        @Html.TextAreaFor(x => x.Content, 20, 5, new { @class = "form-control" })
-        <br />
-        <br />
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                @using (Html.BeginForm("EditBlog", "Blog", FormMethod.Post))
+                {
+                    <input asp-for="@Model.BlogID" type="hidden" />
+                    <h2>Blog Düzenleme</h2>
+                    <h4 class="card-description"> @Model.BlogID numaralı Blog İçeriği </h4>
 
-        <button class="btn btn-success" onclick="return confirm('Seçili blog yazısını güncellemek istiyor musunuz?')">Güncelle</button>
+                    <form class="forms-sample">
+                        <div class="form-group">
+                            <label for="exampleInputName1"> Blog Başlığı </label>
+                            @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+                        </div>
 
-    }
+                        <div class="form-group">
+                            <label> Blog Görseli </label>
+                            <input type="file" name="img[]" class="file-upload-default">
+                            <div class="input-group col-xs-12">
+                                @Html.TextBoxFor(x => x.İmage, new { @class = "form-control", @placeholder = "Bir Resim Yükleyin" })
+                                <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-info" type="button">Dosya Seç</button>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label> Blog Küçük Görseli </label>
+                            <input type="file" name="img[]" class="file-upload-default">
+                            <div class="input-group col-xs-12">
+                                @Html.TextBoxFor(x => x.ThumbnailImage, new { @class = "form-control", @placeholder = "Bir Resim Yükleyin" })
+                                <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-info" type="button">Dosya Seç</button>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Kategori</label>
+                            @Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.cv, new { @class = "form-control dropdown" })
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleTextarea1"> Blog Açıklaması </label>
+                            @Html.TextAreaFor(x => x.Content, 20, 5, new { @class = "form-control" })
+                        </div>
+                        <br />
+
+                        <button type="submit" class="btn btn-success mr-2"> Güncelle </button>
+                        <a asp-controller="Blog" asp-action="BlogListByWriter" class="btn btn-light mr-2"> İptal </a>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
 </div>
+
+
+@*<div class="content-wrapper">
+        <h2>Blog Düzenleme</h2>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Yazar</li>
+                <li class="breadcrumb-item">Bloglarım</li>
+                <li class="breadcrumb-item active">Blog Düzenleme</li>
+            </ol>
+        </nav>
+        <br />
+        @using (Html.BeginForm("EditBlog", "Blog", FormMethod.Post))
+        {
+            @Html.Label("Blog No")
+            @Html.TextBoxFor(x => x.BlogID, new { @class = "form-control", @readonly = "" })
+            <br />
+            @Html.Label("Blog Başlığı")
+            @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @autofocus = "" })
+            <br />
+            @Html.Label("Blog Görseli")
+            @Html.TextBoxFor(x => x.İmage, new { @class = "form-control" })
+            <br />
+            @Html.Label("Blog Küçük Görseli")
+            @Html.TextBoxFor(x => x.ThumbnailImage, new { @class = "form-control" })
+            <br />
+            @Html.Label("Kategori")
+            @Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.cv, new { @class = "form-control" })
+            <br />
+            @Html.Label("Blog Açıklaması")
+            @Html.TextAreaFor(x => x.Content, 20, 5, new { @class = "form-control" })
+            <br />
+            <br />
+
+            <button class="btn btn-success" onclick="return confirm('Seçili blog yazısını güncellemek istiyor musunuz?')">Güncelle</button>
+
+        }
+    </div>*@

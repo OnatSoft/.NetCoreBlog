@@ -15,16 +15,16 @@
         <div class="inner-sec">
             <div class="login p-5 bg-light mx-auto mw-100">
                 <!--** Business katmanında Yazar Kayıt için Geçerlilik Kuralları Özel hata mesajları yazdık.
-    <!--** Burada Method POST olduğunda form oluşturduk ve TextBoxFor ile veri girişi sağlayıp ValidationMessageFor ile özel hata mesajlarını kullanıp renklendirdik. **-->
+                <!--** Burada Method POST olduğunda form oluşturduk ve TextBoxFor ile veri girişi sağlayıp ValidationMessageFor ile özel hata mesajlarını kullanıp renklendirdik. **-->
                 @using (Html.BeginForm("Index", "Register", FormMethod.Post))
                 {
                     <i class="text-danger">Gerekli Alanlar *</i>
                     <br />
                     <div class="form-row">
-                        
+
                         <div class="col-md-6 mb-3">
                             <label for="validationCustom01">Adı Soyadı*</label>
-                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @type="text", @autofocus=""})
+                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @type = "text" })
                             @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
 
                             @*<input type="text" class="form-control" id="validationDefault01" name="Name" autofocus required="">*@
@@ -32,7 +32,7 @@
 
                         <div class="col-md-6 mb-3">
                             <label for="validationCustom02">E-posta Adresi*</label>
-                            @Html.TextBoxFor(x => x.EMail, new { @class = "form-control", @type="email", @autocomplete="true", @autofocus = "" })
+                            @Html.TextBoxFor(x => x.EMail, new { @class = "form-control", @type = "email" })
                             @Html.ValidationMessageFor(x => x.EMail, "", new { @class = "text-danger" })
 
                             @*<input type="email" class="form-control" id="validationDefault02" name="EMail" required="">*@
@@ -43,19 +43,27 @@
 
                         <div class="form-group col-md-6">
                             <label for="exampleInputPassword1 mb-2">Parola*</label>
-                            @Html.TextBoxFor(x => x.Password, new { @class = "form-control", @type="password", @autocomplete="true", @autofocus = "" })
+                            @Html.TextBoxFor(x => x.Password, new { @class = "form-control", @type = "password" })
                             @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="exampleInputPassword2 mb-2">Parola Tekrar*</label>
-                            @Html.TextBoxFor(x => x.PasswordRepeat, new { @class = "form-control", @type="password", @autocomplete="true", @autofocus = "" })
+                            <label for="exampleInputPassword2 mb-2">Parola (Tekrar)*</label>
+                            @Html.TextBoxFor(x => x.PasswordRepeat, new { @class = "form-control", @type = "password" })
                             @Html.ValidationMessageFor(x => x.PasswordRepeat, "", new { @class = "text-danger" })
                         </div>
-
+                        @*<div class="form-group col-md-6">
+                            <label for="exampleInputPassword2 mb-2">Profil Fotoğrafı Yükleyin</label>
+                            <input type="text" class="form-control file-upload-info" placeholder="Bir Resim Yükleyiniz...">
+                            <span class="input-group-append">
+                                <button class="file-upload-browse btn btn-info" type="button"> Dosya Seç </button>
+                            </span>
+                            @Html.ValidationMessageFor(x => x.İmage, "", new { @class = "text-danger" })
+                        </div>*@
+                        <p class="card-description">Parola en fazla 10 karakterli olmalı ve 1 Büyük Harf, 1 Küçük Harf, en az 1 sayı bulunmalıdır.</p>
                     </div>
-                    <button type="submit" class="btn btn-success submit mb-4">Kayıt Yap</button>
+                    <button type="submit" class="btn btn-success mb-4" >Kayıt Yap</button>
                     <p>
-                        <a href="#" id="btn1" class="text-primary">Yazarlık şartlarımızı okumak için tıklayınız</a>
+                        <a href="#" id="btn1" class="text-dark" >Yazarlık şartlarımızı okumak için tıklayınız</a>
                     </p>
                 }
 
@@ -63,9 +71,10 @@
         </div>
     </div>
 
-    <script>
-        $('#btn1').click(function () ){
-            swal("Yazarlık Şartlarımız", "Sitemizde verdiğiniz e-posta adresi üzerinden bilgi ve haber postaları spam kutusuna ulaşmadan gönderilmeye devam edilecektir. Eğer e-posta bülteninden çıkmak isterseniz gönderdiğimiz postaların altında bulunan aboneliğimi sonlandır butonuna tıklayıp bültenden çıkabilirsiniz. Sitemiz de kayıtlı kişisel bilgilerinizi şifrelenmiş formatta gayet güvenli veri tabanlarımız da saklamaktayız.");
-        });
-    </script>
+
 </section>
+<script>
+    $('#btn1').click(function ()) {
+        swal("Yazarlık Şartlarımız", "Sitemizde verdiğiniz e-posta adresi üzerinden bilgi ve haber postaları spam kutusuna ulaşmadan gönderilmeye devam edilecektir. Eğer e-posta bülteninden çıkmak isterseniz gönderdiğimiz postaların altında bulunan aboneliğimi sonlandır butonuna tıklayıp bültenden çıkabilirsiniz. Sitemiz de kayıtlı kişisel bilgilerinizi şifrelenmiş formatta gayet güvenli veri tabanlarımız da saklamaktayız.");
+    };
+</script>

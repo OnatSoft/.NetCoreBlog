@@ -7,9 +7,9 @@
         <div class="card">
             <div class="card-body">
 
-                <h4 class="card-title">Kategori Listesi</h4>
+                <h3 class="card-title">Kategori Listesi</h3>
                
-                    <table class="table table-striped">
+                    <table class="table table-bordered table-striped">
 
                         <thead>
                             <tr>
@@ -23,7 +23,7 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td> @item.CategoryID </td>
+                                    <th> @item.CategoryID </th>
                                     <td> @item.Name </td>
                                     <td>
                                         @if (item.Status == true)

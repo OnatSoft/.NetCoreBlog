@@ -32,7 +32,7 @@ namespace DotNetCore_Kamp.Controllers
         public PartialViewResult PartialAddComment(Comment p)   //*** Bloglara yorum yaparken ekleneceği zaman yapılacak işlemler ***//
         {
             p.CreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            p.BlogID = 4;
+            
             p.Status = true;
             cm.TAdd(p);
             return PartialView();

@@ -33,10 +33,11 @@ namespace DotNetCore_Kamp.Controllers
             WriterValidator Wv = new WriterValidator();
             ValidationResult results = Wv.Validate(p);
             //** Validasyon kontrolleri yazılan Writer Validator'dakileri Controller da gerçekleşmesi için tanımlandı **//
-            if (results.IsValid) // Eğer dışarıdan gelen p nesnesinde ki sonuçlar geçerliyse/doğruysa kayıt işlemlerini gerçekleştir.
+
+            if (results.IsValid) // Eğer dışarıdan gelen p nesnesinde ki sonuçlar geçerliyse/doğruysa kayıt işlemlerini gerçekleştirir.
             {
                 p.Status = true;
-                p.About = "Deneme Kaydı";
+                p.About = "Hakkınızda Okurlarınıza Kısaca Bahsedin...";
                 wm.TAdd(p);
                 return RedirectToAction("Index", "Login");  // Kayıt işlemi yapıldığında geri döndürmek üzere bloglar sayfasına git
             }

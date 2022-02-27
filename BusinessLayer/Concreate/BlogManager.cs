@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
+using DataAccessLayer.EntityFramework;
 using EntityLayer.Concreate;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,13 @@ namespace BusinessLayer.Concreate
     {
         IBlogDal _BlogDal;
 
+
         public BlogManager(IBlogDal blogdal)  /*--- IBlogDal için Oluşturulan Constructor ---*/
         {
             this._BlogDal = blogdal;
         }
+
+
 
         public List<Blog> GetBlogListwithCategory()  /*--- Bloglar listesinde Kategori adını yazmak için yapılmış kod satırı, "Blog Listesini Kategoriyle Birlikte Getirme" metodu ---*/
         {
@@ -40,7 +44,10 @@ namespace BusinessLayer.Concreate
 
         public List<Blog> GetLast3Blog()
         {
-            return _BlogDal.GetListAll().OrderByDescending(x => x.BlogID).Take(3).ToList();  /*--- Footer alanında Son 3 Gönderiyi getirme metodu ---*/
+
+            var blog = _BlogDal.GetListAll().TakeLast(3).ToList();
+            return blog;
+              /*--- Footer alanında Son 3 Gönderiyi getirme metodu ---*/
         }
 
         public List<Blog> GetBlogById(int id)  /*--- Blogları / Blog'u Id'ye göre getirme metodu ---*/
@@ -51,6 +58,7 @@ namespace BusinessLayer.Concreate
         public List<Blog> GetBlogListByWriter(int id)  /*--- Blog Detayda ki sağ kenarda bulunan bölüm için, "Blog Listesini Yazara Göre Getirme Metodu" ---*/
         {
             return _BlogDal.GetListAll(x => x.WriterID == id);
+            //throw new NotImplementedException();
         }
 
         public void TAdd(Blog tadd)

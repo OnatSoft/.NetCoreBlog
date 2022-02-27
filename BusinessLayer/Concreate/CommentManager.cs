@@ -26,15 +26,17 @@ namespace BusinessLayer.Concreate
         public List<Comment> GetList(int id)
         {
             return _CommentDal.GetListAll(x => x.BlogID == id);
+            //throw new NotImplementedException();
         }
 
         public List<Comment> GetList()
         {
-            throw new NotImplementedException();
+            return _CommentDal.GetListAll();
         }
 
         public void TAdd(Comment tadd)
         {
+            tadd.BlogID = 4;
             _CommentDal.Insert(tadd);
         }
 

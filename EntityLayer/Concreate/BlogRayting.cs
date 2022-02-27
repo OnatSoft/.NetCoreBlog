@@ -15,5 +15,6 @@ namespace EntityLayer.Concreate
         public int BlogID { get; set; }
         public int TotalScore { get; set; }
         public int BlogRaytingCount { get; set; }
+
     }
 }

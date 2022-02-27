@@ -14,7 +14,7 @@ namespace DotNetCore_Kamp.ViewComponents.Blog
 
         public IViewComponentResult Invoke()
         {
-            var values = bm.GetBlogListwithCategory();
+            var values = bm.GetBlogListwithCategory().OrderBy(x => x.BlogID).Take(15).ToList();
             return View(values);
         }
     }

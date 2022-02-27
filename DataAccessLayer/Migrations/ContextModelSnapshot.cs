@@ -252,8 +252,8 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("EntityLayer.Concreate.Blog", b =>
                 {
-                    b.HasOne("EntityLayer.Concreate.Category", "Categories")
-                        .WithMany("Blog")
+                    b.HasOne("EntityLayer.Concreate.Category", "Category")
+                        .WithMany("Blogs")
                         .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -264,7 +264,7 @@ namespace DataAccessLayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Categories");
+                    b.Navigation("Category");
 
                     b.Navigation("Writers");
                 });
@@ -287,7 +287,7 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("EntityLayer.Concreate.Category", b =>
                 {
-                    b.Navigation("Blog");
+                    b.Navigation("Blogs");
                 });
 
             modelBuilder.Entity("EntityLayer.Concreate.Writer", b =>

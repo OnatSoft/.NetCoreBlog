@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Concreate;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concreate;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,8 @@ using System.Threading.Tasks;
 
 namespace DotNetCore_Kamp.Controllers
 {
+    [AllowAnonymous]
+
     public class ContactController : Controller
     {
         ContactManager cm = new ContactManager(new EFContactRepository());

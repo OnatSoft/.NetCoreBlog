@@ -7,75 +7,94 @@
 }
 
 <div class="content-wrapper">
-    <h2>Bloglarım</h2>
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">Yazar</li>
-            <li class="breadcrumb-item active">Bloglarım</li>
-        </ol>
-    </nav>
-    <br />
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Blog Başlığı</th>
-                    <th>Oluşturma Tarihi</th>
-                    <th>Kategori</th>
-                    <th>Durumu</th>
-                    <th width="%40" class="text-justify">İşlemler</th>
-                </tr>
-            </thead>
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h2>Bloglarım</h2>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">Panelim</li>
+                        <li class="breadcrumb-item active">Bloglarım</li>
+                    </ol>
+                </nav>
+                <br />
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Başlık</th>
+                                <th>Oluşturma Tarihi</th>
+                                <th>Kategori</th>
+                                <th>Durum</th>
+                                <th class="text-left">İşlemler</th>
+                            </tr>
+                        </thead>
 
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <th>@item.BlogID</th>
-                        <td>@item.Title</td>
-                        <td>@item.CreateDate.ToShortDateString()</td>
-                        <td>@item.Categories.Name</td>
-                        <td>
-                            @if (item.Status == true)
+                        <tbody>
+                            @foreach (var item in Model)
                             {
-                                <label class="badge badge-success">Aktif</label>
+                                <tr>
+                                    <th>@item.BlogID</th>
+                                    <td>@item.Title</td>
+                                    <td>@item.CreateDate.ToShortDateString()</td>
+                                    <td>
+                                        <label class="badge badge-outline-info">@item.Category.Name</label>
+                                    </td>
+                                    <td>
+                                        @if (item.Status == true)
+                                        {
+                                            <label class="badge badge-success">Aktif</label>
+                                        }
+                                        else
+                                        {
+                                            <label class="badge badge-secondary">Pasif</label>
+                                        }
+                                    </td>
+                                    <td>
+                                        <a href="/Blog/DeleteBlog/@item.BlogID" class="btn btn-danger mr-sm-0" onclick="return confirm('Seçili olan bloğu gerçekten silmek istiyor musunuz?')">Sil</a>
+                                        <a href="/Blog/EditBlog/@item.BlogID" class="btn btn-info mr-sm-0">Düzenle</a>
+                                        <a href="/Blog/BlogDetails/@item.BlogID" class="btn btn-primary mr-sm-0" target="_blank">Sitede Görüntüle</a>
+                                    </td>
+                                </tr>
                             }
-                            else
-                            {
-                                <label class="badge badge-secondary">Pasif</label>
-                            }
-                        </td>
-                        <td>
-                            <a href="/Blog/DeleteBlog/@item.BlogID" class="btn btn-gradient-danger mr-xl-3" id="Delete" onclick="return confirm('Seçili blog yazısı her yerden silinecek, onaylıyor musunuz?')">Sil</a>
-                            <a href="/Blog/EditBlog/@item.BlogID" class="btn btn-gradient-info mr-xl-3">Düzenle</a>
-                        </td>
-                    </tr>
-                }
-                @*<script>
-                        $('#Delete').click(function () ){
-                            swal({
-                                title: "Blog Silme",
-                                text: "Seçili olan blog yazısı her yerden silinecek, onaylıyor musunuz?",
-                                icon: "warning",
-                                buttons: true,
-                                dangerMode: true,
-                            }})
-                                    .then((willDelete) => {
-                                if (willDelete) {
-                                    swal("Blog yazısı her yerden başarıyla silindi.", {
-                                        icon: "success",
-                                    });
-                                } else {
-                                    swal("Blog yazısı silinmedi.");
-                                }
-                            });
-                    </script>*@
-
-            </tbody>
-        </table>
+                        </tbody>
+                    </table>
+                </div>
+                <br />
+                <br />
+                <a class="btn btn-primary mb-2" href="/Blog/BlogAdd"> Yeni Blog Oluştur </a>
+            </div>
+        </div>
     </div>
-    <br />
-    <br />
-    <a href="/Blog/BlogAdd" class="btn btn-primary mb-sm-0">Yeni Blog Oluştur</a>
 </div>
+
+
+@*<script>
+    $('#Delete').click(function (e) {
+        e.preventDefault();
+        var linkURL = $(this).attr("href");
+        Swal.fire({
+            title: 'UYARI',
+            text: "Blog yazısını silmek istediğinizden emin misiniz?",
+            icon: 'warning',
+            showCancelButton: true,
+            showCancelButton: true,
+            confirmButtonColor: '#5CBA6C',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Evet',
+            cancelButtonText: 'Vazgeç'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = linkURL;
+                Swal.fire(
+                    'Başarılı',
+                    'Seçilen Blog Silindi.',
+                    'success'
+                )
+            }
+            else if (result.dismiss === Swal.DismissReason.cancel) {
+            }
+        })
+    });
+</script>*@

@@ -14,7 +14,7 @@ namespace DotNetCore_Kamp.ViewComponents.Writer
 
         public IViewComponentResult Invoke()
         {
-            var values = wm.GetWriterById(1);
+            var values = wm.GetWriterById(4);
             return View(values);
         }
     }

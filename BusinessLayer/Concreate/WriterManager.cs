@@ -20,7 +20,7 @@ namespace BusinessLayer.Concreate
 
         public Writer TGetById(int id)
         {
-            throw new NotImplementedException();
+            return _WriterDal.GetById(id);
         }
 
         public List<Writer> GetList()
@@ -40,7 +40,7 @@ namespace BusinessLayer.Concreate
 
         public void TUpdate(Writer tupdate)
         {
-            throw new NotImplementedException();
+            _WriterDal.Update(tupdate);
         }
 
         public List<Writer> GetWriterById(int id)  //*** Yazar paneli Ana sayfasında yer alan "Yazar Hakkında" kısmı için yazılan komut ***//

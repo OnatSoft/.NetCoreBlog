@@ -6,18 +6,16 @@
     <h4>Yorumlar</h4>
     @if (Model.Count() == 0)
     {
-        <p class="alert alert-danger">Bu blogda hiç yorum yok. İlk yorumu sen yap.</p>
+        <span class="alert alert-danger">Buraya henüz hiç yorum yazılmamış. İlk yorumu sen yaz!</span>
     }
     @foreach (var item in Model)
     {
         <div class="media">
             <img src="~/CoreBlogTema/images/user_icon.png" alt="usericon" width="60" height="60" class="img-fluid" />
             <div class="media-body">
-                <h5 class="mt-0">@item.UserName - @(((DateTime)item.CreateDate).ToString("dd.MM.yyyy"))</h5>
+                <h5 class="mt-0"> @item.UserName - @(((DateTime)item.CreateDate).ToString("d.MM.yyyy")) </h5>
 
-                <p class="mb-sm-n2">
-                    @item.Content
-                </p>
+                <p class="mb-sm-3"> @item.Content </p>
             </div>
 
         </div>
