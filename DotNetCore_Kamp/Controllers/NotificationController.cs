@@ -6,13 +6,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DotNetCore_Kamp.ViewComponents.Writer
+namespace DotNetCore_Kamp.Controllers
 {
-    public class WriterNotification :ViewComponent
+    public class NotificationController : Controller
     {
         NotificationManager Nm = new NotificationManager(new EFNotificationRepository());
 
-        public IViewComponentResult Invoke()  //** Yazar Panelinde Bildirimleri listelemek için kullandık //
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult AllNotification()  //Yazar Panelinde Bildirimler menüsünün detaylı ayrı Bildirim Listesi sayfası
         {
             var values = Nm.GetList();
             return View(values);

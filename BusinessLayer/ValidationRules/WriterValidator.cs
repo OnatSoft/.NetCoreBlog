@@ -19,6 +19,7 @@ namespace BusinessLayer.ValidationRules
             RuleFor(x => x.Password).NotEmpty().WithMessage("Lütfen bu alanı doldurun.");
             RuleFor(x => x.PasswordRepeat).NotEmpty().WithMessage("Lütfen bu alanı doldurun.");
             RuleFor(x => x.İmage).NotEmpty().WithMessage("Lütfen profil resminizi sisteme yükleyin.");
+            RuleFor(x => x.About).NotEmpty().WithMessage("Lütfen bu alanı doldurun.");
 
             RuleFor(x => x.Password).MinimumLength(5).WithMessage("Parola en az 5 karakterli olmalı.");
             RuleFor(x => x.Password).MaximumLength(10).WithMessage("Parola en fazla 10 karakterli olmalı.");

@@ -1,0 +1,42 @@
+﻿
+<!--------********** Burası Yazar Panelinde Bildirimler menüsünün detaylı ayrı Bildirim Listesi sayfası **********-->
+
+@using EntityLayer.Concreate
+@model List<Notification>
+
+@{
+    ViewData["Title"] = "AllNotification";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h1>Bildirim Listesi</h1>
+                <br />
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Bildirim Türü</th>
+                                <th>Bildirim Detayı</th>
+                                <th>Bildirim Zamanı</th>
+                            </tr>
+                        </thead>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th>@item.ID</th>
+                                <td>@item.NotificationType</td>
+                                <td>@item.Details</td>
+                                <td>@item.Date.ToShortDateString()</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
