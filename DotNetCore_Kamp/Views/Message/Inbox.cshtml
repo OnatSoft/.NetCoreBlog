@@ -1,0 +1,48 @@
+﻿
+<!----****************************-- Burası Yazar Panelinde yer alan Mesajlar Sayfası ******************************---->
+@using EntityLayer.Concreate
+@model List<Message2>
+
+@{
+    ViewData["Title"] = "Inbox";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h2> Mesajlar </h2>
+                <br />
+                    <table class="table table-bordered" height="30px">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Gönderen Yazar</th>
+                                <th>Konu</th>
+                                <th>Tarih</th>
+                                <th>Mesaj İçeriği</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <th>@item.ID</th>
+                                    <td>@item.SenderWriter.Name</td>
+                                    <td>@item.Subject</td>
+                                    <td>@item.MessageDate.ToShortDateString()</td>
+                                    <td>@item.MessageDetails</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                
+                <br />
+                <br />
+                <a class="btn btn-primary mb-2" href="#"> Yeni Mesaj Yaz </a>
+            </div>
+        </div>
+    </div>
+</div>

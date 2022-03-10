@@ -10,13 +10,12 @@ namespace DotNetCore_Kamp.ViewComponents.Writer
 {
     public class WriterMessageNotification: ViewComponent
     {
-        MessageManager Mm = new MessageManager(new EFMessageRepository());
+        Message2Manager Mm = new Message2Manager(new EFMessage2Repository());  //** Burası Yazar Paneli içinde Mesajlar Bildirimi Popup penceresi
 
         public IViewComponentResult Invoke()
         {
-            string p;
-            p = "onat.somer2017@yandex.com";
-            var values = Mm.GetInboxListByWriter(p);
+            int id = 4;
+            var values = Mm.GetInboxListByWriter(id);
             return View(values);
         }
     }

@@ -1,7 +1,7 @@
 ﻿<!--******** Burası Yazar Panelinde üst menüde ki Mesajlar Bildirim View Sayfası ********-->
 
 @using EntityLayer.Concreate
-@model List<Message>
+@model List<Message2>
 
 <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
     <i class="mdi mdi-email-outline"></i>
@@ -14,15 +14,15 @@
         <div class="dropdown-divider"></div>
         <a class="dropdown-item preview-item">
             <div class="preview-thumbnail">
-                <img src="~/WriterPanel/assets/images/faces/face20.jpg" alt="image" class="profile-pic">
+                <img src="@item.SenderWriter.İmage" alt="image" class="profile-pic">
             </div>
             <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                <h6 class="preview-subject ellipsis mb-1 font-weight-normal" title="@item.Sender sana bir mesaj gönderdi"> @item.Sender sana bir mesaj gönderdi</h6>
+                <h6 class="preview-subject ellipsis mb-1 font-weight-normal" title="@item.SenderWriter.Name sana mesaj gönderdi"> @item.SenderWriter.Name sana mesaj gönderdi</h6>
                 <p class="text-gray mb-0"> @item.MessageDate.ToShortDateString() </p>
             </div>
         </a>
     }
 
     <div class="dropdown-divider"></div>
-    <h6 class="p-3 mb-0 text-center"><a class="text-dark" href="#"> Mesaj Listesi </a></h6>
+    <h6 class="p-3 mb-0 text-center">4 Yeni Mesaj</h6>
 </div>

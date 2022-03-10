@@ -9,44 +9,44 @@
     <div class="card">
         <div class="card-body">
 
-    <h2>Yeni Blog Oluştur</h2>
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">Bloglarım</li>
-            <li class="breadcrumb-item active">Yeni Blog Oluştur</li>
-        </ol>
-    </nav>
-    <br />
-    @using (Html.BeginForm("BlogAdd", "Blog", FormMethod.Post))
-    {
-        @Html.Label("Blog Başlığı")
-        @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @autofocus = "" })
-        @Html.ValidationMessageFor(x => x.Title, "", new { @class = "text-danger" })
-        <br />
-        <br />
-        @Html.Label("Blog Görseli")
-        @Html.TextBoxFor(x => x.İmage, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.İmage, "", new { @class = "text-danger" })
-        <br />
-        <br />
-        @Html.Label("Blog Küçük Görseli")
-        @Html.TextBoxFor(x => x.ThumbnailImage, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x=>x.ThumbnailImage, "", new { @class= "text-danger" })
-        <br />
-        <br />
-        @Html.Label("Kategori")
-        @Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.cv, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.CategoryID, "", new { @class = "text-danger" })
-        <br />
-        <br />
-        @Html.Label("Blog Açıklaması")
-        @Html.TextAreaFor(x => x.Content, 20, 5, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Content, "", new { @class = "text-danger" })
-        <br />
-        <br />
-        <button class="btn btn-success mr-2"> Kaydet </button>
-        <a asp-controller="Blog" asp-action="BlogListByWriter" class="btn btn-light mr-2"> İptal </a>
-    }
-            </div>
+            <h2>Yeni Blog Oluştur</h2>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">Bloglarım</li>
+                    <li class="breadcrumb-item active">Yeni Blog Oluştur</li>
+                </ol>
+            </nav>
+            <br />
+            @using (Html.BeginForm("BlogAdd", "Blog", FormMethod.Post))
+            {
+                @Html.Label("Blog Başlığı")
+                @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @autofocus = "" })
+                @Html.ValidationMessageFor(x => x.Title, "", new { @class = "text-danger" })
+                <br />
+                <br />
+                @Html.Label("Blog Görseli")
+                @Html.TextBoxFor(x => x.İmage, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.İmage, "", new { @class = "text-danger" })
+                <br />
+                <br />
+                @Html.Label("Blog Küçük Görseli")
+                @Html.TextBoxFor(x => x.ThumbnailImage, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.ThumbnailImage, "", new { @class = "text-danger" })
+                <br />
+                <br />
+                @Html.Label("Kategori")
+                @Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.cv, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.CategoryID, "", new { @class = "text-danger" })
+                <br />
+                <br />
+                @Html.Label("Blog Açıklaması")
+                @Html.TextAreaFor(x => x.Content, 20, 5, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Content, "", new { @class = "text-danger" })
+                <br />
+                <br />
+                <button class="btn btn-success mr-2"> Kaydet </button>
+                <a asp-controller="Blog" asp-action="BlogListByWriter" class="btn btn-light mr-2"> İptal </a>
+            }
+        </div>
     </div>
 </div>

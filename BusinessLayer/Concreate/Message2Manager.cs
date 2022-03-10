@@ -9,23 +9,24 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Concreate
 {
-    public class MessageManager : IMessage2Service  //** Burası IMessageService'den miras alıyor/kullanıyor //
+    public class Message2Manager : IMessage2Service
     {
-        IMessage2Dal _MessageDal;
+        IMessage2Dal _Message2Dal;
 
-        public MessageManager(IMessage2Dal messageDal)
+        public Message2Manager(IMessage2Dal message2Dal)  //** IMessageDal interface'den constructor method oluşturduk //
         {
-            _MessageDal = messageDal;
+            _Message2Dal = message2Dal;
         }
 
-        public List<Message2> GetInboxListByWriter(int id)
+
+        public List<Message2> GetInboxListByWriter(int id)  //** Yazar Panelinde yazara göre Mesajları Listelemek için kullandık //
         {
-            throw new NotImplementedException();
+            return _Message2Dal.GetListWithMessageByWriter(id);
         }
 
         public List<Message2> GetList()
         {
-            throw new NotImplementedException();
+            return _Message2Dal.GetListAll();
         }
 
         public void TAdd(Message2 tadd)
@@ -40,7 +41,7 @@ namespace BusinessLayer.Concreate
 
         public Message2 TGetById(int id)
         {
-            throw new NotImplementedException();
+            return _Message2Dal.GetById(id);
         }
 
         public void TUpdate(Message2 tupdate)

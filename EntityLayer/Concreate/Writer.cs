@@ -21,5 +21,9 @@ namespace EntityLayer.Concreate
         public bool Status { get; set; }
         public List<Blog> Blogs { get; set; }
 
+        //Yazarla Mesajların İlişkilendirilmesi
+        public virtual ICollection<Message2> MessageSender { get; set; }
+        public virtual ICollection<Message2> MessageReceiver { get; set; }
+
     }
 }

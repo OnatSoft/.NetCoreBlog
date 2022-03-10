@@ -16,6 +16,21 @@ namespace DataAccessLayer.Concreate
             optionsBuilder.UseSqlServer("server=LAPTOP-ONATSOFT\\ONATSOFT;database=CoreBlogDB; integrated security=true;");
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Message2>()  //Mesajı Gönderici İlişkisi
+                .HasOne(x => x.SenderWriter)
+                .WithMany(y => y.MessageSender)
+                .HasForeignKey(z => z.SenderID)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            modelBuilder.Entity<Message2>()  //Mesaj ALıcısı İlişkisi
+                .HasOne(x => x.ReceiverWriter)
+                .WithMany(y => y.MessageReceiver)
+                .HasForeignKey(z => z.ReceiverID)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+        }
+
         public DbSet<About> Abouts { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -26,6 +41,7 @@ namespace DataAccessLayer.Concreate
         public DbSet<BlogRayting> BlogRaytings { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<Message2> Message2s { get; set; }
 
     }
 }
