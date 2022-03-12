@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concreate;
 using BusinessLayer.ValidationRules;
+using DataAccessLayer.Concreate;
 using DataAccessLayer.EntityFramework;
 using DotNetCore_Kamp.Models;
 using EntityLayer.Concreate;
@@ -23,22 +24,28 @@ namespace DotNetCore_Kamp.Controllers
     {
         //*** Bütün proje seviyesinde kullanıcı giriş zorunluluğu (Authorize) olduğu için Yazar Login sayfasını bu zorunluluktan muaf (devre dışı) bıraktığı için erişilebiliyor. ***//
         WriterManager Wm = new WriterManager(new EFWriterRepository());
+        Context c = new Context();
 
         public IActionResult Index()
         {
+            var usermail = User.Identity.Name;
+            ViewBag.userLogin = usermail;
+            var writerName = c.Writers.Where(x => x.EMail == usermail).Select(y => y.Name).FirstOrDefault();
+
+            ViewBag.v2 = writerName;
             return View();
         }
 
-        [AllowAnonymous]
-        [HttpGet]
 
+        [HttpGet]
         public IActionResult WriterEditProfile()
         {
+            
             var writervalues = Wm.TGetById(4);
             return View(writervalues);
         }
 
-        [AllowAnonymous]
+
         [HttpPost]
         public IActionResult WriterEditProfile(Writer p)  //** Yazar profilini HTTP Post olduğunda güncelleme işlemi //
         {
@@ -63,14 +70,12 @@ namespace DotNetCore_Kamp.Controllers
             return View();
         }
 
-        [AllowAnonymous]
         [HttpGet]
         public IActionResult WriterAdd()
         {
             return View();
         }
 
-        [AllowAnonymous]
         [HttpPost]
         public IActionResult WriterAdd(AddProfileImage p)  //* Yazarın ilk önce profil fotoğrafını ayrı bir sayfadan ekleme işlemi //
         {
@@ -95,7 +100,6 @@ namespace DotNetCore_Kamp.Controllers
             return RedirectToAction("BlogListByWriter", "Blog");
         }
 
-        [AllowAnonymous]
         public PartialViewResult WriterNavbarPartial()  //** Yazar Paneli yan menülerin partial bölümü **//
         {
             return PartialView();

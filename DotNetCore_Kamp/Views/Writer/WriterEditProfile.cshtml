@@ -19,26 +19,22 @@
 
                         <div class="form-group">
                             <label for="exampleInputName1"> Adı Soyadı </label>
-                            @Html.TextBoxFor(x=> x.Name, new { @class="form-control" })
-                            @Html.ValidationMessageFor(x=> x.Name, "", new { @class="text-danger" })
+                            @Html.TextBoxFor(x=> x.Name, new { @class="form-control", @disabled="disable" })
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail3"> E-posta Adresi (Güncellenemez) </label>
-                            @Html.TextBoxFor(x=> x.EMail, new { @class="form-control" })
-                            @Html.ValidationMessageFor(x=> x.EMail, "", new { @class="text-danger" })
+                            <label for="exampleInputEmail3"> E-posta Adresi </label>
+                            @Html.TextBoxFor(x=> x.EMail, new { @class="form-control", @disabled="disable" })
                         </div>
 
                         <div class="form-group">
                             <label for="exampleInputPassword4"> Parola </label>
                             @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="form-group">
                             <label for="exampleInputPassword4"> Parola (Tekrar) </label>
                             @Html.PasswordFor(x => x.PasswordRepeat, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x => x.PasswordRepeat, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="form-group">
@@ -55,8 +51,8 @@
                             @Html.ValidationMessageFor(x => x.About, "", new { @class = "text-danger" })
                         </div>
                         <br />
-                        <button type="submit" class="btn btn-success mr-2"> Güncelle </button>
-                        <button class="btn btn-light mr-2" asp-action="BlogListByWriter" asp-controller="Blog"> İptal </button>
+                        <button type="submit" class="btn btn-success m-md-2"> Güncelle </button>
+                        <button class="btn btn-light m-md-2" asp-action="BlogListByWriter" asp-controller="Blog"> İptal </button>
 
                     </form>
                 }

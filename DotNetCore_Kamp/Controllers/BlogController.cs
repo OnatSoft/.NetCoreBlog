@@ -10,12 +10,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
+using DataAccessLayer.Concreate;
 
 namespace DotNetCore_Kamp.Controllers
 {
     public class BlogController : Controller
     {
-
+        Context c = new Context();
         BlogManager bm = new BlogManager(new EFBlogRepository());
         CategoryManager cm = new CategoryManager(new EFCategoryRepository());
 
@@ -37,7 +38,10 @@ namespace DotNetCore_Kamp.Controllers
 
         public IActionResult BlogListByWriter()
         {
-            var values = bm.GetListWithCategoryByWriterBm(4);  /** Yazar Panelinde Bloglarım sayfasında kategori isimlerini yazara göre getirme **/
+            var usermail = User.Identity.Name;
+            var writerID = c.Writers.Where(x => x.EMail == usermail).Select(y => y.WriterID).FirstOrDefault();
+
+            var values = bm.GetListWithCategoryByWriterBm(writerID);  /** Yazar Panelinde Bloglarım sayfasında kategori isimlerini yazara göre getirme **/
             return View(values);
         }
 
@@ -52,31 +56,28 @@ namespace DotNetCore_Kamp.Controllers
         [HttpGet]
         public IActionResult EditBlog(int id)
         {
-            var blogValue = bm.TGetById(id);  //** Yazar panelinde dışardan gelen id'ye göre önce güncellenecek bloğun bulunması sonra güncelleme işlemi **//
+            var blogValue = bm.TGetById(id);  //** Yazar panelinde dışardan gelen id'ye göre önce güncellenecek bloğun bulunması **//
             ViewBag.cv = GetCategoryList();
             return View(blogValue);
         }
 
         [HttpPost]
-        public IActionResult EditBlog(Blog b)
+        public IActionResult EditBlog(Blog b)  //Yazar tarafından blog güncelleme işlemi
         {
+            var usermail = User.Identity.Name;
+            var writerID = c.Writers.Where(x => x.EMail == usermail).Select(y => y.WriterID).FirstOrDefault();
+
             BlogValidator bv = new BlogValidator();
             ValidationResult result = bv.Validate(b);
 
             if (result.IsValid)
             {
-                int id = Convert.ToInt32(((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.Name).Value);  //** Blog güncellemek için yazarın id'sini alma **//
-                b.WriterID = id;
+                //int id = Convert.ToInt32(((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.Name).Value); ** Blog güncellemek için yazarın id'sini alma **//
+                b.WriterID = writerID;
                 var x = bm.TGetById(b.BlogID);
                 b.CreateDate = x.CreateDate;
                 b.Status = true;
                 b.Auth = x.Auth;
-                //x.Title = b.Title;
-                //x.CategoryID = b.CategoryID;
-                //x.İmage = b.İmage;
-                //x.ThumbnailImage = b.ThumbnailImage;
-                //x.Content = b.Content;
-                //b.CreateDate = x.CreateDate;
 
                 bm.TUpdate(b);
                 return RedirectToAction("BlogListByWriter");
@@ -102,21 +103,22 @@ namespace DotNetCore_Kamp.Controllers
         }
 
         [HttpPost]
-        public IActionResult BlogAdd(Blog p)
+        public IActionResult BlogAdd(Blog p)  //** Yazar tarafından yeni blog ekleme işlemi **//
         {
-            //** Yazar tarafından yeni blog ekleme işlemi **//
+            var usermail = User.Identity.Name;
+            var writerID = c.Writers.Where(x => x.EMail == usermail).Select(y => y.WriterID).FirstOrDefault();
+            var writerName = c.Writers.Where(x => x.Name == usermail).Select(y => y.Name).FirstOrDefault();
 
             BlogValidator bv = new BlogValidator();
             ValidationResult results = bv.Validate(p);
             if (results.IsValid)
             {
-                p.WriterID = Convert.ToInt32(((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.Name).Value);  //** Yeni Blog yazısı eklerken yazarın id'sini alma / kullanma **//
+                p.WriterID = writerID;
+                p.Auth = writerName;
                 p.Status = true;
                 p.CreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-                p.Auth = "Onat Somer";
 
                 bm.TAdd(p);
-
                 return RedirectToAction("BlogListByWriter", "Blog");
             }
             else
@@ -125,6 +127,7 @@ namespace DotNetCore_Kamp.Controllers
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
+
                 ViewBag.cv = GetCategoryList();
             }
 

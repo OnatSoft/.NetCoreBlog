@@ -49,9 +49,7 @@
                         @foreach (var item in Model)
                         {
                             <div class="col-lg-4 card">
-                            <a href="#">
                                 <img src="@item.ThumbnailImage" class="card-img-top img-fluid" alt="">
-                            </a>
                             <div class="card-body">
                                 <ul class="blog-icons my-4">
                                     <!---- Blog içerikleri foreach döngüsüyle veritabanında kaç tane blog varsa sayfa da o içerikli ve o kadar blog gönderisi oluşuyor ---->
@@ -76,7 +74,7 @@
                                     <a href="/Blog/BlogDetails/@item.BlogID">@item.Title</a>
                                 </h5>
                                 @*<p class="card-text mb-3">@(item.Content.Length < 120 ? item.Content : item.Content.Substring(0, item.Content.Substring(0,120).LastIndexOf(" "))) ...</p>*@
-                                <p class="card-text mb-3">@(item.Content.Length < 120 ? item.Content : item.Content.Substring(0, item.Content.Substring(0, 120).LastIndexOf(" "))) ...</p>
+                                <p class="card-text mb-3">@(item.Content.Length < 120 ? item.Content : item.Content.Substring(0, item.Content.Substring(0, 120).LastIndexOf(" ")))...</p>
                                 <a href="/Blog/BlogDetails/@item.BlogID" class="btn btn-primary read-m">Devamını Oku</a>
                             </div>
                             <br />
