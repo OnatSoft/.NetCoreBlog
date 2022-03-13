@@ -64,9 +64,9 @@ namespace DotNetCore_Kamp
                 app.UseHsts();
             }
 
-            app.UseStatusCodePagesWithReExecute("/ErrorPage/Error1", "?code={0}");  //--- Özelleþtirilmiþ 404 Sayfasý yapýmýnýn baþlangýç iþi
-            
-            //*** app.UseSession();   Açýlan Oturumu Kullan Methodu ***//
+            app.UseStatusCodePagesWithReExecute("/ErrorPage/Error1", "?code={0}");  //--- Özelleştirilmiş 404 Sayfası yapımı başlangıç dizini
+
+            //*** app.UseSession();
 
             app.UseAuthentication();
 
@@ -79,6 +79,11 @@ namespace DotNetCore_Kamp
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                name: "areas",
+                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+            );
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

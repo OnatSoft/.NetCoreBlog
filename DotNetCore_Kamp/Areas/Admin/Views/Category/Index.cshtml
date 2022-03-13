@@ -1,0 +1,58 @@
+﻿
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<EntityLayer.Concreate.Category>
+<!-----************************************** Burası Admin Panelinde Kategoriler View Sayfası *******************************************----->
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2><strong>Blog Kategorileri</strong></h2>
+<br />
+
+<div class="table-responsive-md">
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>#</th>
+            <th>Kategori Adı</th>
+            <th>Kategori Açıklaması</th>
+            <th>Durum</th>
+            <th>İşlemler</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>@item.CategoryID</th>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>
+                    @if (item.Status == true)
+                    {
+                        <span class="badge badge-primary">Aktif</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-danger">Pasif</span>
+                    }
+                </td>
+                <td>
+                    <a href="#" class="btn btn-success">Düzenle</a>
+                    <a href="#" class="btn btn-outline-danger btn-sm">Pasif Yap</a>
+                    <a href="#" class="btn btn-outline-success btn-sm">Aktif Yap</a>
+                </td>
+            </tr>
+        }
+    </table>
+    <br />
+    @*<div class="btn-group">
+            <button class="btn btn-secondary"><i class="fa fa-chevron-left"></i></button>
+            <button class="btn btn-white">1</button>
+            <button class="btn btn-white">2</button>
+            <button class="btn btn-white">3</button>
+            <button class="btn btn-secondary"><i class="fa fa-chevron-right"></i></button>
+    </div>*@
+    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
+</div>
