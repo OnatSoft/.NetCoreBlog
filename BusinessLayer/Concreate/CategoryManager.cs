@@ -37,7 +37,7 @@ namespace BusinessLayer.Concreate
 
         public void TDelete(Category tdelete)
         {
-            efCategoryRepo.Delete(tdelete);  // Entity Framework Category Repository CRUD silme işlemi
+            efCategoryRepo.Update(tdelete);  // Entity Framework Category Repository CRUD silme işlemi
         }
 
         public void TUpdate(Category tupdate)

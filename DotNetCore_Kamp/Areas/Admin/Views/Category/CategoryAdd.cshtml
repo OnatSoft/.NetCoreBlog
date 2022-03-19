@@ -1,0 +1,31 @@
+﻿
+@model EntityLayer.Concreate.Category
+
+@{
+    ViewData["Title"] = "CategoryAdd";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<div class="ibox">
+    <div class="ibox-title">
+        <h3>Yeni Kategori Ekle</h3>
+    </div>
+    <div class="ibox-content">
+        @using (Html.BeginForm("CategoryAdd", "Category", FormMethod.Post))
+        {
+            @Html.Label("Kategori Adı")
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+            <br />
+            <br />
+            @Html.Label("Kategori Açıklaması")
+            @Html.TextAreaFor(x => x.Description, 6, 3, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
+            <br />
+            <br />
+            <a href="/Admin/Category/Index" class="btn btn-default btn-xl"> İptal </a>
+            <button class="btn btn-primary btn-xl"><i class="fa fa-save"></i>&nbsp; Kaydet </button>
+        }
+    </div>
+</div>

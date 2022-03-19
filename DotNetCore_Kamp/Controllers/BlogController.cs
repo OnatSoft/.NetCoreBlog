@@ -127,10 +127,9 @@ namespace DotNetCore_Kamp.Controllers
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
-
-                ViewBag.cv = GetCategoryList();
             }
 
+            ViewBag.cv = GetCategoryList();
             return View();
         }
 

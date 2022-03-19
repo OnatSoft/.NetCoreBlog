@@ -1,5 +1,8 @@
 ﻿using BusinessLayer.Concreate;
+using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
+using EntityLayer.Concreate;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,6 +22,50 @@ namespace DotNetCore_Kamp.Areas.Admin.Controllers
         {
             var values = Cm.GetList().ToPagedList(page, 4);
             return View(values);
+        }
+
+        [HttpGet]
+        public IActionResult CategoryAdd()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CategoryAdd(Category p)  //* Admin Panelinde Kategoriler sayfasından Yeni Kategori Ekleme işlemi
+        {
+            CategoryValidator cv = new CategoryValidator();
+            ValidationResult validations = cv.Validate(p);
+
+            if (validations.IsValid)
+            {
+                p.Status = false;
+                Cm.TAdd(p);
+                return RedirectToAction("Index", "Category");
+            }
+            else
+            {
+                foreach (var item in validations.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
+        }
+
+        public IActionResult CategoryDelete(int id)
+        {
+            var value = Cm.TGetById(id);
+            if (value.Status == true)
+            {
+                value.Status = false;
+            }
+            else
+            {
+                value.Status = true;
+            }
+
+            Cm.TDelete(value);
+            return RedirectToAction("Index");
         }
     }
 }

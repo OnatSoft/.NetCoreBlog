@@ -8,51 +8,116 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-<h2><strong>Blog Kategorileri</strong></h2>
-<br />
+@{
+    string statusColor = "";
+    string btnstatusCheck = "";
+    string btnColor = "";
+    string status = "";
+    string statusMessage = "";
+}
 
-<div class="table-responsive-md">
-    <table class="table table-bordered table-striped">
-        <tr>
-            <th>#</th>
-            <th>Kategori Adı</th>
-            <th>Kategori Açıklaması</th>
-            <th>Durum</th>
-            <th>İşlemler</th>
-        </tr>
+<div class="ibox">
+    <div class="ibox-title">
+        <h3>Blog Kategorileri</h3>
+        <div class="ibox-tools">
+            <a class="collapse-link">
+                <i class="fa fa-chevron-up"></i>
+            </a>
+        </div>
+    </div>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <th>@item.CategoryID</th>
-                <td>@item.Name</td>
-                <td>@item.Description</td>
-                <td>
-                    @if (item.Status == true)
+    <div class="ibox-content">
+        <div class="table-responsive-md">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th style="width: 3%;">#</th>
+                        <th style="width: 6%;">Kategori Adı</th>
+                        <th style="width: 30%;">Kategori Açıklaması</th>
+                        <th style="width: 5%;">Durum</th>
+                        <th style="width: 10%;">İşlemler</th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    switch (item.Status)
                     {
-                        <span class="badge badge-primary">Aktif</span>
+                        case true:
+                            statusColor = "badge badge-primary";
+                            btnColor = "btn btn-outline-danger btn-sm";
+                            break;
+
+                        case false:
+                            statusColor = "badge badge-danger";
+                            btnColor = "btn btn-outline-success btn-sm";
+                            break;
+                    }
+
+                    if (item.Status == false)
+                    {
+                        btnstatusCheck = "Aktif Yap";
                     }
                     else
                     {
-                        <span class="badge badge-danger">Pasif</span>
+                        btnstatusCheck = "Pasif Yap";
                     }
-                </td>
-                <td>
-                    <a href="#" class="btn btn-success">Düzenle</a>
-                    <a href="#" class="btn btn-outline-danger btn-sm">Pasif Yap</a>
-                    <a href="#" class="btn btn-outline-success btn-sm">Aktif Yap</a>
-                </td>
-            </tr>
-        }
-    </table>
-    <br />
-    @*<div class="btn-group">
-            <button class="btn btn-secondary"><i class="fa fa-chevron-left"></i></button>
-            <button class="btn btn-white">1</button>
-            <button class="btn btn-white">2</button>
-            <button class="btn btn-white">3</button>
-            <button class="btn btn-secondary"><i class="fa fa-chevron-right"></i></button>
-    </div>*@
-    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
+
+                    if (item.Status == false)
+                    {
+                        statusMessage = "Kategoriyi listeye eklemeyi onaylıyor musunuz?";
+                    }
+                    else
+                    {
+                        statusMessage = "Kategoriyi listeden kaldırmayı onaylıyor musunuz?";
+                    }
+
+                    <tr>
+                        <th>@item.CategoryID</th>
+                        <td>@item.Name</td>
+                        <td>@item.Description</td>
+                        <td>
+                            @if (item.Status == true)
+                            {
+                                <span class="@statusColor">Aktif</span>
+                            }
+                            else
+                            {
+                                <span class="@statusColor">Pasif</span>
+                            }
+                        </td>
+                        <td>
+                            <a href="#" class="btn btn-success" id="buttonEdit"><i class="fa fa-edit"></i>&nbsp; Düzenle</a>
+                            <a href="/Admin/Category/CategoryDelete/@item.CategoryID" id="Deletebtn" onclick="return confirm('Kategorinin durumunu değiştirmek istiyor musunuz?')" class="@btnColor">@btnstatusCheck</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+
+            <br />
+            @*<div class="btn-group">
+                        <button class="btn btn-secondary"><i class="fa fa-chevron-left"></i></button>
+                        <button class="btn btn-white">1</button>
+                        <button class="btn btn-white">2</button>
+                        <button class="btn btn-white">3</button>
+                        <button class="btn btn-secondary"><i class="fa fa-chevron-right"></i></button>
+                </div>*@
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
+            <a href="/Admin/Category/CategoryAdd" class="btn btn-primary btn-xl btn-rounded"><i class="fa fa-plus"></i>&nbsp; Yeni Kategori Ekle </a>
+        </div>
+    </div>
 </div>
+
+
+@*<script>
+    swal({
+        title:"Uyarı",
+        text: "Kategoriyi listeden kaldırmayı onaylıyor musunuz?",
+        icon: "warning",
+        buttons: {
+            cancel: "Hayır",
+            confirm: "Evet",
+        }
+    })
+</script>*@
