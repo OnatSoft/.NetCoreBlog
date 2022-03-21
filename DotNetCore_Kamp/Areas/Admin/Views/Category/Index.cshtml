@@ -88,8 +88,9 @@
                             }
                         </td>
                         <td>
-                            <a href="#" class="btn btn-success" id="buttonEdit"><i class="fa fa-edit"></i>&nbsp; Düzenle</a>
-                            <a href="/Admin/Category/CategoryDelete/@item.CategoryID" id="Deletebtn" onclick="return confirm('Kategorinin durumunu değiştirmek istiyor musunuz?')" class="@btnColor">@btnstatusCheck</a>
+                            <a href="/Admin/Category/CategoryDelete/@item.CategoryID" class="btn btn-danger" onclick="return confirm('Kategoriyi silmek istiyor musunuz?')"><i class="fa fa-trush"></i>Sil</a>
+                            <a href="#" class="btn btn-success"><i class="fa fa-edit"></i>&nbsp; Düzenle</a>
+                            <a href="/Admin/Category/CategoryUpdateStatus/@item.CategoryID" onclick="return confirm('Kategorinin durumunu değiştirmek istiyor musunuz?')" class="@btnColor">@btnstatusCheck</a>
                         </td>
                     </tr>
                 }

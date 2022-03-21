@@ -52,8 +52,17 @@ namespace DotNetCore_Kamp.Areas.Admin.Controllers
             return View();
         }
 
-        public IActionResult CategoryDelete(int id)
+        public IActionResult CategoryDelete(int id)  //* Kategori'yi silme işlemi
         {
+            
+            var value = Cm.TGetById(id);
+            Cm.TDelete(value);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult CategoryUpdateStatus(int id)  //* Kategori'nin durumunu güncelleme işlemi
+        {
+            
             var value = Cm.TGetById(id);
             if (value.Status == true)
             {
@@ -64,7 +73,7 @@ namespace DotNetCore_Kamp.Areas.Admin.Controllers
                 value.Status = true;
             }
 
-            Cm.TDelete(value);
+            Cm.TUpdate(value);
             return RedirectToAction("Index");
         }
     }
