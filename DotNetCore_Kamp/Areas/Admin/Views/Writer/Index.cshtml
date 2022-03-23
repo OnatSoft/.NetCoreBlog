@@ -1,0 +1,160 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<!------************************************** Burası Ajax ile Yazar İşlemleri Sayfası ***************************************------>
+
+<h2>Yazarlar</h2>
+<br />
+
+<div class="row">
+    <input style="width: 12%;" class="form-control ml-3" id="txtdelete" placeholder="Silinecek Yazar ID:" type="number" required />
+    <button class="btn btn-danger ml-lg-3" id="btnwriterDelete"> Sil </button>
+</div>
+<br />
+<div class="row">
+    <input style="width: 12%;" class="form-control ml-3" id="writerid" placeholder="Yazar ID Giriniz:" type="number" required />
+    <button class="btn btn-success ml-lg-3" id="btngetwriter"> Yazarı Bul </button>
+    <button class="btn btn-success ml-lg-3" id="btngetlist"> Yazar Listesini Göster </button>
+</div>
+<br />
+<div class="ibox">
+    <div class="ibox-content">
+        <h3>Yazar Bulma</h3>
+        <div id="getwriter">
+
+        </div>
+    </div>
+</div>
+
+<div class="ibox">
+    <div class="ibox-content">
+        <h3>Statik Olarak Gelen Yazar Listesi</h3>
+        <div id="writerlist">
+
+        </div>
+    </div>
+</div>
+
+<div class="ibox">
+    <div class="ibox-content">
+        <h3>Statik Olarak Yazar Ekleme</h3>
+        <div>
+            <input class="form-control" id="txtWriterid" placeholder="Yazar ID:" type="number" required />
+            <br />
+            <input class="form-control" id="txtWritername" placeholder="Yazar Adı Soyadı:" type="text" required />
+            <br />
+            <button class="btn btn-primary ml-lg-0" id="btnwriterAdd"> Kaydet </button>
+        </div>
+    </div>
+</div>
+
+<div class="ibox">
+    <div class="ibox-content">
+        <h3>Statik Olarak Yazar Güncelleme</h3>
+        <div>
+            <input class="form-control" id="writerUpdateid" placeholder="Güncellenecek Yazar ID:" type="number" required />
+            <br />
+            <input class="form-control" id="writerUpdatename" placeholder="Güncellenecek Yazar Adı Soyadı:" type="text" required />
+            <br />
+            <button class="btn btn-primary ml-lg-0" id="btnwriterUpdate"> Güncelle </button>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+
+        @*********** Ajax ile statik olarak yazar listesini tabloya yazdırma işlemi ***********@
+        $("#btngetlist").click(function () {
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "GET",
+                url: "/Admin/Writer/WriterList",
+                success: function (func) {
+                    let writer = jQuery.parseJSON(func);
+
+                    let tablehtml = "<table class= table table-bordered table-light> <tr> <th>Yazar ID</th> <th>Yazar Adı Soyadı</th> </tr>";
+                    $.each(writer, (index, value) => {
+                        tablehtml += `<tr> <td>${value.ID}</td> <td>${value.Name}</td> </tr>`
+                    });
+
+                    tablehtml += "</table>"
+                    $("#writerlist").html(tablehtml);
+                }
+            });
+        });
+
+        @*********** Ajax ile yazar listesinden ID'ye Göre 1 veri (yazar) tabloya yazdırma/bulma işlemi ***********@
+        $("#btngetwriter").click(x => {
+            let id = $("#writerid").val();
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "GET",
+                url: "/Admin/Writer/GetWriterbyID",
+                data: { writerid: id },
+                success: function (func) {
+                    let w = jQuery.parseJSON(func);
+
+                    let getValue = `<table class=table table-bordered> <tr><th>Yazar ID</th> <th>Yazar Adı Soyadı</th></tr> <tr><td>${w.ID}</td> <td>${w.Name}</td></tr> </table>`;
+                    $("#getwriter").html(getValue);
+                }
+            });
+
+        })
+
+        @*********** Ajax ile statik olarak yazar ekleme işlemi ***********@
+        $("#btnwriterAdd").click(function () {
+            let writeradd = {
+                ID: $("#txtWriterid").val(),
+                Name: $("#txtWritername").val()
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "/Admin/Writer/WriterAdd",
+                data: writeradd,
+                success: function (func) {
+                    let result = jQuery.parseJSON(func);
+                    alert("Yazar başarılı şekilde eklendi.");
+                }
+            });
+        });
+
+        @*********** Ajax ile statik olarak yazar silme işlemi ***********@
+        $("#btnwriterDelete").click(x => {
+            let id = $("#txtdelete").val();
+
+            $.ajax({
+                url: "/Admin/Writer/WriterDelete/" + id,
+                type: "POST",
+                dataType: "json",
+                success: function (func) {
+                    alert("Yazar başarılı şekilde silindi.");
+                }
+            });
+        });
+
+        @*********** Ajax ile statik olarak yazar güncelleme işlemi ***********@
+        $("#btnwriterUpdate").click(function () {
+            let writerupdate = {
+                ID: $("#writerUpdateid").val(),
+                Name: $("#writerUpdatename").val()
+            };
+
+            $.ajax({
+                type: "POST",
+                data: writerupdate,
+                url: "/Admin/Writer/WriterUpdate",
+                success: function (func) {
+                    alert("Yazar güncellemesi başarılı");
+                }
+            });
+        });
+
+    </script>
+}

@@ -25,7 +25,7 @@ namespace BusinessLayer.Concreate
 
         public List<Writer> GetList()
         {
-            throw new NotImplementedException();
+            return _WriterDal.GetListAll();
         }
 
         public void TAdd(Writer tadd)

@@ -19,13 +19,15 @@ namespace DotNetCore_Kamp.Controllers
 
             return PartialView();
         }
-        [HttpPost]
 
+        [HttpPost]
         public IActionResult SubscribeMail(Newsletter p)
         {
-
-            p.MailStatus = true;
-            subscribe.TAdd(p);
+            if (p.Email != null)
+            {
+                p.MailStatus = true;
+                subscribe.TAdd(p);
+            }
             return RedirectToAction("Index", "Blog");
         }
     }

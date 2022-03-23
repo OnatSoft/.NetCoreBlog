@@ -16,12 +16,10 @@
 
             @await Component.InvokeAsync("BlogLast3Post")
 
-            <!-- subscribe -->
-            <div class="col-lg-4 subscribe-main footer-grid-agileits-w3ls text-left">
-                <h4 style="color: white;">Bültene Abone Olun</h4>
-                @await Html.PartialAsync("~/Views/Newsletter/SubscribeMail.cshtml")
-                <!-- //subscribe -->
-            </div>
+        <div class="col-lg-4 subscribe-main footer-grid-agileits-w3ls text-left">
+            <h4 style="color: white;">Bültene Abone Olun</h4>
+            @await Html.PartialAsync("~/Views/Newsletter/SubscribeMail.cshtml")
+        </div>
         </div>
 
         <div class="footer-cpy text-center">

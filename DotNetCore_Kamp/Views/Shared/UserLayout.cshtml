@@ -39,11 +39,11 @@
     </header>
 
     @*<ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="/Blog/Index">Ana Sayfa</a>
-        </li>
-        <li class="breadcrumb-item active">Blog Listesi</li>
-    </ol>*@
+            <li class="breadcrumb-item">
+                <a href="/Blog/Index">Ana Sayfa</a>
+            </li>
+            <li class="breadcrumb-item active">Blog Listesi</li>
+        </ol>*@
 
     @RenderBody()
 
@@ -53,38 +53,37 @@
     <script src="~/CoreBlogTema/js/move-top.js"></script>
     <script src="~/CoreBlogTema/js/easing.js"></script>
     <script>
-		jQuery(document).ready(function ($) {
-			$(".scroll").click(function (event) {
-				event.preventDefault();
-				$('html,body').animate({
-					scrollTop: $(this.hash).offset().top
-				}, 900);
-			});
-		});
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 900);
+            });
+        });
     </script>
 
     <script>
-		$(document).ready(function () {
-			/*
-									var defaults = {
-							  			containerID: 'toTop', // fading element id
-										containerHoverID: 'toTopHover', // fading element hover id
-										scrollSpeed: 1200,
-										easingType: 'linear'
-							 		};
-									*/
+        $(document).ready(function () {
+            /*
+                                    var defaults = {
+                                            containerID: 'toTop', // fading element id
+                                        containerHoverID: 'toTopHover', // fading element hover id
+                                        scrollSpeed: 1200,
+                                        easingType: 'linear'
+                                        };
+                                    */
 
-			$().UItoTop({
-				easingType: 'easeOutQuart'
-			});
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
 
-		});
+        });
     </script>
     <a href="#home" class="scroll" id="toTop" style="display: block;">
         <span id="toTopHover" style="opacity: 1;"> </span>
     </a>
 
     <script src="~/CoreBlogTema/js/bootstrap.js"></script>
-
 </body>
 </html>
