@@ -1,0 +1,24 @@
+﻿@using DotNetCore_Kamp.Controllers
+@model Class1
+<!-------************************ Burası Api kaynağına istek göndererek yeni bir veri kaydetme View sayfası *************************-------->
+
+@{
+    ViewData["Title"] = "EmployeeAdd";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="ibox">
+    <div class="ibox-title">
+        <h3>Yeni Çalışan Ekle</h3>
+    </div>
+
+    <div class="ibox-content">
+        <form method="post">
+            <label>Çalışan Adı Soyadı</label>
+            <input type="text" asp-for="@Model.Name" placeholder="Ad-Soyad..." class="form-control" required />
+            <br />
+            <a class="btn btn-default" href="/EmployeeTest/Index"> İptal </a>
+            <button class="btn btn-primary"><i class="fa fa-save"></i>&nbsp; Kaydet </button>
+        </form>
+    </div>
+</div>

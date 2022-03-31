@@ -1,9 +1,4 @@
-﻿
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="tr_TR">
 <head>
     <meta charset="utf-8">
@@ -198,6 +193,6 @@
         });
     </script>
 
-    @RenderSectionAsync("scripts")
+    @await RenderSectionAsync("scripts", false)
 </body>
 </html>

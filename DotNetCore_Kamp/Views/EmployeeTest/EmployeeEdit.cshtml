@@ -1,0 +1,26 @@
+﻿@model DotNetCore_Kamp.Controllers.Class1
+<!--------*********************** Burası Api kaynağı'nın içinde ki bir verinin bilgilerini istek göndererek güncelleme View sayfası **********************-------->
+
+@{
+    ViewData["Title"] = "EmployeeEdit";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="ibox">
+    <div class="ibox-title">
+        <h3>Çalışan Güncelleme</h3>
+    </div>
+
+    <div class="ibox-content">
+        <form method="post">
+            <label>Çalışan ID</label>
+            @Html.TextBoxFor(x => x.ID, new { @class = "form-control", @disabled="disable" })
+            <br />
+            <label>Adı Soyadı</label>
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+            <br />
+            <button class="btn btn-default" href="/EmployeeTest/Index"> İptal </button>
+            <button class="btn btn-primary" type="submit"><i class="fa fa-refresh"></i>&nbsp; Güncelle </button>
+        </form>
+    </div>
+</div>
