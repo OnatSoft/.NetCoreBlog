@@ -1,0 +1,84 @@
+﻿@model UserSignUpViewModel
+@{
+    Layout = null;
+}
+<!------************************************ Burası Admin Paneli Kayıt View Sayfası **************************************------>
+
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogster Projesi - Admin Kayıt</title>
+
+    <link href="~/AdminPanel/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/AdminPanel/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="~/AdminPanel/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="~/AdminPanel/css/animate.css" rel="stylesheet">
+    <link href="~/AdminPanel/css/style.css" rel="stylesheet">
+</head>
+
+<body class="gray-bg">
+    <div class="middle-box text-center loginscreen animated fadeInUp">
+        <div>
+            <div>
+                <h1 class="logo-name">B+</h1>
+            </div>
+
+            <h2 class="font-bold"> Admin Kayıt Sayfası </h2>
+            <p> Blogster sitesini Admin olarak kullanmak için buradan kayıt olmanız gerekmekte. </p>
+
+            <form class="m-t" role="form" asp-action="Index">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Ad Soyad" asp-for="@Model.NameSurname" />
+                    <span asp-validation-for="@Model.NameSurname" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="E-posta" asp-for="@Model.Email" />
+                    <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Kullanıcı Adı" asp-for="@Model.Username" />
+                    <span asp-validation-for="@Model.Username" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Parola" asp-for="@Model.Password" title="Parola, en az bir büyük harf ve 6 karakter içermeli." />
+                    <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Parola Tekrar" asp-for="@Model.ConfirmPassword" title="Parola, en az bir büyük harf ve 6 karakter içermeli." />
+                    <span asp-validation-for="@Model.ConfirmPassword" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <div class="checkbox i-checks">
+                        <label>
+                            <input asp-for="@Model.TermofUse" type="checkbox" />
+                            Kullanıcı Sözleşmesini okudum ve kabul ediyorum
+                        </label>
+                    </div>
+                    <span asp-validation-for="@Model.TermofUse" class="text-danger"></span>
+                </div>
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <button class="btn btn-primary block full-width m-b"><i class="fa fa-user-plus"></i>&nbsp; Kayıt Ol </button>
+                <br />
+                <a class="btn btn-sm btn-white btn-block" href="/Login/AdminIndex/"> Hesabın Varsa Giriş Yap! </a>
+            </form>
+
+        </div>
+    </div>
+
+    <script src="~/AdminPanel/js/jquery-3.1.1.min.js"></script>
+    <script src="~/AdminPanel/js/popper.min.js"></script>
+    <script src="~/AdminPanel/js/bootstrap.js"></script>
+    <script src="~/AdminPanel/js/plugins/iCheck/icheck.min.js"></script>
+    <script>
+    $(document).ready(function () {
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+        });</script>
+</body>
+</html>

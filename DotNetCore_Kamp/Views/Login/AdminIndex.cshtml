@@ -1,0 +1,60 @@
+﻿@model UserSignInViewModel
+
+@{
+    Layout = null;
+}
+<!------***************************** Burası Admin Paneline admin olarak Giriş View Sayfası ********************************------>
+
+<html lang="tr">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Blogster Projesi - Admin Girişi</title>
+
+    <link href="~/AdminPanel/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/AdminPanel/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="~/AdminPanel/css/animate.css" rel="stylesheet">
+    <link href="~/AdminPanel/css/style.css" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen animated fadeInUp">
+        <div>
+            <div>
+
+                <h1 class="logo-name">B+</h1>
+
+            </div>
+            <h2 class="font-bold"> Admin Giriş Sayfası </h2>
+            <p>Buradan Blogster sitesi Admin'i olarak kullanıcı adı ve parolanızla giriş yapabilirsiniz.</p>
+
+            <form class="m-t" role="form" asp-action="AdminIndex" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control" asp-for="@Model.Username" placeholder="Kullanıcı Adı">
+                    <span class="text-danger" asp-validation-for="@Model.Username"></span>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" asp-for="@Model.Password" placeholder="Parola">
+                    <span class="text-danger" asp-validation-for="@Model.Password"></span>
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b"> Giriş Yap </button>
+                <a href="#"> Şifremi Unuttum? </a>
+
+                <br />
+                <a class="btn btn-sm btn-white btn-block" href="/RegisterUser/Index"> Hesabın Yok mu Kayıt Ol! </a>
+            </form>
+
+        </div>
+    </div>
+
+    <script src="~/AdminPanel/js/jquery-3.1.1.min.js"></script>
+    <script src="~/AdminPanel/js/popper.min.js"></script>
+    <script src="~/AdminPanel/js/bootstrap.js"></script>
+
+</body>
+</html>
