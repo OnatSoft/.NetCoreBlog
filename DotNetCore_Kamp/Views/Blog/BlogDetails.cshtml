@@ -10,47 +10,47 @@
 
 <body>
     <!--************************ Blogların Detay/İçerik Sayfası ****************************-->
-    
+
     <section class="banner-bottom">
         <!--/blog-->
         <div class="container">
             <div class="row">
                 <!----- Blog Ana Bölüm Başlangıç ----->
                 <div class="col-lg-8 left-blog-info-w3layouts-agileits text-left">
-                        <div class="blog-grid-top">
-                            <div class="b-grid-top">
-                                <div class="blog_info_left_grid">
-                                    <img src="@Model.İmage" class="img-fluid" alt="">
-                                </div>
-                                <div class="blog-info-middle">
-                                    <ul>
-                                        <li class="mx-2">
-                                            <a href="#">
-                                                <i class="far fa-user"></i> @Model.Auth
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="far fa-calendar-alt"></i> @Model.CreateDate.ToShortDateString()
-                                            </a>
-                                        </li>
-                                        <li class="mx-2">
-                                            <a href="#">
-                                                <i class="far fa-thumbs-up"></i> 0 Beğeni
-                                            </a>
-                                        </li>
-                                        <li class="mx-2">
-                                            <a href="#">
-                                                <i class="far fa-comment"></i> 0 Yorum
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
+                    <div class="blog-grid-top">
+                        <div class="b-grid-top">
+                            <div class="blog_info_left_grid">
+                                <img src="@Model.İmage" class="img-fluid" alt="">
                             </div>
-
-                            <h3> @Model.Title </h3>
-                            <p> @Model.Content </p>
+                            <div class="blog-info-middle">
+                                <ul>
+                                    <li class="mx-2">
+                                        <a href="#">
+                                            <i class="far fa-user"></i> @Model.Auth
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="far fa-calendar-alt"></i> @Model.CreateDate.ToShortDateString()
+                                        </a>
+                                    </li>
+                                    <li class="mx-2">
+                                        <a href="#">
+                                            <i class="far fa-thumbs-up"></i> 0 Beğeni
+                                        </a>
+                                    </li>
+                                    <li class="mx-2">
+                                        <a href="#">
+                                            <i class="fas fa-info"></i> @Model.Category.Name
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
+
+                        <h3> @Model.Title </h3>
+                        <p> @Model.Content </p>
+                    </div>
 
 
                     @await Component.InvokeAsync("CommentListByBlog", new { id = Model.BlogID })  <!--- Yorumları id ile listeleyen sayfayı çağırma ve Tıklanan bloğa göre yorumları getirme --->
@@ -63,31 +63,20 @@
                 <aside class="col-lg-4 agileits-w3ls-right-blog-con text-right">
                     <div class="right-blog-info text-left">
                         <div class="tech-btm">
-                            <img src="~/CoreBlogTema/images/banner1.jpg" class="img-fluid" alt="Subscribe_İmage">
+                            <img src="~/CoreBlogTema/images/b3.jpg" class="img-fluid" alt="Subscribeimage">
                         </div>
 
                         <h4>Bültene Abone Olun</h4>
                         @await Html.PartialAsync("~/Views/Newsletter/SubscribeMail.cshtml")  <!--- Bültene Abone Olma kısmının sayfası çağrılıyor --->
-                        <!-- Mini Kategoriler listesi Başlangıç -->
+
+                        <!--- Mini Kategoriler listesi --->
                         @await Component.InvokeAsync("CategoryList")  <!--- View Components > Blog Category List klasörü içindeki CategoryList Class'ı' çağrılıyor --->
-                        <!-- Mini Kategoriler listesi Bitiş -->
 
                         @await Component.InvokeAsync("WriterByBlog")  <!-- Shared klasöründe ki WriterByBlog sayfası çağrılıyor, Yazarın son Bloglarını getirme -->
 
                         <div class="single-gd tech-btm">
-                            <h4>Son Yazılan Bloglar</h4>
+                            <h4>Son Yazılan Blog</h4>
                             <div class="blog-grids">
-                                <div class="blog-grid-left">
-                                    <a href="/Blog/BlogDetails/@Model.BlogID">
-                                        <img src="@Model.ThumbnailImage" class="img-fluid" alt="">
-                                    </a>
-                                </div>
-                                <div class="blog-grid-right">
-                                    <h5 class="card-description">
-                                        <a>@(Model.Content.Length < 100 ? Model.Content : Model.Content.Substring(0, Model.Content.Substring(0, 100).LastIndexOf(" ")))...</a>
-                                    </h5>
-                                </div>
-                                <br />
                                 <div class="blog-grid-left">
                                     <a href="/Blog/BlogDetails/@Model.BlogID">
                                         <img src="@Model.ThumbnailImage" class="img-fluid" alt="">

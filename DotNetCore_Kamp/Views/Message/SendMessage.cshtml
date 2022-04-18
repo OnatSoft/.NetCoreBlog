@@ -1,0 +1,41 @@
+﻿@model EntityLayer.Concreate.Message2
+<!------****************************** Burası Yazar Panelinde Mesaj Gönderme View Sayfası *********************************------>
+
+@{
+    ViewData["Title"] = "SendMessage";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <div class="card">
+        <div class="card-body">
+
+            <h2>Yeni Mesaj Yaz</h2>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"> Gelen Kutusu </li>
+                    <li class="breadcrumb-item active"> Yeni Mesaj Yaz </li>
+                </ol>
+            </nav>
+            <br />
+            <div class="table-responsive">
+                <form method="post" class="form-group">
+                    <label> Alıcı Adı-Soyadı </label>
+                    <input type="text" class="form-control" asp-for="@Model.ReceiverWriter.Name" required />
+                    <br />
+                    <label> Konu </label>
+                    <input type="text" class="form-control" asp-for="@Model.Subject" required />
+                    <br />
+                    <label> Mesaj İçeriği </label>
+                    <textarea class="form-control" asp-for="@Model.MessageDetails" required cols="5" rows="10"></textarea>
+                    <br />
+                    <br />
+
+                    <button class="btn btn-success mr-2"> Mesaj Gönder </button>
+                    <a class="btn btn-light mr-sm-2" asp-action="Inbox" asp-controller="Message"> Vazgeç </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

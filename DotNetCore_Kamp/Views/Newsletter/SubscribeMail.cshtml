@@ -5,8 +5,8 @@
 
     <p>Abone olarak yeni eklenen bloglardan, haberlerden ilk siz haberdar olursunuz.</p>
     <form id="subForm" method="post">
-        <input type="email" placeholder="E-posta:" id="Mail" required="">
-        <button class="btn btn-success w-100" id="btn" type="submit" name="submit"> Abone Ol </button>
+        <input type="email" placeholder="E-posta:" id="Mail" required />
+        <button class="btn btn-success btn-block" id="btn" type="submit" name="submit"> Abone Ol </button>
         <br />
         <div id="result"> </div>
     </form>
@@ -22,7 +22,7 @@
 
         var alan = document.createElement("div");
         alan.className = "alert alert-success";
-        alan.innerHTML = "Abone olduğunuz için teşekkürler! Yeni bir blog, haber yapıldığında artık E-postanıza gönderilecektir. Abonelikten istediğiniz zaman çıkabilirsiniz.";
+        alan.innerHTML = "Abone olduğunuz için teşekkürler! Yeni bir blog yazısı yayınlandığında artık E-postanıza gönderilecektir. Abonelikten istediğiniz zaman çıkabiliyorsunuz.";
         document.body.appendChild(alan);
         e.preventDefault();
 
@@ -35,36 +35,9 @@
             data: values,
             success: function (f) {
                 $("#result").html(alan);
-                setTimeout(() => { window.location.reload() }, 6600);
+                setTimeout(() => { window.location.reload() }, 8000);
             }
         });
     });
-
-
-
-        //$(function () {
-        //    $("#btn").click(function (e) {
-        //        let values = {
-        //            Email: $("#Mail").val()
-        //        };
-
-        //            var alan = document.createElement("div");
-        //            alan.className = "alert alert-success";
-        //            alan.innerHTML = "Abone olduğunuz için teşekkürler! Yeni bir blog yayınlandığında E-postanızı kontrol etmeyi unutmayınız.";
-        //            document.body.appendChild(alan);
-        //            e.preventDefault();
-        //            //var veri = $("#subForm").serialize();
-
-        //        $.ajax({
-        //            type: "POST",
-        //            url: "/Newsletter/SubscribeMail/",
-        //            data: values,
-        //            success: function (f) {
-        //                $("#result").html(alan);
-        //                setTimeout(() => { window.location.reload() }, 5500);
-        //            }
-        //        });
-        //    });
-        //});
 
 </script>

@@ -19,6 +19,9 @@ namespace DotNetCore_Kamp.Controllers
 
         public IActionResult AllNotification()  //Yazar Panelinde Bildirimler menüsünün detaylı ayrı Bildirim Listesi sayfası
         {
+            var username = User.Identity.Name;
+            ViewBag.Writername = username;
+
             var values = Nm.GetList();
             return View(values);
         }

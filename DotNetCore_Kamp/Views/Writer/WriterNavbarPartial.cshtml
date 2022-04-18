@@ -2,22 +2,21 @@
     <ul class="nav">
 
         <li class="nav-item nav-profile">
-            <a href="#" class="nav-link" title="Profilim">
+            <a href="#" class="nav-link">
                 <div class="nav-profile-image">
                     <img src="~/WriterPanel/assets/images/faces/face21.jpg" alt="profile">
                     <span class="login-status online"></span>
-                    <!--change to offline or busy as needed-->
                 </div>
                 <div class="nav-profile-text d-flex flex-column">
-                    <span class="font-weight-bold mb-2">Onat Somer</span>
-                    <span class="text-secondary text-small">Site Yöneticisi - Developer</span>
+                    <span class="font-weight-bold text-dark mb-2">@ViewBag.Writername</span>
+                    <span class="text-muted">Blogster Yazarı</span>
                 </div>
             </a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="/Dashboard/Index">
-                <span class="menu-title"> Panelim </span>
+                <span class="menu-title"> Dashboard </span>
                 <i class="mdi mdi-home menu-icon"></i>
             </a>
         </li>
@@ -30,14 +29,21 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/Blog/BlogAdd">
-                <span class="menu-title"> Yeni Blog </span>
-                <i class="mdi mdi-blogger menu-icon"></i>
+                <span class="menu-title"> Yeni Blog Oluştur </span>
+                <i class="mdi mdi-plus-box menu-icon"></i>
+                @*<i class="mdi mdi-playlist-plus menu-icon"></i>*@
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/Message/Inbox">
-                <span class="menu-title"> Mesajlar </span>
+                <span class="menu-title"> Gelen Kutusu </span>
                 <i class="mdi mdi-message menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Message/Sendbox">
+                <span class="menu-title"> Giden Kutusu </span>
+                <i class="mdi mdi-message-reply menu-icon"></i>
             </a>
         </li>
         <li class="nav-item">
@@ -61,7 +67,7 @@
 
         <li class="nav-item sidebar-actions">
             <span class="nav-link">
-                <a href="/Blog/Index" target="_blank" class="btn btn-block btn-primary mt-0"> Siteye Git  <i class="mdi mdi-earth"></i></a>
+                <a href="/Blog/Index" target="_blank" class="btn btn-info btn-block mt-xl-1"> Siteye Git &nbsp;<i class="mdi mdi-earth text-white"></i></a>
 
             </span>
         </li>

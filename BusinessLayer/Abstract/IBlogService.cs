@@ -17,5 +17,6 @@ namespace BusinessLayer.Abstract
 
         List<Blog> GetBlogListwithCategory();  // EFBlog Repository'de tanımladığımız İnclude metodunu Kategoriyle birlikte Blog'ları getirme methodu
         List<Blog> GetBlogListByWriter(int id);  // Blog listesini yazara göre getirme methodu oluşturduk. Blog detay sayfasında bulunan yazarın son gönderileri bölümü için
+        Blog GetListCategoryName(int blogId);
     }
 }

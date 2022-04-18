@@ -28,5 +28,13 @@ namespace DataAccessLayer.EntityFramework
                 return c.Blogs.Include(x => x.Category).Where(x => x.WriterID == id).ToList();  // Yazar Panelinde bloglarım sayfasında ki kategorileri yazara göre getir.
             }
         }
+
+        public Blog GetListCategoryName(int blogId)  // Blog Detay sayfasında kategorinin ismini yazdırma
+        {
+            using (var c = new Context())
+            {
+                return c.Blogs.Include(x => x.Category).FirstOrDefault(b => b.BlogID == blogId);
+            }
+        }
     }
 }

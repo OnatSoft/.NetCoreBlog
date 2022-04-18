@@ -29,12 +29,12 @@
                                     </li>
                                     <li class="mx-2">
                                         <a href="#">
-                                            <i class="far fa-comment"></i> <!--  0  Veritabanından çekilen yazar bilgisi --->
+                                            <i class="far fa-comment"> 0 </i> <!-- Bloğa yapılan yorum sayısı --->
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <i class="fas fa-info-circle"></i> @item.Category.Name  <!--- Veritabanından çekilen kategori adı --->
+                                            <i class="fas fa-info"></i> @item.Category.Name  <!--- Veritabanından çekilen kategori adı --->
                                         </a>
                                     </li>
 
@@ -44,7 +44,7 @@
                                 </h5>
                                 @*<p class="card-text mb-3">@(item.Content.Length < 120 ? item.Content : item.Content.Substring(0, item.Content.Substring(0,120).LastIndexOf(" "))) ...</p>*@
                                 <p class="card-text mb-3">@(item.Content.Length < 120 ? item.Content : item.Content.Substring(0, item.Content.Substring(0, 120).LastIndexOf(" ")))...</p>
-                                <a href="/Blog/BlogDetails/@item.BlogID" class="btn btn-primary read-m">Devamını Oku</a>
+                                <a href="/Blog/BlogDetails/@item.BlogID" class="btn btn-primary btn-block read-m">Devamını Oku</a>
                             </div>
                             <br />
                         </div>

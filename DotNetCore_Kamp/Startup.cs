@@ -57,6 +57,14 @@ namespace DotNetCore_Kamp
                     x.LoginPath = "/Login/Index";
                 });
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                // Web Site Uygulama Cookie Ayarları
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                options.LoginPath = "/Login/AdminIndex/";
+                options.SlidingExpiration = true;
+            });
         }
 
 

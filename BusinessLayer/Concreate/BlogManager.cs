@@ -20,8 +20,6 @@ namespace BusinessLayer.Concreate
             this._BlogDal = blogdal;
         }
 
-
-
         public List<Blog> GetBlogListwithCategory()  /*--- Bloglar listesinde Kategori adını yazmak için yapılmış kod satırı, "Blog Listesini Kategoriyle Birlikte Getirme" metodu ---*/
         {
             return _BlogDal.GetListWithCategory();
@@ -74,6 +72,11 @@ namespace BusinessLayer.Concreate
         public void TUpdate(Blog tupdate)
         {
             _BlogDal.Update(tupdate);
+        }
+
+        public Blog GetListCategoryName(int blogId)  /*--- Blog Detay sayfasında blogun bulunduğu kategorinin ismini yazdırmak için gereken metod ---*/
+        {
+            return _BlogDal.GetListCategoryName(blogId);
         }
     }
 }

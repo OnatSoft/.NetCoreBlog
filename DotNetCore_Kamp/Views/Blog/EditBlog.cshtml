@@ -15,22 +15,21 @@
                 {
                     <input asp-for="@Model.BlogID" type="hidden" />
                     <h2>Blog Düzenleme</h2>
-                    <h4 class="card-description"> @Model.BlogID numaralı Blog İçeriği </h4>
+                    <h4 class="card-description"> @Model.BlogID numaralı blog içeriği </h4>
 
                     <form class="forms-sample">
                         <div class="form-group">
                             <label for="exampleInputName1"> Blog Başlığı </label>
                             @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.Title, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="form-group">
                             <label> Blog Görseli </label>
                             <input type="file" name="img[]" class="file-upload-default">
                             <div class="input-group col-xs-12">
-                                @Html.TextBoxFor(x => x.İmage, new { @class = "form-control", @placeholder = "Bir Resim Yükleyin" })
-                                <span class="input-group-append">
-                                    <button class="file-upload-browse btn btn-info" type="button">Dosya Seç</button>
-                                </span>
+                                @Html.TextBoxFor(x => x.İmage, new { @class = "form-control", @placeholder = "/CoreBlogTema/images/banner1-2-3-4-5.jpg", @title = "Bir resim yolu ekleyin" })
+                                @Html.ValidationMessageFor(x => x.İmage, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
@@ -38,26 +37,26 @@
                             <label> Blog Küçük Görseli </label>
                             <input type="file" name="img[]" class="file-upload-default">
                             <div class="input-group col-xs-12">
-                                @Html.TextBoxFor(x => x.ThumbnailImage, new { @class = "form-control", @placeholder = "Bir Resim Yükleyin" })
-                                <span class="input-group-append">
-                                    <button class="file-upload-browse btn btn-info" type="button">Dosya Seç</button>
-                                </span>
+                                @Html.TextBoxFor(x => x.ThumbnailImage, new { @class = "form-control", @placeholder = "/CoreBlogTema/images/1-2-3-4-5-6-7-8.jpg", @title = "Bir resim yolu ekleyin" })
+                                @Html.ValidationMessageFor(x => x.ThumbnailImage, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label>Kategori</label>
                             @Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.cv, new { @class = "form-control dropdown" })
+                            @Html.ValidationMessageFor(x => x.CategoryID, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="form-group">
                             <label for="exampleTextarea1"> Blog Açıklaması </label>
                             @Html.TextAreaFor(x => x.Content, 20, 5, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.Content, "", new { @class = "text-danger" })
                         </div>
                         <br />
 
                         <button type="submit" class="btn btn-success mr-2"> Güncelle </button>
-                        <a asp-controller="Blog" asp-action="BlogListByWriter" class="btn btn-light mr-2"> İptal </a>
+                        <a asp-controller="Blog" asp-action="BlogListByWriter" class="btn btn-light mr-2"> Vazgeç </a>
                     </form>
                 }
             </div>

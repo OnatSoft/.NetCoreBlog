@@ -9,6 +9,7 @@ namespace BusinessLayer.Abstract
 {
     public interface IMessage2Service: IGenericService<Message2>
     {
-        List<Message2> GetInboxListByWriter(int id);  //* Yazar Panelinde yazara gelen mesajları görüntüleme methodu
+        List<Message2> GetInboxListByWriter(int id);  //* Yazar Panelinde yazara gelen mesajları görüntüleme/getirme
+        List<Message2> GetSendboxListByWriter(int id);  //* Yazar Panelinde yazarın gönderdiği mesajları getirme/görüntüleme
     }
 }

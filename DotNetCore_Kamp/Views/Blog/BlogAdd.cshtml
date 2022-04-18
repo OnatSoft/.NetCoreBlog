@@ -25,12 +25,12 @@
                 <br />
                 <br />
                 @Html.Label("Blog Görseli")
-                @Html.TextBoxFor(x => x.İmage, new { @class = "form-control" })
+                @Html.TextBoxFor(x => x.İmage, new { @class = "form-control", @placeholder = "/CoreBlogTema/images/banner1-2-3-4-5.jpg", @title="Bir resim yolu ekleyin" })
                 @Html.ValidationMessageFor(x => x.İmage, "", new { @class = "text-danger" })
                 <br />
                 <br />
                 @Html.Label("Blog Küçük Görseli")
-                @Html.TextBoxFor(x => x.ThumbnailImage, new { @class = "form-control" })
+                @Html.TextBoxFor(x => x.ThumbnailImage, new { @class = "form-control", @placeholder="/CoreBlogTema/images/1-2-3-4-5-6-7-8.jpg", @title="Bir resim yolu ekleyin" })
                 @Html.ValidationMessageFor(x => x.ThumbnailImage, "", new { @class = "text-danger" })
                 <br />
                 <br />
@@ -45,7 +45,7 @@
                 <br />
                 <br />
                 <button class="btn btn-success mr-2"> Kaydet </button>
-                <a asp-controller="Blog" asp-action="BlogListByWriter" class="btn btn-light mr-2"> İptal </a>
+                <a asp-controller="Blog" asp-action="BlogListByWriter" class="btn btn-light mr-2"> Vazgeç </a>
             }
         </div>
     </div>

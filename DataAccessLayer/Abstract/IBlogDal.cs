@@ -12,5 +12,7 @@ namespace DataAccessLayer.Abstract
         List<Blog> GetListWithCategory();  // Blog listesinde blogların kategorilerini isimleriyle birlikte getirmesi için İnclude Metodunu ve IBlogDal interface'ine tanımladık.
         
         List<Blog> GetListWithCategoryByWriter(int id);  // Yazar Panelinde Kategorileri yazara göre getirme metodu //
+
+        Blog GetListCategoryName(int blogId);  // Blog Detay sayfasında blogun bulunduğu kategorinin ismini yazdırma //
     }
 }

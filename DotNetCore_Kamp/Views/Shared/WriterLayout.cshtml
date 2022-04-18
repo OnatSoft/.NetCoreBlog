@@ -9,7 +9,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Blogster Projesi - Yazar Paneli</title>
+    <title>Blogster - Yazar Paneli</title>
 
     <link rel="stylesheet" href="~/WriterPanel/assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="~/WriterPanel/assets/vendors/css/vendor.bundle.base.css">
@@ -48,23 +48,8 @@
 
                 <ul class="navbar-nav navbar-nav-right">
                     <li class="nav-item nav-profile dropdown">
-                        <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                            <div class="nav-profile-img">
-                                <img src="~/WriterPanel/assets/images/faces/face21.jpg" alt="image">
-                                <span class="availability-status online"></span>
-                            </div>
-                            <div class="nav-profile-text">
-                                <p class="mb-1 text-black">Onat Somer</p>
-                            </div>
-                        </a>
-
-                        <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                            <a class="dropdown-item" href="#">
-                                <i class="mdi mdi-account mr-2 text-success"></i> Profilim
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="mdi mdi-logout mr-2 text-success"></i> Çıkış Yap
-                            </a>
+                        <div class="nav-profile-text">
+                            <p class="mb-1 text-black"> Blogster Sitesi Yazar Paneli'ne Hoş geldiniz </p>
                         </div>
                     </li>
 
@@ -87,13 +72,13 @@
                     </li>
 
                     <!--***********************************************************************************************************************************-->
-                    @*<li class="nav-item nav-logout d-none d-lg-block">
-                        <a class="nav-link" href="#">
-                            <i class="mdi mdi-power"></i>
+                    <li class="nav-item nav-logout d-none d-lg-block">
+                        <a class="nav-link" href="/Login/LogOut/" title="Güvenli Çıkış Yap">
+                            <i class="mdi mdi-logout"></i>
                         </a>
-                    </li>*@
+                    </li>
                     <li class="nav-item nav-settings d-none d-lg-block">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="#" title="Yukarı Çık">
                             <i class="mdi mdi-format-line-spacing"></i>
                         </a>
                     </li>
@@ -111,15 +96,15 @@
             @await Html.PartialAsync("~/Views/Writer/WriterNavbarPartial.cshtml")
 
             <div class="main-panel">
-              
-                    @RenderBody()
-                
-                    <footer class="footer">
-                        <div class="container-fluid clearfix">
-                            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">@DateTime.Now.Year Blogster - Tüm Hakları Saklıdır. <strong>Made By Onat Somer</strong></span>
-                            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"><a class="text-muted text-dark" href="https://www.youtube.com/playlist?list=PLKnjBHu2xXNNkinaVhPqPZG0ubaLN63ci" target="_blank">ASP.Net Core 5 Blog Proje Kampı Dersleri</a></span>
-                        </div>
-                    </footer>
+
+                @RenderBody()
+
+                <footer class="footer">
+                    <div class="container-fluid clearfix">
+                        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">@DateTime.Now.Year Blogster - Tüm Hakları Saklıdır. <strong>Made By Onat Somer</strong></span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"><a class="text-muted text-dark" href="https://www.youtube.com/playlist?list=PLKnjBHu2xXNNkinaVhPqPZG0ubaLN63ci" target="_blank">ASP.Net Core 5 Blog Proje Kampı Dersleri</a></span>
+                    </div>
+                </footer>
             </div>
 
         </div>

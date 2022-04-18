@@ -14,7 +14,7 @@ namespace DotNetCore_Kamp.Controllers
 
     public class ContactController : Controller
     {
-        ContactManager cm = new ContactManager(new EFContactRepository());
+        ContactManager contact = new ContactManager(new EFContactRepository());
 
         [HttpGet]
         public IActionResult Index()
@@ -26,9 +26,12 @@ namespace DotNetCore_Kamp.Controllers
         [HttpPost]  //***** İletişim sayfasında ki iletişim formu gönderileceği zaman yapılacaklar
         public IActionResult Index(Contact p)
         {
-            p.DateTime = DateTime.Parse(DateTime.Now.ToShortDateString());
-            p.Status = true;
-            cm.TAdd(p);
+            if (p.UserName != "" && p.EMail != "" && p.Subject != "" && p.Message != "")
+            {
+                p.DateTime = DateTime.Parse(DateTime.Now.ToShortDateString());
+                p.Status = true;
+                contact.TAdd(p);
+            }
             return RedirectToAction("Index", "Contact");
         }
     }

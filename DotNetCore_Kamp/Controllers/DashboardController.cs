@@ -17,6 +17,7 @@ namespace DotNetCore_Kamp.Controllers
             var username = User.Identity.Name;
             var usermail = c.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
             var writerid = c.Writers.Where(x => x.EMail == usermail).Select(y => y.WriterID).FirstOrDefault();
+            ViewBag.Writername = username; //Giriş yapan kişinin kullanıcı adı "Writer Navbar Partial" sayfasına taşınıyor.
 
             ViewBag.chart1 = c.Blogs.Count().ToString();  //** Yazar Dashboard sayfasında Toplam Blog sayısını SOLİD'İ ezmeden istatistiği getirme işlemi **//
             ViewBag.chart2 = c.Blogs.Where(x => x.WriterID == writerid).Count();  //** Yazar Dashboard sayfasında Yazara Ait Blogların istatistiğini getirme işlemi **//

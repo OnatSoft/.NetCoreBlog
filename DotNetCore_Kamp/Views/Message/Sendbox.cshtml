@@ -1,10 +1,9 @@
-﻿<!----****************************-- Burası Yazar Panelinde yer alan Mesajlar Sayfası ******************************---->
-@using EntityLayer.Concreate
+﻿@using EntityLayer.Concreate
 @model List<Message2>
-<!----------****************************** Burası Yazar Panelinde Gelen kutusu View Sayfası ******************************---------->
+<!----------*************************** Burası Yazar Panelinde Giden kutusu View Sayfası ******************************---------->
 
 @{
-    ViewData["Title"] = "Inbox";
+    ViewData["Title"] = "Sendbox";
     Layout = "~/Views/Shared/WriterLayout.cshtml";
 }
 
@@ -12,17 +11,14 @@
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h2> Gelen Kutusu </h2>
-                <br />
-                <a class="btn btn-primary mb-4" href="/Message/SendMessage/"> Mesaj Yaz </a>
-                <br />
+                <h2> Giden Kutusu </h2>
                 <br />
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover" style="width:100%; height: auto;">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Gönderen</th>
+                                <th>Alıcı</th>
                                 <th>Konu</th>
                                 <th>Gönderim Tarihi</th>
                                 <th>Mesaj İçeriği</th>
@@ -34,7 +30,7 @@
                             {
                                 <tr>
                                     <th>@item.ID</th>
-                                    <td>@item.SenderWriter.Name</td>
+                                    <td>@item.ReceiverWriter.Name</td>
                                     <td>@item.Subject</td>
                                     <td>@item.MessageDate.ToShortDateString()</td>
                                     <td><a href="/Message/MessageDetails/@item.ID" class="btn btn-link"> Mesajı Oku </a></td>

@@ -28,6 +28,11 @@ namespace BusinessLayer.Concreate
             throw new NotImplementedException();
         }
 
+        public List<Message2> GetSendboxListByWriter(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public void TAdd(Message2 tadd)
         {
             throw new NotImplementedException();

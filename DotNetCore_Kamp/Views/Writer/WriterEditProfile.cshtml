@@ -1,4 +1,4 @@
-﻿@model EntityLayer.Concreate.Writer
+﻿@model UserUpdateViewModel
 
 @{
     ViewData["Title"] = "WriterEditProfile";
@@ -10,31 +10,33 @@
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                @using (Html.BeginForm("WriterEditProfile", "Writer", FormMethod.Post))
-                {
-                    <h2> Yazar Profili Düzenleme </h2>
-                    <br />
-                    @Html.HiddenFor(x=> x.WriterID, new { @class="form-control" })
-                    <form class="forms-sample">
+                <h2> Profilim </h2>
+                <h6> Profil bilgilerini güncelleme sayfası </h6>
+                <br />
+                    <form class="forms-sample" method="post">
 
                         <div class="form-group">
                             <label for="exampleInputName1"> Adı Soyadı </label>
-                            @Html.TextBoxFor(x=> x.Name, new { @class="form-control", @disabled="disable" })
+                            <input type="text" asp-for="@Model.namesurname" class="form-control" />
+                            @*@Html.TextBoxFor(x => x.namesurname, new { @class = "form-control" })*@
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail3"> E-posta Adresi </label>
-                            @Html.TextBoxFor(x=> x.EMail, new { @class="form-control", @disabled="disable" })
+                            <label for="exampleInputPassword4"> Kullanıcı Adı </label>
+                            <input type="text" asp-for="@Model.username" class="form-control" />
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputPassword4"> Parola </label>
-                            @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+                            <label for="exampleInputPassword4"> Yeni Parola </label>
+                            <input type="password" asp-for="@Model.password" class="form-control" title="Parola, en az bir sayı, bir büyük harf ve 6 karakterli olmalı." />
+                            <input type="checkbox" id="password_check" asp-for="@Model.password_check" />
+                            <label for="password_check"> Parola değişikliğini onaylıyorum </label>
+                            <span class="text-danger" asp-validation-for="@Model.password_check"></span>
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputPassword4"> Parola (Tekrar) </label>
-                            @Html.PasswordFor(x => x.PasswordRepeat, new { @class = "form-control" })
+                            <label for="exampleInputPassword4"> Resim Yolu </label>
+                            <input type="text" asp-for="@Model.image" class="form-control" />
                         </div>
 
                         <div class="form-group">
@@ -42,20 +44,20 @@
                             <div class="input-group col-xs-12">
                                 <input type="file" name="İmage" class="btn btn-info" />
                             </div>
-                            
+
                         </div>
 
-                        <div class="form-group">
-                            <label for="exampleTextarea1"> Hakkında </label>
-                            @Html.TextAreaFor(x => x.About, 10, 5, new { @class = "form-control", @placeholder="Okurlarınıza Kendinizden Kısaca Bahsedin..." })
-                            @Html.ValidationMessageFor(x => x.About, "", new { @class = "text-danger" })
-                        </div>
+                        @*<div class="form-group">
+                                <label for="exampleTextarea1"> Hakkında </label>
+                                @Html.TextAreaFor(x => x.About, 10, 5, new { @class = "form-control", @placeholder="Okurlarınıza Kendinizden Kısaca Bahsedin..." })
+                                @Html.ValidationMessageFor(x => x.About, "", new { @class = "text-danger" })
+                            </div>*@
                         <br />
                         <button type="submit" class="btn btn-success m-md-2"> Güncelle </button>
-                        <button class="btn btn-light m-md-2" asp-action="BlogListByWriter" asp-controller="Blog"> İptal </button>
+                        <button class="btn btn-light m-md-2" asp-action="BlogListByWriter" asp-controller="Blog"> Vazgeç </button>
 
                     </form>
-                }
+                
             </div>
         </div>
     </div>

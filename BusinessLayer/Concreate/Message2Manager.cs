@@ -19,9 +19,9 @@ namespace BusinessLayer.Concreate
         }
 
 
-        public List<Message2> GetInboxListByWriter(int id)  //** Yazar Panelinde yazara göre Mesajları Listelemek için kullandık //
+        public List<Message2> GetInboxListByWriter(int id)  //** Yazar panelinde yazara gelen Mesajları Listelemek için kullandık (Gelen Kutusu) //
         {
-            return _Message2Dal.GetListWithMessageByWriter(id);
+            return _Message2Dal.GetInboxWithMessageByWriter(id);
         }
 
         public List<Message2> GetList()
@@ -29,14 +29,19 @@ namespace BusinessLayer.Concreate
             return _Message2Dal.GetListAll();
         }
 
+        public List<Message2> GetSendboxListByWriter(int id)  //** Yazar panelinde yazarın gönderdiği Mesajları Listelemek için kullandık (Giden Kutusu) //
+        {
+            return _Message2Dal.GetSendboxWithMessageByWriter(id);
+        }
+
         public void TAdd(Message2 tadd)
         {
-            throw new NotImplementedException();
+            _Message2Dal.Insert(tadd);
         }
 
         public void TDelete(Message2 tdelete)
         {
-            throw new NotImplementedException();
+            _Message2Dal.Delete(tdelete);
         }
 
         public Message2 TGetById(int id)

@@ -80,5 +80,10 @@ namespace DotNetCore_Kamp.Controllers
             return View();
         }
 
+        public async Task<IActionResult> LogOut() //Sistemden çıkış işlemi - Login olan kullanıcının oturumunu kaldırma
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("AdminIndex", "Login");
+        }
     }
 }

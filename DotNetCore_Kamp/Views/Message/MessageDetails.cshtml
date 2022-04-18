@@ -1,5 +1,4 @@
-﻿
-<!----************************** Burası Yazar Panelinde yer alan Mesajların Detay Sayfası **************************---->
+﻿<!----************************** Burası Yazar Panelinde yer alan Mesajların Detay Sayfası **************************---->
 @model EntityLayer.Concreate.Message2
 
 @{
@@ -11,24 +10,31 @@
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h2> Mesaj Detayları </h2>
+                <h2> Mesaj İçeriği </h2>
+                <h4 class="card-description"> @Model.ID numaralı mesaj </h4>
                 <br />
-                @using (Html.BeginForm("Inbox", "Message"))
-                {
-                    @Html.HiddenFor(x => x.ID, new { @class = "form-control" })
+                <div class="table-responsive">
+                    @using (Html.BeginForm("Inbox", "Message"))
+                    {
+                        @Html.HiddenFor(x => x.ID, new { @class = "form-control" })
 
-                    @Html.Label("Gönderen Yazar")
-                    @Html.TextBoxFor(x => x.SenderWriter.Name, new { @class = "form-control", disabled = "disabled" })
-                    <br />
-                    @Html.Label("Mesaj Konusu")
-                    @Html.TextBoxFor(x => x.Subject, new { @class = "form-control", disabled = "disabled" })
-                    <br />
-                    @Html.Label("Mesaj İçeriği")
-                    @Html.TextAreaFor(x => x.MessageDetails, 10, 3, new { @class = "form-control", disabled = "disabled" })
-                    <br />
+                        @Html.Label("Gönderen")
+                        @Html.TextBoxFor(x => x.SenderWriter.Name, new { @class = "form-control" })
+                        <br />
+                        @Html.Label("Alıcı")
+                        @Html.TextBoxFor(x => x.ReceiverWriter.Name, new { @class = "form-control" })
+                        <br />
+                        @Html.Label("Mesaj Konusu")
+                        @Html.TextBoxFor(x => x.Subject, new { @class = "form-control" })
+                        <br />
+                        @Html.Label("Mesaj İçeriği")
+                        @Html.TextAreaFor(x => x.MessageDetails, 10, 5, new { @class = "form-control" })
+                        <br />
+                        <br />
 
-                    <a href="/Message/Inbox"><button class="btn btn-light mb-2"> Mesajlara Dön </button></a>
-                }
+                        <a href="/Message/Inbox" class="btn btn-light mt-0"> Gelen Kutusuna Dön </a>
+                    }
+                </div>
             </div>
         </div>
     </div>

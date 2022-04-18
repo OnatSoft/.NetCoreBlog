@@ -41,11 +41,11 @@
                     <span asp-validation-for="@Model.Username" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Parola" asp-for="@Model.Password" title="Parola, en az bir büyük harf ve 6 karakter içermeli." />
+                    <input type="password" class="form-control" placeholder="Parola" asp-for="@Model.Password" title="Parola, en az bir büyük harf, bir sayı ve 6 karakter içermeli." />
                     <span asp-validation-for="@Model.Password" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Parola Tekrar" asp-for="@Model.ConfirmPassword" title="Parola, en az bir büyük harf ve 6 karakter içermeli." />
+                    <input type="password" class="form-control" placeholder="Parola Tekrar" asp-for="@Model.ConfirmPassword" title="Parola, en az bir büyük harf, bir sayı ve 6 karakter içermeli." />
                     <span asp-validation-for="@Model.ConfirmPassword" class="text-danger"></span>
                 </div>
 

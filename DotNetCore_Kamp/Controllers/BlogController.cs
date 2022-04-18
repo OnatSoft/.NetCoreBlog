@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
 using DataAccessLayer.Concreate;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace DotNetCore_Kamp.Controllers
 {
@@ -19,7 +21,15 @@ namespace DotNetCore_Kamp.Controllers
         Context c = new Context();
         BlogManager bm = new BlogManager(new EFBlogRepository());
         CategoryManager cm = new CategoryManager(new EFCategoryRepository());
+        
+        private readonly UserManager<AppUser> _userManager;
 
+        public BlogController(UserManager<AppUser> userManager)
+        {
+            _userManager = userManager;
+        }
+
+        [AllowAnonymous]
         public IActionResult Index()
         {
             /*--- Blog Controller'da Blog Manager adlı nesne oluşturup yeni EFBlog Repository tanımladık.
@@ -28,20 +38,23 @@ namespace DotNetCore_Kamp.Controllers
             return View(values);
         }
 
+        [AllowAnonymous]
         public IActionResult BlogDetails(int id)
         {
             /**--- Blog Detayları sayfasına Bloğu Id'ye göre getirme metodu ve tıklanan bloğa göre yorum getirme ---**/
             ViewBag.i = id;
             var List = bm.GetBlogById(id);
-            return View(bm.TGetById(id));
+            var blog = bm.GetListCategoryName(id);
+            return View(blog);
         }
 
         public IActionResult BlogListByWriter()
         {
-            var usermail = User.Identity.Name;
+            var username = User.Identity.Name;
+            var usermail = c.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
             var writerID = c.Writers.Where(x => x.EMail == usermail).Select(y => y.WriterID).FirstOrDefault();
-
             var values = bm.GetListWithCategoryByWriterBm(writerID);  /** Yazar Panelinde Bloglarım sayfasında kategori isimlerini yazara göre getirme **/
+            ViewBag.Writername = username;
             return View(values);
         }
 
@@ -58,14 +71,18 @@ namespace DotNetCore_Kamp.Controllers
         {
             var blogValue = bm.TGetById(id);  //** Yazar panelinde dışardan gelen id'ye göre önce güncellenecek bloğun bulunması **//
             ViewBag.cv = GetCategoryList();
+            var username = User.Identity.Name;
+            ViewBag.Writername = username;
             return View(blogValue);
         }
 
         [HttpPost]
         public IActionResult EditBlog(Blog b)  //Yazar tarafından blog güncelleme işlemi
         {
-            var usermail = User.Identity.Name;
+            var username = User.Identity.Name;
+            var usermail = c.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
             var writerID = c.Writers.Where(x => x.EMail == usermail).Select(y => y.WriterID).FirstOrDefault();
+            var name = c.Users.Where(x => x.Email == usermail).Select(y => y.NameSurname).FirstOrDefault();
 
             BlogValidator bv = new BlogValidator();
             ValidationResult result = bv.Validate(b);
@@ -77,7 +94,7 @@ namespace DotNetCore_Kamp.Controllers
                 var x = bm.TGetById(b.BlogID);
                 b.CreateDate = x.CreateDate;
                 b.Status = true;
-                b.Auth = x.Auth;
+                b.Auth = name;
 
                 bm.TUpdate(b);
                 return RedirectToAction("BlogListByWriter");
@@ -99,22 +116,25 @@ namespace DotNetCore_Kamp.Controllers
         {
             //** Blog Ekleme işleminden önce "CategoryList" metodunu çağırıyor **//
             ViewBag.cv = GetCategoryList();
+            var username = User.Identity.Name;
+            ViewBag.Writername = username;
             return View();
         }
 
         [HttpPost]
         public IActionResult BlogAdd(Blog p)  //** Yazar tarafından yeni blog ekleme işlemi **//
         {
-            var usermail = User.Identity.Name;
+            var username = User.Identity.Name;
+            var usermail = c.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
             var writerID = c.Writers.Where(x => x.EMail == usermail).Select(y => y.WriterID).FirstOrDefault();
-            var writerName = c.Writers.Where(x => x.Name == usermail).Select(y => y.Name).FirstOrDefault();
+            var name = c.Users.Where(x => x.Email == usermail).Select(y => y.NameSurname).FirstOrDefault();
 
             BlogValidator bv = new BlogValidator();
             ValidationResult results = bv.Validate(p);
             if (results.IsValid)
             {
                 p.WriterID = writerID;
-                p.Auth = writerName;
+                p.Auth = name;
                 p.Status = true;
                 p.CreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
 

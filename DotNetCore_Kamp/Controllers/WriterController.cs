@@ -6,6 +6,7 @@ using DotNetCore_Kamp.Models;
 using EntityLayer.Concreate;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,60 +20,79 @@ namespace DotNetCore_Kamp.Controllers
     // [Authorize] Controller Seviyesinde Authorize
     //*** Yazar paneline veya bir sayfaya kullanıcı girişli erişiliyorsa bunu sağlayan Authorize Attribute Methodu ***//
     //*** Yazar Paneline veya bir sayfaya erişirken yetkisiz erişiliyorsa yani sisteme giriş yapmadan erişiliyorsa hata veren Atrribute Methodu ***//
-    
+
     public class WriterController : Controller
     {
         //*** Bütün proje seviyesinde kullanıcı giriş zorunluluğu (Authorize) olduğu için Yazar Login sayfasını bu zorunluluktan muaf (devre dışı) bıraktığı için erişilebiliyor. ***//
         WriterManager Wm = new WriterManager(new EFWriterRepository());
+        UserManager Um = new UserManager(new EFUserRepository());
         Context c = new Context();
+
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
+
+        public WriterController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        {
+            _userManager = userManager;
+            _signInManager = signInManager;
+        }
 
         public IActionResult Index()
         {
-            var usermail = User.Identity.Name;
-            ViewBag.userLogin = usermail;
-            var writerName = c.Writers.Where(x => x.EMail == usermail).Select(y => y.Name).FirstOrDefault();
-
-            ViewBag.v2 = writerName;
+            var username = User.Identity.Name;
+            ViewBag.userLogin = username;
+            var writerName = c.Writers.Where(x => x.EMail == username).Select(y => y.Name).FirstOrDefault();
+            ViewBag.Writername = writerName;
             return View();
         }
 
 
         [HttpGet]
-        public IActionResult WriterEditProfile()
+        public async Task<IActionResult> WriterEditProfile()  //** Yazar profilim sayfasında giriş yapan kullanıcının bilgilerini getirme //
         {
-            
-            var writervalues = Wm.TGetById(4);
-            return View(writervalues);
+            //** 2. YÖNTEM - Yazar bilgilerini getirme
+            var value = await _userManager.FindByNameAsync(User.Identity.Name);
+            UserUpdateViewModel model = new UserUpdateViewModel();
+            model.image = value.ImageURL;
+            model.namesurname = value.NameSurname;
+            model.username = value.UserName;
+
+            var username = User.Identity.Name;
+            ViewBag.Writername = username;
+            return View(model);
+
+            //** 1. YÖNTEM - Yazar bilgilerini getirme
+            //var username = User.Identity.Name;
+            //var usermail = c.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
+            //var id = c.Users.Where(x => x.Email == usermail).Select(y => y.Id).FirstOrDefault();
+            //var value = await _userManager.FindByNameAsync(User.Identity.Name);
+            //var values = Um.TGetById(id);
         }
 
-
         [HttpPost]
-        public IActionResult WriterEditProfile(Writer p)  //** Yazar profilini HTTP Post olduğunda güncelleme işlemi //
+        public async Task<IActionResult> WriterEditProfile(UserUpdateViewModel model)  //** Yazar profilini HTTP Post olduğunda güncelleme //
         {
-            WriterValidator validations = new WriterValidator();
-            ValidationResult results = validations.Validate(p);
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+            values.UserName = model.username;
+            values.ImageURL = model.image;
+            values.NameSurname = model.namesurname;
+            values.PasswordHash = _userManager.PasswordHasher.HashPassword(values, model.password);
+            var result = await _userManager.UpdateAsync(values);
 
-            if (results.IsValid) //Eğer validasyonlar geçerliyse "p" parametresinden gelen profil bilgilerini güncelleyip sayfaya git.
+            if (result.Succeeded && values.PasswordHash != null)
             {
-                p.WriterID = Convert.ToInt32(((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.Name).Value);
-                p.Status = true;
-                Wm.TUpdate(p);
-                return RedirectToAction("BlogListByWriter", "Blog");
+                await _signInManager.SignOutAsync();
+                return RedirectToAction("AdminIndex", "Login");
             }
-            else
-            {
-                foreach(var item in results.Errors)
-                {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                }
-                
-            }
-            return View();
+            return View(model);
         }
 
         [HttpGet]
         public IActionResult WriterAdd()
         {
+            var username = User.Identity.Name;
+            ViewBag.Writername = username;
+
             return View();
         }
 
