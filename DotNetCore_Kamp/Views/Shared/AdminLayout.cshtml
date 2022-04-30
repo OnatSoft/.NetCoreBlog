@@ -131,7 +131,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="login.html">
+                            <a href="/Login/LogOut">
                                 <i class="fa fa-sign-out"></i> Çıkış Yap
                             </a>
                         </li>
@@ -139,28 +139,11 @@
                 </nav>
             </div>
 
-            <div class="row wrapper border-bottom white-bg page-heading">
-                <div class="col-lg-10">
-                    <h2> Dashboard </h2>
-                    @*<ol class="breadcrumb">
-                            <li class="breadcrumb-item">
-                                <a href="index.html">Home</a>
-                            </li>
-                            <li class="breadcrumb-item">
-                                <a>Tables</a>
-                            </li>
-                            <li class="breadcrumb-item active">
-                                <strong>Static Tables</strong>
-                            </li>
-                        </ol>*@
-                </div>
-                <div class="col-lg-2">
 
-                </div>
-            </div>
             <div class="wrapper wrapper-content animated fadeInUp">
                 @RenderBody()
             </div>
+
             <div class="footer">
                 <div class="float-right">
                     <a class="text-muted text-dark" href="https://www.youtube.com/playlist?list=PLKnjBHu2xXNNkinaVhPqPZG0ubaLN63ci" target="_blank">ASP.Net Core 5 Blog Proje Kampı Dersleri</a>
@@ -196,5 +179,6 @@
     </script>
 
     @await RenderSectionAsync("scripts", false)
+
 </body>
 </html>

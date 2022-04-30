@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Concreate
 {
-    public class UserManager : IUserService  
+    public class UserManager : IUserService
     {
         IUserDal _userDal;
 

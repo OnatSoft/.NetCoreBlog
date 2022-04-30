@@ -23,11 +23,11 @@
 
                 <div class="row">
                     <div class="col-md-3 stretch-card grid-margin">
-                        <div class="card bg-gradient-danger card-img-holder text-white">
+                        <div class="card bg-gradient-success card-img-holder text-white">
                             <div class="card-body">
                                 <img src="~/WriterPanel/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                                 <h4 class="font-weight-normal mb-3">
-                                    Toplam Blog Sayısı <i class="mdi mdi-chart-line mdi-24px float-right"></i>
+                                    Toplam Blog Sayısı <i class="mdi mdi-blogger mdi-24px float-right"></i>
                                 </h4>
                                 <h2 class="mb-5"> @ViewBag.chart1 </h2>
                                 <h6 class="card-text"> İstatistik 1 </h6>
@@ -39,7 +39,7 @@
                             <div class="card-body">
                                 <img src="~/WriterPanel/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                                 <h4 class="font-weight-normal mb-3">
-                                    Yazdığım Blog Sayısı <i class="mdi mdi-chart-line mdi-24px float-right"></i>
+                                    Yazdığım Blog Sayısı <i class="mdi mdi-blogger mdi-24px float-right"></i>
                                 </h4>
                                 <h2 class="mb-5"> @ViewBag.chart2 </h2>
                                 <h6 class="card-text"> İstatistik 2 </h6>
@@ -51,7 +51,7 @@
                             <div class="card-body">
                                 <img src="~/WriterPanel/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                                 <h4 class="font-weight-normal mb-3">
-                                    Son 7 Günde Yazdığım Blog Sayısı <i class="mdi mdi-bookmark mdi-24px float-right"></i>
+                                    Son 7 Günde Yazdığım Blog Sayısı <i class="mdi mdi-blogger mdi-24px float-right"></i>
                                 </h4>
                                 <h2 class="mb-5"> @ViewBag.chart3 </h2>
                                 <h6 class="card-text"> İstatistik 3 </h6>
@@ -59,11 +59,11 @@
                         </div>
                     </div>
                     <div class="col-md-3 stretch-card grid-margin">
-                        <div class="card bg-gradient-primary card-img-holder text-white">
+                        <div class="card bg-gradient-info card-img-holder text-white">
                             <div class="card-body">
                                 <img src="~/WriterPanel/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                                 <h4 class="font-weight-normal mb-3">
-                                    Son 7 Günde Yapılan Yorumlar <i class="mdi mdi-comment mdi-24px float-right"></i>
+                                    Toplam Yorum Sayısı <i class="mdi mdi-comment mdi-24px float-right"></i>
                                 </h4>
                                 <h2 class="mb-5"> @ViewBag.chart4 </h2>
                                 <h6 class="card-text"> İstatistik 4 </h6>
@@ -73,7 +73,7 @@
 
 
                     <div class="col-md-3 stretch-card grid-margin">
-                        <div class="card bg-gradient-info card-img-holder text-white">
+                        <div class="card bg-gradient-danger card-img-holder text-white">
                             <div class="card-body">
                                 <img src="~/WriterPanel/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                                 <h4 class="font-weight-normal mb-3">
@@ -85,7 +85,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 stretch-card grid-margin">
-                        <div class="card bg-gradient-dark card-img-holder text-white">
+                        <div class="card bg-gradient-primary card-img-holder text-white">
                             <div class="card-body">
                                 <img src="~/WriterPanel/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                                 <h4 class="font-weight-normal mb-3">
@@ -96,14 +96,15 @@
                             </div>
                         </div>
                     </div>
-                    @*<div class="col-md-3 stretch-card grid-margin">
-                        <div class="card bg-gradient-primary card-img-holder text-white">
+                    <div class="col-md-3 stretch-card grid-margin">
+                        <div class="card bg-gradient-danger card-img-holder text-white">
                             <div class="card-body">
                                 <img src="~/WriterPanel/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                                 <h4 class="font-weight-normal mb-3">
-                                    Toplam Kategori Sayısı <i class="mdi mdi-chart-bar mdi-24px float-right"></i>
+                                    @ViewBag.city2 <i class="mdi mdi-weather-cloudy mdi-24px float-right"></i>
                                 </h4>
-                                <h2 class="mb-5"> @ViewBag.chart5 </h2>
+                                <h2 class="mb-5"> @ViewBag.weather2'C </h2>
+                                <h6 class="card-text"> Anlık Hava Durumu </h6>
                             </div>
                         </div>
                     </div>
@@ -112,12 +113,13 @@
                             <div class="card-body">
                                 <img src="~/WriterPanel/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                                 <h4 class="font-weight-normal mb-3">
-                                    Toplam Kategori Sayısı <i class="mdi mdi-chart-bar mdi-24px float-right"></i>
+                                    @ViewBag.city3 <i class="mdi mdi-weather-sunny mdi-24px float-right"></i>
                                 </h4>
-                                <h2 class="mb-5"> @ViewBag.chart5 </h2>
+                                <h2 class="mb-5"> @ViewBag.weather3'C </h2>
+                                <h6 class="card-text"> Anlık Hava Durumu </h6>
                             </div>
                         </div>
-                    </div>*@
+                    </div>
                 </div>
 
                 @await Component.InvokeAsync("BlogListDashboard")  <!--*** Yazar Dashboard Sayfasında "Yayınlanan Son Bloglar" View Component Bölümü ***-->

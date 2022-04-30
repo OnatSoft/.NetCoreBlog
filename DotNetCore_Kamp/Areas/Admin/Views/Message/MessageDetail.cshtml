@@ -1,0 +1,103 @@
+﻿@model EntityLayer.Concreate.Message2
+
+@{
+    ViewData["Title"] = "MessageDetail";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<!------********************************* Burası Admin paneli Mesaj detayı içerik View Sayfası **********************************------>
+
+<body>
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2> Mesajlar </h2>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a> Dashboard </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a> Mesajlar </a>
+                </li>
+                <li class="breadcrumb-item active">
+                    <strong> Mesaj İçeriği </strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+
+        </div>
+    </div>
+
+
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="ibox ">
+                    <div class="ibox-content mailbox-content">
+
+                        <div class="file-manager">
+                            <a class="btn btn-block btn-primary compose-mail" href="/Admin/Message/MessageSend/"> Yeni Mesaj Yaz &nbsp;<span class="fa fa-edit"></span></a>
+                            <div class="space-25"></div>
+
+                            <h5> Klasörler </h5>
+                            <ul class="folder-list m-b-md" style="padding: 0">
+                                <li><a href="/Admin/Message/Inbox/"> <i class="fa fa-inbox "></i> Gelen Kutusu <span class="label label-success float-right"> 0 </span> </a></li>
+                                <li><a href="/Admin/Message/Sendbox/"> <i class="fa fa-envelope-o"></i> Giden Kutusu </a></li>
+                                <li><a href="#"> <i class="fa fa-certificate"></i> Önemli Mesajlar </a></li>
+                                <li><a href="#"> <i class="fa fa-file-text-o"></i> Taslaklar <span class="label label-warning float-right"> 0 </span></a></li>
+                                <li><a href="#"> <i class="fa fa-trash-o"></i> Çöp Kutusu <span class="label label-danger float-right"> 0 </span></a></li>
+                            </ul>
+
+                            <h5> Kategoriler </h5>
+                            <ul class="category-list" style="padding: 0">
+                                <li><a href="#"> <i class="fa fa-circle text-navy"></i> İş </a></li>
+                                <li><a href="#"> <i class="fa fa-circle text-danger"></i> Dökümanlar</a></li>
+                                <li><a href="#"> <i class="fa fa-circle text-primary"></i> Sosyal </a></li>
+                                <li><a href="#"> <i class="fa fa-circle text-info"></i> Kişisel </a></li>
+                                <li><a href="#"> <i class="fa fa-circle text-warning"></i> Tanıtımlar </a></li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-9 animated fadeInUp">
+                <div class="mail-box-header">
+                    <div class="float-right tooltip-demo">
+                        <a href="#" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Mesajı Yanıtla"><i class="fa fa-reply"></i>&nbsp; Yanıtla </a>
+                        <a href="#" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Mesajı İlet"><i class="fa fa-arrow-right"></i>&nbsp; İlet </a>
+                        <a href="#" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Mesajı Yazdır"><i class="fa fa-print"></i> </a>
+                        <a href="#" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Çöp Kutusuna At"><i class="fa fa-trash-o"></i> </a>
+                    </div>
+
+                    <h2> Mesaj İçeriği </h2>
+                    <h4 class="text-muted"> @Model.ID numaralı mesaj </h4>
+                    <div class="mail-tools tooltip-demo m-t-md">
+                        <h3>
+                            <span class="font-normal">Konu: </span> @Model.Subject
+                        </h3>
+                        <h4>
+                            <span class="font-normal">Alıcı: </span>yazar2@gmail.com
+                        </h4>
+                        <h4>
+                            <span class="font-normal">Gönderen: </span> yazar@gmail.com
+                            <span class="float-right font-normal"> @Model.MessageDate.ToShortDateString() </span>
+                        </h4>
+                    </div>
+
+                    <div class="mail-box">
+                        <div class="mail-body">
+                            @Model.MessageDetails
+                        </div>
+                    </div>
+
+                    <div class="mail-body text-right tooltip-demo">
+                        <a href="/Admin/Message/Inbox/" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Gelen Kutusuna Dön"><i class="fa fa-arrow-left"></i>&nbsp; Geri Dön </a>
+                    </div>
+                    <div class="clearfix"></div>
+
+                </div>
+            </div>
+        </div>
+</body>

@@ -1,7 +1,9 @@
 ﻿
 @using X.PagedList
 @using X.PagedList.Mvc.Core
+
 @model IPagedList<EntityLayer.Concreate.Category>
+
 <!-----************************************** Burası Admin Panelinde Kategoriler View Sayfası *******************************************----->
 
 @{
@@ -14,10 +16,19 @@
     string statusColor = "";
     string btnstatusCheck = "";
     string btnColor = "";
-    string status = "";
     string statusMessage = "";
 }
 
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2> Kategoriler </h2>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+
+<br />
 <div class="ibox">
     <div class="ibox-title">
         <h3>Blog Kategorileri</h3>
@@ -33,10 +44,10 @@
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th style="width: 3%;">#</th>
+                        <th style="width: 3%;">ID</th>
                         <th style="width: 6%;">Kategori Adı</th>
                         <th style="width: 30%;">Kategori Açıklaması</th>
-                        <th style="width: 5%;">Durum</th>
+                        <th style="width: 5%;">Durumu</th>
                         <th style="width: 10%;">İşlemler</th>
                     </tr>
                 </thead>
@@ -66,11 +77,11 @@
 
                     if (item.Status == false)
                     {
-                        statusMessage = "Kategoriyi listeye eklemeyi onaylıyor musunuz?";
+                        statusMessage = "Pasif";
                     }
                     else
                     {
-                        statusMessage = "Kategoriyi listeden kaldırmayı onaylıyor musunuz?";
+                        statusMessage = "Aktif";
                     }
 
                     <tr>
@@ -80,17 +91,17 @@
                         <td>
                             @if (item.Status == true)
                             {
-                                <span class="@statusColor">Aktif</span>
+                                <span class="@statusColor">@statusMessage</span>
                             }
                             else
                             {
-                                <span class="@statusColor">Pasif</span>
+                                <span class="@statusColor">@statusMessage</span>
                             }
                         </td>
                         <td>
-                            <a href="/Admin/Category/CategoryDelete/@item.CategoryID" class="btn btn-danger" onclick="return confirm('Kategoriyi silmek istiyor musunuz?')"><i class="fa fa-trash"></i>&nbsp; Sil </a>
-                            <a href="#" class="btn btn-success"><i class="fa fa-edit"></i>&nbsp; Düzenle </a>
-                            <a href="/Admin/Category/CategoryUpdateStatus/@item.CategoryID" onclick="return confirm('Kategorinin durumunu değiştirmek istiyor musunuz?')" class="@btnColor">@btnstatusCheck</a>
+                            <a href="/Admin/Category/CategoryDelete/@item.CategoryID/" class="btn btn-danger btn-sm" onclick="return confirm('Kategoriyi silmek istiyor musunuz?')"><i class="fa fa-trash"></i>&nbsp; Sil </a>
+                            <a href="/Admin/Category/CategoryEdit/@item.CategoryID/" class="btn btn-success btn-sm"><i class="fa fa-edit"></i>&nbsp; Düzenle </a>
+                            <a href="/Admin/Category/CategoryUpdateStatus/@item.CategoryID/" class="@btnColor">@btnstatusCheck</a>
                         </td>
                     </tr>
                 }
@@ -112,13 +123,13 @@
 
 
 @*<script>
-    swal({
-        title:"Uyarı",
-        text: "Kategoriyi listeden kaldırmayı onaylıyor musunuz?",
-        icon: "warning",
-        buttons: {
-            cancel: "Hayır",
-            confirm: "Evet",
-        }
-    })
-</script>*@
+        swal({
+            title:"Uyarı",
+            text: "Kategoriyi listeden kaldırmayı onaylıyor musunuz?",
+            icon: "warning",
+            buttons: {
+                cancel: "Hayır",
+                confirm: "Evet",
+            }
+        })
+    </script>*@

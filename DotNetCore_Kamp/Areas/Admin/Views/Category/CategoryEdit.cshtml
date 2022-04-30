@@ -1,0 +1,74 @@
+﻿@model EntityLayer.Concreate.Category
+
+@{
+    ViewData["Title"] = "CategoryEdit";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<!------******************************** Burası Admin Paneli Kategori Düzenleme sayfası *************************************------>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2> Kategori Düzenleme </h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a> Dashboard </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a> Kategoriler </a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong> Kategori Düzenle </strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+
+<br />
+<div class="ibox">
+    <div class="ibox-title">
+        <h3> @Model.CategoryID numaralı kategori içeriği </h3>
+    </div>
+    <div class="ibox-content">
+
+        @using (Html.BeginForm("CategoryEdit", "Category", FormMethod.Post))
+        {
+            @Html.TextBoxFor(x => x.CategoryID, new { type = "hidden" })
+            @Html.TextBoxFor(x => x.Status, new { type = "hidden" })
+
+            @Html.Label("Kategori Adı")
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+            <br />
+            <br />
+            @Html.Label("Kategori Açıklaması")
+            @Html.TextAreaFor(x => x.Description, 5, 5, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
+            <br />
+            <br />
+            <a href="/Admin/Category/Index" class="btn btn-default btn-xl"> İptal </a>
+            <button type="submit" class="btn btn-primary btn-xl"><i class="fa fa-refresh"></i>&nbsp; Güncelle </button>
+        }
+
+
+
+        @*<form method="post">
+            <input type="hidden" name="CategoryID" />
+            <input type="hidden" name="Status" />
+
+            <label> Kategori Adı </label>
+            <input type="text" class="form-control" name="Name" required />
+            <br />
+            <label> Kategori Açıklaması </label>
+            <textarea class="form-control" rows="5" cols="10" name="Description" required></textarea>
+
+            <br />
+            <br />
+            <a class="btn btn-white btn-xl" href="/Admin/Category/Index"> İptal </a>
+            <button type="submit" class="btn btn-primary btn-xl"><i class="fa fa-refresh"></i>&nbsp; Güncelle </button>
+        </form>*@
+
+    </div>
+</div>

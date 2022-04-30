@@ -1,7 +1,6 @@
-﻿<!----****************************-- Burası Yazar Panelinde yer alan Mesajlar Sayfası ******************************---->
-@using EntityLayer.Concreate
+﻿@using EntityLayer.Concreate
 @model List<Message2>
-<!----------****************************** Burası Yazar Panelinde Gelen kutusu View Sayfası ******************************---------->
+<!----------****************************** Burası Yazar Panelinde mesajlar Gelen kutusu View Sayfası ******************************---------->
 
 @{
     ViewData["Title"] = "Inbox";
@@ -14,11 +13,11 @@
             <div class="card-body">
                 <h2> Gelen Kutusu </h2>
                 <br />
-                <a class="btn btn-primary mb-4" href="/Message/SendMessage/"> Mesaj Yaz </a>
+                <a class="btn btn-primary mb-4" href="/Message/SendMessage/"> Yeni Mesaj Yaz </a>
                 <br />
                 <br />
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover" style="width:100%; height: auto;">
+                    <table class="table table-bordered table-striped" style="width:100%; height: auto;">
                         <thead>
                             <tr>
                                 <th>No</th>

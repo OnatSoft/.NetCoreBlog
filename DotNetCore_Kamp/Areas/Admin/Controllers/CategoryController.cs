@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using X.PagedList;
 
@@ -17,6 +18,7 @@ namespace DotNetCore_Kamp.Areas.Admin.Controllers
     public class CategoryController : Controller
     {
         CategoryManager Cm = new CategoryManager(new EFCategoryRepository());
+
 
         public IActionResult Index(int page = 1)  //* Admin Panelinde Kategorileri Listeleme ve Sayfalama İşlemi
         {
@@ -40,7 +42,7 @@ namespace DotNetCore_Kamp.Areas.Admin.Controllers
             {
                 p.Status = false;
                 Cm.TAdd(p);
-                return RedirectToAction("Index", "Category");
+                return RedirectToAction("Index");
             }
             else
             {
@@ -52,17 +54,47 @@ namespace DotNetCore_Kamp.Areas.Admin.Controllers
             return View();
         }
 
-        public IActionResult CategoryDelete(int id)  //* Kategori'yi silme işlemi
+        [HttpGet]
+        public IActionResult CategoryEdit(int id)
         {
-            
+            var categoryValue = Cm.TGetById(id);
+            return View(categoryValue);
+        }
+
+        [HttpPost]
+        public IActionResult CategoryEdit(Category c)  //* Admin Panelinde kategori'yi düzenleme / güncelleme işlemi
+        {
+            CategoryValidator cv = new CategoryValidator();
+            ValidationResult result = cv.Validate(c);
+
+            if (result.IsValid)
+            {
+                var x = Cm.TGetById(c.CategoryID);
+                x.Name = c.Name;
+                x.Description = c.Description;
+                Cm.TUpdate(c);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View(c);
+        }
+
+        public IActionResult CategoryDelete(int id)  //* Admin Panelinde kategori'yi silme / siteden kaldırma işlemi
+        {
             var value = Cm.TGetById(id);
             Cm.TDelete(value);
             return RedirectToAction("Index");
         }
 
-        public IActionResult CategoryUpdateStatus(int id)  //* Kategori'nin durumunu güncelleme işlemi
+        public IActionResult CategoryUpdateStatus(int id)  //* Admin Panelinde Kategori'nin durumunu güncelleme işlemi
         {
-            
+
             var value = Cm.TGetById(id);
             if (value.Status == true)
             {

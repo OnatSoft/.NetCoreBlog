@@ -3,7 +3,17 @@
     ViewData["Title"] = "BlogListExcel";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
+<!------********************************** Burası Blog Listesini statik şekilde Excel formatı olarak indirme sayfası *********************************------>
 
-<h2>Excel Blog Listesi</h2>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2> Statik Blogları İndirme </h2>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+
 <br />
-<a href="/Admin/Blog/StaticExportExcelBlogList" class="btn btn-success p-md-2"> Blog Listesini İndir </a>
+<p style="font-size: 15px;">Blog listesini statik olarak Office Excel formatında indirmek için aşağıdaki butona tıklayınız.</p>
+<a href="/Admin/Blog/StaticExportExcelBlogList" class="btn btn-success p-md-2"><i class="fa fa-download"></i>&nbsp; Blog Listesini İndir </a>

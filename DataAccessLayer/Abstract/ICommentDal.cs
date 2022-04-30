@@ -9,6 +9,6 @@ namespace DataAccessLayer.Abstract
 {
     public interface ICommentDal:IGenericDal<Comment>
     {
-
+        List<Comment> GetListCommentsWithBlog();  //* Admin Panelinde yorumlar sayfasında Yorumları blog ile getirme *//
     }
 }

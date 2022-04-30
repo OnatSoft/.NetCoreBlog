@@ -20,21 +20,24 @@
             </nav>
             <br />
             <div class="table-responsive">
-                <form method="post" class="form-group">
-                    <label> Alıcı Adı-Soyadı </label>
-                    <input type="text" class="form-control" asp-for="@Model.ReceiverWriter.Name" required />
+                @using (Html.BeginForm("SendMessage", "Message", FormMethod.Post))
+                {
+                    <label class="col-sm-2 col-form-label"> Bir Alıcı Seçin: </label>
+                    @Html.DropDownListFor(x => x.ReceiverID, (List<SelectListItem>)ViewBag.ReceiverUser, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.ReceiverID, "", new { @class = "text-danger" })
                     <br />
-                    <label> Konu </label>
-                    <input type="text" class="form-control" asp-for="@Model.Subject" required />
+                    <label class="col-sm-2 col-form-label"> Konu: </label>
+                    @Html.TextBoxFor(x => x.Subject, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Subject, "", new { @class = "text-danger" })
                     <br />
-                    <label> Mesaj İçeriği </label>
-                    <textarea class="form-control" asp-for="@Model.MessageDetails" required cols="5" rows="10"></textarea>
+                    <label class="col-sm-2 col-form-label"> Mesajınız: </label>
+                    @Html.TextAreaFor(x => x.MessageDetails, 8, 5, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.MessageDetails, "", new { @class = "text-danger" })
                     <br />
                     <br />
-
-                    <button class="btn btn-success mr-2"> Mesaj Gönder </button>
-                    <a class="btn btn-light mr-sm-2" asp-action="Inbox" asp-controller="Message"> Vazgeç </a>
-                </form>
+                    <button href="/Message/SendMessage/" type="submit" class="btn btn-success"> Gönder </button>
+                    <a href="/Message/Inbox/" class="btn btn-light"> Vazgeç </a>
+                }
             </div>
         </div>
     </div>

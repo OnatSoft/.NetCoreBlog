@@ -1,0 +1,112 @@
+﻿@using EntityLayer.Concreate
+@model List<Message2>
+
+@{
+    ViewData["Title"] = "Sendbox";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<!------*************************** Burası Admin Paneli Mesaj Giden Kutusu View Sayfası *********************************------>
+
+<html>
+<body>
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2> Mesajlar </h2>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a> Dashboard </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a> Mesajlar </a>
+                </li>
+                <li class="breadcrumb-item active">
+                    <strong> Giden Kutusu </strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+
+        </div>
+    </div>
+
+
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="ibox ">
+                    <div class="ibox-content mailbox-content">
+
+                        <div class="file-manager">
+                            <a class="btn btn-block btn-primary compose-mail" href="/Admin/Message/MessageSend/"> Yeni Mesaj Yaz &nbsp;<span class="fa fa-edit"></span></a>
+                            <div class="space-25"></div>
+
+                            <h5> Klasörler </h5>
+                            <ul class="folder-list m-b-md" style="padding: 0">
+                                <li><a href="/Admin/Message/Inbox/"> <i class="fa fa-inbox "></i> Gelen Kutusu <span class="label label-success float-right"> 0 </span> </a></li>
+                                <li><a href="/Admin/Message/Sendbox/"> <i class="fa fa-envelope-o"></i> Giden Kutusu </a></li>
+                                <li><a href="#"> <i class="fa fa-certificate"></i> Önemli Mesajlar </a></li>
+                                <li><a href="#"> <i class="fa fa-file-text-o"></i> Taslaklar <span class="label label-warning float-right"> 0 </span></a></li>
+                                <li><a href="#"> <i class="fa fa-trash-o"></i> Çöp Kutusu <span class="label label-danger float-right"> 0 </span></a></li>
+                            </ul>
+
+                            <h5> Kategoriler </h5>
+                            <ul class="category-list" style="padding: 0">
+                                <li><a href="#"> <i class="fa fa-circle text-navy"></i> İş </a></li>
+                                <li><a href="#"> <i class="fa fa-circle text-danger"></i> Dökümanlar</a></li>
+                                <li><a href="#"> <i class="fa fa-circle text-primary"></i> Sosyal </a></li>
+                                <li><a href="#"> <i class="fa fa-circle text-info"></i> Kişisel </a></li>
+                                <li><a href="#"> <i class="fa fa-circle text-warning"></i> Tanıtımlar </a></li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-9 animated fadeInUp">
+                <div class="mail-box-header">
+                    <form method="get" action="#" class="float-right mail-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control form-control-sm" name="search" placeholder="Kişi Ara...">
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-sm btn-primary"> Arama </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <h2> Giden Kutusu </h2>
+                    <div class="mail-tools tooltip-demo m-t-md">
+                        <div class="btn-group float-right">
+                            <button class="btn btn-white btn-sm"><i class="fa fa-arrow-left"></i></button>
+                            <button class="btn btn-white btn-sm"><i class="fa fa-arrow-right"></i></button>
+                        </div>
+                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Giden Kutusunu Yenile"><i class="fa fa-refresh"></i>&nbsp; Yenile </button>
+                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Okundu İşaretle"><i class="fa fa-eye"></i> </button>
+                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Önemli Olarak İşaretle"><i class="fa fa-exclamation"></i> </button>
+                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Çöp Kutusuna Taşı"><i class="fa fa-trash-o"></i> </button>
+                    </div>
+                </div>
+
+                <div class="mail-box">
+                    <table class="table table-hover table-mail">
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="read">
+                                    <td class="check-mail"><input type="checkbox" class="i-checks"></td>
+
+                                    <td class="mail-ontact"><a href="/Admin/Message/MessageDetail/@item.ID/"> @item.ReceiverWriter.Name </a></td>
+                                    <td class="mail-subject"><a href="/Admin/Message/MessageDetail/@item.ID/"> @item.Subject </a></td>
+                                    <td class="text-right mail-date"> @item.MessageDate.ToShortDateString() </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+﻿@using EntityLayer.Concreate
+@model List<Blog>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<!------************************************** Burası Admin paneli içinde Bloglar sayfası ************************************------>
+
+<html>
+<body>
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2> Bloglar </h2>
+        </div>
+        <div class="col-lg-2">
+
+        </div>
+    </div>
+
+
+    <div class="wrapper wrapper-content animated fadeInUp">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3">
+                    <div class="ibox">
+                        <div class="ibox-content product-box">
+
+                            <div>
+                                <img src="@item.ThumbnailImage" width="380" height="270" />
+                            </div>
+
+                            <div class="product-desc">
+                                <span class="product-price">
+                                    @item.CreateDate.ToShortDateString()
+                                </span>
+                                <p class="text-muted"> @item.Category.Name | @item.Auth </p>
+                                <a class="product-name"> @item.Title </a>
+                                <div class="body m-t-xs">
+                                    @item.Content.Substring(0, item.Content.Substring(0, 80).LastIndexOf(" "))...
+                                </div>
+                                <div class="m-t text-righ">
+                                    <a href="/Blog/BlogDetails/@item.BlogID/" target="_blank" class="btn btn-sm btn-outline btn-primary"> Sitede Görüntüle &nbsp;<i class="fa fa-long-arrow-right"></i> </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+</body>
+</html>

@@ -3,8 +3,17 @@
     ViewData["Title"] = "BlogListExcelDynamic";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
+<!------********************************** Burası Blog Listesini dinamik şekilde Excel formatı olarak indirme sayfası ***************************************------>
 
-<h2>Blog Listesini İndirme Sayfası</h2>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2> Dinamik Blogları İndirme </h2>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+
 <br />
-<p style="font-size: 15px;">Blog listesini Microsoft Excel formatında görüntülemek ve indirmek için aşağıdaki butona tıklayınız.</p>
-<a href="/Admin/Blog/DynamicExportExcelBlogList" class="btn btn-success p-md-2"> Blog Listesini İndir </a>
+<p style="font-size: 15px;">Blog listesini dinamik olarak Office Excel formatında indirmek için aşağıdaki butona tıklayınız.</p>
+<a href="/Admin/Blog/DynamicExportExcelBlogList" class="btn btn-success p-md-2"><i class="fa fa-download"></i>&nbsp; Blog Listesini İndir </a>

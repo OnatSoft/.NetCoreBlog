@@ -1,0 +1,107 @@
+﻿@model EntityLayer.Concreate.Message2
+
+@{
+    ViewData["Title"] = "MessageSend";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<!------******************************** Burası Admin paneli mesaj yazma View Sayfası *********************************------>
+
+<html>
+<body>
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2> Mesajlar </h2>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a> Dashboard </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a> Mesajlar </a>
+                </li>
+                <li class="breadcrumb-item active">
+                    <strong> Yeni Mesaj Yaz </strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+
+        </div>
+    </div>
+
+
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="ibox ">
+                    <div class="ibox-content mailbox-content">
+
+                        <div class="file-manager">
+                            <a class="btn btn-block btn-primary compose-mail" href="/Admin/Message/MessageSend/"> Yeni Mesaj Yaz &nbsp;<span class="fa fa-edit"></span></a>
+                            <div class="space-25"></div>
+
+                            <h5> Klasörler </h5>
+                            <ul class="folder-list m-b-md" style="padding: 0">
+                                <li><a href="/Admin/Message/Inbox"> <i class="fa fa-inbox "></i> Gelen Kutusu <span class="label label-success float-right"> 0 </span> </a></li>
+                                <li><a href="/Admin/Message/Sendbox"> <i class="fa fa-envelope-o"></i> Giden Kutusu </a></li>
+                                <li><a href="#"> <i class="fa fa-certificate"></i> Önemli Mesajlar </a></li>
+                                <li><a href="#"> <i class="fa fa-file-text-o"></i> Taslaklar <span class="label label-warning float-right"> 0 </span></a></li>
+                                <li><a href="#"> <i class="fa fa-trash-o"></i> Çöp Kutusu <span class="label label-danger float-right"> 0 </span></a></li>
+                            </ul>
+
+                            <h5> Kategoriler </h5>
+                            <ul class="category-list" style="padding: 0">
+                                <li><a href="#"> <i class="fa fa-circle text-navy"></i> İş </a></li>
+                                <li><a href="#"> <i class="fa fa-circle text-danger"></i> Dökümanlar</a></li>
+                                <li><a href="#"> <i class="fa fa-circle text-primary"></i> Sosyal </a></li>
+                                <li><a href="#"> <i class="fa fa-circle text-info"></i> Kişisel </a></li>
+                                <li><a href="#"> <i class="fa fa-circle text-warning"></i> Tanıtımlar </a></li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-9 animated fadeInUp">
+                <div class="mail-box-header">
+                    <h2> Yeni Mesaj Yaz </h2>
+                </div>
+
+                <div class="mail-box">
+
+                    <div class="mail-body">
+                        @using (Html.BeginForm("Messagesend", "Message", FormMethod.Post))
+                        {
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label text-left"> Bir Alıcı Seçin: </label>
+                                @Html.DropDownListFor(x => x.ReceiverID, (List<SelectListItem>)ViewBag.Receiver, new { @class = "form-control" })
+                            </div>
+                            <br />
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label text-left"> Konu: </label>
+                                @Html.TextBoxFor(x => x.Subject, new { @class = "form-control" })
+                            </div>
+                            <br />
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label text-left"> Mesajınız: </label>
+                                @Html.TextAreaFor(x => x.MessageDetails, 8, 5, new { @class = "form-control" })
+                            </div>
+                            
+                            <div class="mail-body text-right tooltip-demo">
+                                <button href="/Admin/Message/MessageSend/" type="submit" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Mesajı Gönder"><i class="fa fa-reply"></i> Gönder </button>
+                                <a href="/Admin/Message/Inbox/" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Mesajı Gönderme"><i class="fa fa-times"></i> Vazgeç </a>
+                                <a href="#" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Taslak Olarak Kaydet"><i class="fa fa-pencil"></i> Taslağı Kaydet </a>
+                            </div>
+                            <div class="clearfix"></div>
+                        }
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

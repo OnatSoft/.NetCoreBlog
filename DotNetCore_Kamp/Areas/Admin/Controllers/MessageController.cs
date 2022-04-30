@@ -2,7 +2,6 @@
 using DataAccessLayer.Concreate;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concreate;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,20 +10,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DotNetCore_Kamp.Controllers
+namespace DotNetCore_Kamp.Areas.Admin.Controllers
 {
-    public class MessageController : Controller
+    [Area("Admin")]
+    public class MessageController : Controller  //** Burası Admin paneli Mesajlar sayfası **//
     {
-        private readonly UserManager<AppUser> _userManager;
         Message2Manager Mm = new Message2Manager(new EFMessage2Repository());
         Context c = new Context();
 
-        public MessageController(UserManager<AppUser> userManager)
-        {
-            _userManager = userManager;
-        }
 
-        public IActionResult Inbox() //Yazar panelinde Gelen Kutusu methodu
+        public IActionResult Inbox() //Admin paneli mesaj Gelen Kutusu
         {
             var username = User.Identity.Name;
             var usermail = c.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
@@ -34,7 +29,7 @@ namespace DotNetCore_Kamp.Controllers
             return View(values);
         }
 
-        public IActionResult Sendbox() //Yazar panelinde Giden Kutusu methodu
+        public IActionResult Sendbox() //Admin paneli mesaj Giden Kutusu
         {
             var username = User.Identity.Name;
             var usermail = c.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
@@ -45,44 +40,42 @@ namespace DotNetCore_Kamp.Controllers
         }
 
         [HttpGet]
-        public IActionResult MessageDetails(int id) //Yazar panelinde bir mesajın detay/içerik sayfası methodu
+        public async Task<IActionResult> MessageSend() //Admin paneli yeni mesaj yazma
+        {
+
+            List<SelectListItem> receiverUsers = (from x in await GetUsersAsync()
+                                                  select new SelectListItem
+                                                  {
+                                                      Text = x.NameSurname.ToString(),
+                                                      Value = x.Id.ToString()
+
+                                                  }).ToList();
+            ViewBag.Receiver = receiverUsers;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult MessageSend(Message2 message2)
+        {
+            var username = User.Identity.Name;
+            var usermail = c.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
+            var writerID = c.Writers.Where(x => x.EMail == usermail).Select(y => y.WriterID).FirstOrDefault();
+
+            message2.SenderID = writerID;
+            message2.Status = true;
+            message2.MessageDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+            Mm.TAdd(message2);
+            return RedirectToAction("Sendbox");
+        }
+
+        [HttpGet]
+        public IActionResult MessageDetail(int id) //Admin paneli mesaj detayı
         {
             var username = User.Identity.Name;
             ViewBag.Writername = username;
 
             var value = Mm.TGetById(id);
             return View(value);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> SendMessage()
-        {
-            var username = User.Identity.Name;
-            ViewBag.Writername = username;
-
-            List<SelectListItem> receiverUser = (from x in await GetUsersAsync()
-                                                 select new SelectListItem
-                                                 {
-                                                     Text = x.NameSurname.ToString(),
-                                                     Value = x.Id.ToString()
-
-                                                 }).ToList();
-            ViewBag.ReceiverUser = receiverUser;
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult SendMessage(Message2 message2) //Yazar panelinde bir gönderici, alıcıya mesaj gönderme methodu
-        {
-            var username = User.Identity.Name;
-            var usermail = c.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
-            var writerID = c.Writers.Where(x => x.EMail == usermail).Select(y => y.WriterID).FirstOrDefault();
-            message2.SenderID = writerID;
-            message2.ReceiverID = 2;
-            message2.Status = true;
-            message2.MessageDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
-            Mm.TAdd(message2);
-            return RedirectToAction("Inbox");
         }
 
         public async Task<List<AppUser>> GetUsersAsync()
