@@ -13,4 +13,6 @@ https://is.gd/pNPmtK
 
 Projeye başlangıç tarihi: 03.09.2021 Cuma
 
-Proje'nin bitiş ve yayınlanma tarihi: 08.04.2022 Cuma - Henüz yayınlanmadı...
+Projenin bitiş tarihi: 08.04.2022 Cuma
+
+Projenin yayınlanma tarihi: 03.05.2022 Salı - http://onatsoft20-001-site1.itempurl.com/Blog/Index (Sadece 1 Ay açık duracaktır.)
