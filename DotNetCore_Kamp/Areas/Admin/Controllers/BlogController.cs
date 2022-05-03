@@ -1,6 +1,7 @@
 ﻿using ClosedXML.Excel;
 using DataAccessLayer.Concreate;
 using DotNetCore_Kamp.Areas.Admin.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 namespace DotNetCore_Kamp.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles ="Admin")]  //** Authorize attribute, burada ki bütün sayfaların erişimine sadece Admin ve Moderator rolüne izin veriyor. **//
     public class BlogController : Controller
     {
         public IActionResult BlogListExcelStatic()  //** Statik olarak blogların Excel dosyasını indirme View Sayfası **//

@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!------********************* Burası Access Denied Sayfası / Kullanıcının Yetkisiz Erişim yaptığı zaman açılacağı sayfa **************************------>
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Sayfaya Yetkisiz Erişim | Blogster </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href='//fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister' rel='stylesheet' type='text/css'>
+    <link type="text/css" rel="stylesheet" href="~/Core403Page/style.css" />
+    <link rel="shortcut icon" href="~/AdminPanel/img/favicon.ico" />
+    <link rel="apple-touch-icon" href="~/AdminPanel/img/favicon.ico" />
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="logo">
+            <h1> 403 </h1>
+            <p> OOPSS! Bu sayfaya erişmek için izniniz bulunmamaktadır. </p>
+            <div class="sub">
+                <p><a href="/Dashboard/Index"> Ana Sayfaya Git </a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        @DateTime.Now.Year Blogster Tüm Hakları Saklıdır. | Made By <a href="https://linktr.ee/onatt2645" target="_blank">Onat Somer</a>
+    </div>
+</body>
+</html>

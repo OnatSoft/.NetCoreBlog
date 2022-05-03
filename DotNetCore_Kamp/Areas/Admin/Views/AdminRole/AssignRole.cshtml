@@ -1,0 +1,27 @@
+﻿@using DotNetCore_Kamp.Areas.Admin.Models
+@model List<RoleAssignViewModel>
+
+@{
+    ViewData["Title"] = "AssignRole";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<!------**************************** Burası Admin Paneli içerisinde Kullanıcıya rol atama view Sayfası ******************************------>
+
+
+<form method="post">
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <div class="form-check">
+            <input type="hidden" asp-for="@Model[i].RoleID" />
+            <input type="hidden" asp-for="@Model[i].Name" />
+            <input type="checkbox" asp-for="@Model[i].Exists" class="form-check-primary" />
+            <label class="form-check-label" asp-for="@Model[i].Exists"> @Model[i].Name </label>
+        </div>
+    }
+    <br />
+    <br />
+    <button class="btn btn-primary" type="submit"> Değişiklikleri Kaydet &nbsp;<i class="fa fa-save"></i></button>
+</form>
+
+<br />
+<a href="/Admin/AdminRole/UserRoleList/" class="btn btn-white" title="Kullanıcı ve Rol Listesine Git"> Geri Dön </a>

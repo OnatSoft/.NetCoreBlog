@@ -3,6 +3,7 @@ using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concreate;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ using X.PagedList;
 namespace DotNetCore_Kamp.Areas.Admin.Controllers
 {
     [Area("Admin")]  //** Burası Admin Paneli içinde Areas klasöründe Category Controller Sayfası **//
-
+    [Authorize(Roles ="Admin")]  //** Authorize attribute, burada ki bütün sayfaların erişimine sadece Admin rolüne izin veriyor. **//
     public class CategoryController : Controller
     {
         CategoryManager Cm = new CategoryManager(new EFCategoryRepository());

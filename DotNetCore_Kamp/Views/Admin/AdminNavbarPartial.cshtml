@@ -21,49 +21,76 @@
             <li>
                 <a href="/Admin/Chart/Index/"><i class="fa fa-bar-chart-o"></i> <span class="nav-label"> Grafikler </span></a>
             </li>
-            <li>
-                <a href="#"><i class="fa fa-envelope"></i> <span class="nav-label"> Mesajlar </span><span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level collapse">
-                    <li><a href="/Admin/Message/Inbox/"> Gelen Kutusu </a></li>
-                    <li><a href="/Admin/Message/Sendbox/"> Giden Kutusu </a></li>
-                    <li><a href="/Admin/Message/MessageSend/"> Yeni Mesaj Yaz </a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="/Admin/Category/Index"><i class="fa fa-group"></i> <span class="nav-label"> Kategoriler </span></a>
-            </li>
-            <li>
-                <a href="/Admin/Writer/Index/"><i class="fa fa-user"></i> <span class="nav-label"> Yazarlar </span></a>
-            </li>
-            <li>
-                <a href="/Admin/AdminBlog/Index/"><i class="fa fa-list"></i> <span class="nav-label"> Bloglar </span></a>
-            </li>
-            <li>
-                <a href="/Admin/Comment/Index/"><i class="fa fa-comment"></i> <span class="nav-label"> Yorumlar </span></a>
-            </li>
+            @if (User.IsInRole("Moderator"))
+            {
+                <li>
+                    <a href="#"><i class="fa fa-envelope"></i> <span class="nav-label"> Mesajlar </span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/Admin/Message/Inbox/"> Gelen Kutusu </a></li>
+                        <li><a href="/Admin/Message/Sendbox/"> Giden Kutusu </a></li>
+                        <li><a href="/Admin/Message/MessageSend/"> Yeni Mesaj Yaz </a></li>
+                    </ul>
+                </li>
+            }
+            @if (User.IsInRole("Admin"))
+            {
+                <li>
+                    <a href="/Admin/Category/Index"><i class="fa fa-group"></i> <span class="nav-label"> Kategori Listesi </span></a>
+                </li>
+            }
+            @if (User.IsInRole("Admin"))
+            {
+                <li>
+                    <a href="/Admin/Writer/Index/"><i class="fa fa-user"></i> <span class="nav-label"> Ajax ile Yazarlar </span></a>
+                </li>
+            }
+            @if (User.IsInRole("Admin"))
+            {
+                <li>
+                    <a href="/Admin/Writer/WriterList/"><i class="fa fa-user"></i> <span class="nav-label"> Yazar Listesi </span></a>
+                </li>
+            }
+            @if (User.IsInRole("Moderator"))
+            {
+                <li>
+                    <a href="/Admin/AdminBlog/Index/"><i class="fa fa-list"></i> <span class="nav-label"> Bloglar </span></a>
+                </li>
+            }
+            @if (User.IsInRole("Admin"))
+            {
+                <li>
+                    <a href="/Admin/Comment/Index/"><i class="fa fa-comment"></i> <span class="nav-label"> Yorum Listesi </span></a>
+                </li>
+            }
             <li>
                 <a href="#"><i class="fa fa-bell"></i> <span class="nav-label">Bildirimler</span></a>
             </li>
-            <li>
-                <a href="#"><i class="fa fa-shield"></i> <span class="nav-label"> Roller </span></a>
-            </li>
+            @if (User.IsInRole("Admin"))
+            {
+                <li>
+                    <a href="/Admin/AdminRole/Index/"><i class="fa fa-shield"></i> <span class="nav-label"> Rol Listesi </span></a>
+                </li>
+            }
             <li>
                 <a href="#"><i class="fa fa-info-circle"></i> <span class="nav-label">Ayarlar</span></a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-database"></i> <span class="nav-label"> İstatistikler </span></a>
             </li>
+            @if (User.IsInRole("Admin"))
+            {
+                <li>
+                    <a href="/Admin/Blog/BlogListExcelStatic/"><i class="fa fa-pencil"></i> <span class="nav-label"> Bloglar Statik Raporu </span></a>
+                </li>
+                <li>
+                    <a href="/Admin/Blog/BlogListExcelDynamic/"><i class="fa fa-pencil"></i> <span class="nav-label"> Bloglar Dinamik Raporu </span></a>
+                </li>
+            }
             <li>
-                <a href="/Admin/Blog/BlogListExcelStatic/"><i class="fa fa-pencil"></i> <span class="nav-label"> Bloglar Statik Raporu </span></a>
+                <a href="/Contact/Index/"><i class="fa fa-phone"></i> <span class="nav-label"> İletişim </span></a>
             </li>
             <li>
-                <a href="/Admin/Blog/BlogListExcelDynamic/"><i class="fa fa-pencil"></i> <span class="nav-label"> Bloglar Dinamik Raporu </span></a>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-phone"></i> <span class="nav-label">İletişim</span></a>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-address-book"></i> <span class="nav-label">Hakkımızda</span></a>
+                <a href="/About/Index/"><i class="fa fa-address-book"></i> <span class="nav-label"> Hakkımızda </span></a>
             </li>
             <li class="landing_link">
                 <a target="_blank" href="/Blog/Index"><i class="fa fa-google"></i> <span class="nav-label">Siteye Git</span></a>

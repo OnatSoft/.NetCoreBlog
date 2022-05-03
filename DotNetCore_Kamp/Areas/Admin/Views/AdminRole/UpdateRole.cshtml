@@ -1,0 +1,50 @@
+﻿@using DotNetCore_Kamp.Models
+@model RoleUpdateViewModel
+
+@{
+    ViewData["Title"] = "UpdateRole";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<!------************************************ Burası Admin Paneli içinde Rol Düzenleme view Sayfası *************************************------>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2> Rol Düzenleme </h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a> Dashboard </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a> Roller </a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong> Rolü Düzenle </strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<br />
+
+<div class="ibox">
+    <div class="ibox-title">
+        <h3> @Model.ID numaralı rol düzenleniyor </h3>
+    </div>
+
+    <div class="ibox-content">
+        <form method="post">
+            <input type="number" asp-for="@Model.ID" hidden />
+
+            <label class="font-normal"> Rol Adı </label>
+            <input type="text" class="form-control" asp-for="@Model.name" />
+            
+            <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
+            <br />
+            <br />
+            <a href="/Admin/AdminRole/Index" class="btn btn-white"> İptal </a>
+            <button class="btn btn-primary" type="submit"><i class="fa fa-refresh"></i>&nbsp; Güncelle </button>
+        </form>
+    </div>
+</div>

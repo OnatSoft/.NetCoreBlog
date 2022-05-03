@@ -41,7 +41,7 @@ namespace DotNetCore_Kamp.Controllers
                 var claims = new List<Claim>  //** Eğer datavalue parametresi null (boş) değilse kullanıcının E-posta ve Şifresini alarak giriş yapıyor. **//
                             {
                                 new Claim(ClaimTypes.Name, p.EMail),
-                                new Claim(ClaimTypes.Name, datavalue.WriterID.ToString())
+                                new Claim(ClaimTypes.Email, datavalue.WriterID.ToString())
                             };
 
                 var useridentity = new ClaimsIdentity(claims, "a");
@@ -70,7 +70,7 @@ namespace DotNetCore_Kamp.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Category", "Admin", "Index");
+                    return RedirectToAction("Index", "Dashboard");
                 }
                 else
                 {
@@ -84,6 +84,11 @@ namespace DotNetCore_Kamp.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("AdminIndex", "Login");
+        }
+
+        public IActionResult AccessDenied() //Kullanıcı Yetkisiz Erişim 403 Sayfası
+        {
+            return View();
         }
     }
 }

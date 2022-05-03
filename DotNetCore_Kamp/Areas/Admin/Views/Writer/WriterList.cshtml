@@ -1,11 +1,11 @@
 ﻿@using EntityLayer.Concreate
-@model List<Comment>
+@model List<AppUser>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "WriterList";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
-<!------*********************************** Burası Admin paneli Yorumlar View Sayfası **************************************------>
+<!------********************************* Burası Admin Paneli içerisinde dinamik Yazarları Listeleme view Sayfası *************************************------>
 
 @{
     string statusColor = "";
@@ -19,7 +19,7 @@
 
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
-            <h2> Yorum Listesi </h2>
+            <h2> Yazar Listesi </h2>
         </div>
     </div>
 
@@ -30,7 +30,7 @@
                 <div class="ibox ">
 
                     <div class="ibox-title">
-                        <h3> Bloglara Yapılan Yorumlar </h3>
+                        <h3> Kayıtlı Yazarlar </h3>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -44,62 +44,49 @@
                                 <thead>
                                     <tr>
                                         <th> ID </th>
+                                        <th> Adı Soyadı </th>
                                         <th> Kullanıcı Adı </th>
-                                        <th> Blog Başlığı </th>
-                                        <th> Yorum İçeriği </th>
-                                        <th> Tarih </th>
-                                        <th> Blog Puanı </th>
-                                        <th> Durumu </th>
+                                        <th> Profil Resmi </th>
+                                        <th> Giriş E-postası </th>
+                                        <th> Giriş Parolası </th>
                                         <th> İşlemler </th>
                                     </tr>
                                 </thead>
 
                                 @foreach (var item in Model)
                                 {
-                                    switch (item.Status)
+                                    @*@switch (item.Status)
                                     {
                                         case true:
                                             statusColor = "fa fa-check text-navy";
                                             btnColor = "btn btn-primary btn-sm";
                                             break;
-
                                         case false:
                                             statusColor = "fa fa-close text-danger";
                                             btnColor = "btn btn-success btn-sm";
                                             break;
                                     }
 
-                                    if (item.Status == true)
+                                    @if (item.Status == true)
                                     {
-                                        statusText = "Aktif";
+                                        statusText = "Çalışıyor";
                                     }
                                     else
                                     {
-                                        statusText = "Pasif";
-                                    }
-
+                                        statusText = "Çalışmıyor";
+                                    }*@
 
                                     <tbody>
                                         <tr>
-                                            <td> @item.CommentID </td>
+                                            <td> @item.Id </td>
+                                            <td> @item.NameSurname </td>
                                             <td> @item.UserName </td>
-                                            <td> @item.Blog.Title </td>
-                                            <td> @item.Content </td>
-                                            <td> @item.CreateDate.ToShortDateString() </td>
-                                            <td> @item.BlogScore </td>
+                                            <td> @item.ImageURL </td>
+                                            <td> @item.Email </td>
+                                            <td> @item.PhoneNumber </td>
                                             <td>
-                                                @if (item.Status == true)
-                                                {
-                                                    <i class="@statusColor"> @statusText</i>
-                                                }
-                                                else
-                                                {
-                                                    <i class="@statusColor"> @statusText</i>
-                                                }
-                                            </td>
-                                            <td>
-                                                <a href="/Admin/Comment/CommentDelete/@item.CommentID/" class="btn btn-danger btn-sm" onclick="return confirm('Seçilen yorumu siteden kaldırmak istiyor musunuz?')"><i class="fa fa-trash"></i>&nbsp; Sil </a>
-                                                <a href="/Admin/Comment/CommentStatusUpdate/@item.CommentID/" class="@btnColor"><i class="fa fa-refresh"></i>&nbsp; Durumunu Değiştir </a>
+                                                <a href="/Admin/Writer/Delete/@item.Id/" class="btn btn-danger btn-sm" onclick="return confirm('Seçilen yazarı sistemden silmeyi onaylıyor musunuz?')"><i class="fa fa-trash"></i>&nbsp; Sil </a>
+                                                <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i>&nbsp; Durumunu Değiştir </a>
                                             </td>
                                         </tr>
                                     </tbody>

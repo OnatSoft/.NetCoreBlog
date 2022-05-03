@@ -1,0 +1,48 @@
+﻿@using DotNetCore_Kamp.Models
+@model RoleViewModel
+
+@{
+    ViewData["Title"] = "AddRole";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<!------*********************************** Burası Admin Paneli içinde Rol Ekleme view Sayfası ***************************************------>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2> Rol Ekleme </h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a> Dashboard </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a> Roller </a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong> Yeni Rol Ekle </strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<br />
+
+<div class="ibox">
+    <div class="ibox-title">
+        <h3> Yeni Rol Ekle </h3>
+    </div>
+
+    <div class="ibox-content">
+        <form method="post">
+            <label class="font-normal"> Rol Adı </label>
+            <input type="text" class="form-control" asp-for="@Model.Name" />
+            @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+
+            <br />
+            <br />
+            <a href="/Admin/AdminRole/Index" class="btn btn-white"> İptal </a>
+            <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i>&nbsp; Kaydet </button>
+        </form>
+    </div>
+</div>

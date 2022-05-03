@@ -32,21 +32,41 @@
     <div class="ibox-title">
         <h3>Yeni Kategori Ekle</h3>
     </div>
+
     <div class="ibox-content">
-        @using (Html.BeginForm("CategoryAdd", "Category", FormMethod.Post))
-        {
-            @Html.Label("Kategori Adı")
-            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+
+        <form method="post">
+            <label> Kategori Adı </label>
+            <input type="text" class="form-control" asp-for="@Model.Name" />
             @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
             <br />
-            <br />
-            @Html.Label("Kategori Açıklaması")
-            @Html.TextAreaFor(x => x.Description, 5, 5, new { @class = "form-control" })
+            <label> Kategori Açıklaması </label>
+            <textarea asp-for="@Model.Description" class="form-control" rows="5" cols="5"></textarea>
             @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
-            <br />
-            <br />
+
+            <br /><br />
             <a href="/Admin/Category/Index" class="btn btn-white btn-xl"> İptal </a>
             <button class="btn btn-primary btn-xl"><i class="fa fa-save"></i>&nbsp; Kaydet </button>
-        }
+        </form>
+
     </div>
 </div>
+
+
+
+
+@*@using (Html.BeginForm("CategoryAdd", "Category", FormMethod.Post))
+    {
+        @Html.Label("Kategori Adı")
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+        <br />
+        <br />
+        @Html.Label("Kategori Açıklaması")
+        @Html.TextAreaFor(x => x.Description, 5, 5, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
+        <br />
+        <br />
+        <a href="/Admin/Category/Index" class="btn btn-white btn-xl"> İptal </a>
+        <button class="btn btn-primary btn-xl"><i class="fa fa-save"></i>&nbsp; Kaydet </button>
+    }*@

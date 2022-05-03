@@ -2,6 +2,7 @@
 using DataAccessLayer.Concreate;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concreate;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 namespace DotNetCore_Kamp.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin, Moderator")]
     public class MessageController : Controller  //** Burası Admin paneli Mesajlar sayfası **//
     {
         Message2Manager Mm = new Message2Manager(new EFMessage2Repository());

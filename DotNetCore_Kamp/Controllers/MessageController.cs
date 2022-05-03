@@ -78,7 +78,6 @@ namespace DotNetCore_Kamp.Controllers
             var usermail = c.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
             var writerID = c.Writers.Where(x => x.EMail == usermail).Select(y => y.WriterID).FirstOrDefault();
             message2.SenderID = writerID;
-            message2.ReceiverID = 2;
             message2.Status = true;
             message2.MessageDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
             Mm.TAdd(message2);

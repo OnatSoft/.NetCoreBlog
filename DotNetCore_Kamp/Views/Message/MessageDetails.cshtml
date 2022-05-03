@@ -14,26 +14,45 @@
                 <h4 class="card-description"> @Model.ID numaralı mesaj </h4>
                 <br />
                 <div class="table-responsive">
-                    @using (Html.BeginForm("Inbox", "Message"))
-                    {
-                        @Html.HiddenFor(x => x.ID, new { @class = "form-control" })
 
-                        @Html.Label("Gönderen")
-                        @Html.TextBoxFor(x => x.SenderWriter.Name, new { @class = "form-control" })
+                    <form method="get">
+                        <label> Gönderen </label>
+                        <input type="text" class="form-control" asp-for="@Model.SenderWriter.Name" />
                         <br />
-                        @Html.Label("Alıcı")
-                        @Html.TextBoxFor(x => x.ReceiverWriter.Name, new { @class = "form-control" })
+                        <label> Alıcı </label>
+                        <input type="text" class="form-control" asp-for="@Model.ReceiverWriter.Name" />
                         <br />
-                        @Html.Label("Mesaj Konusu")
-                        @Html.TextBoxFor(x => x.Subject, new { @class = "form-control" })
+                        <label> Konu </label>
+                        <input type="text" class="form-control" asp-for="@Model.Subject" />
                         <br />
-                        @Html.Label("Mesaj İçeriği")
-                        @Html.TextAreaFor(x => x.MessageDetails, 10, 5, new { @class = "form-control" })
-                        <br />
-                        <br />
+                        <label> Mesaj Açıklaması </label>
+                        <textarea class="form-control" rows="10" cols="8" asp-for="@Model.MessageDetails"></textarea>
+                    </form>
+                    <br /><br />
+                    <a href="/Message/Inbox/" class="btn btn-light mt-0"> Gelen Kutusuna Dön </a>
 
-                        <a href="/Message/Inbox" class="btn btn-light mt-0"> Gelen Kutusuna Dön </a>
-                    }
+
+
+                    @*@using (Html.BeginForm("Inbox", "Message"))
+                        {
+                            @Html.HiddenFor(x => x.ID, new { @class = "form-control" })
+
+                            @Html.Label("Gönderen")
+                            @Html.TextBoxFor(x => x.SenderWriter.Name, new { @class = "form-control" })
+                            <br />
+                            @Html.Label("Alıcı")
+                            @Html.TextBoxFor(x => x.ReceiverWriter.Name, new { @class = "form-control" })
+                            <br />
+                            @Html.Label("Mesaj Konusu")
+                            @Html.TextBoxFor(x => x.Subject, new { @class = "form-control" })
+                            <br />
+                            @Html.Label("Mesaj İçeriği")
+                            @Html.TextAreaFor(x => x.MessageDetails, 10, 5, new { @class = "form-control" })
+                            <br />
+                            <br />
+
+                            <a href="/Message/Inbox" class="btn btn-light mt-0"> Gelen Kutusuna Dön </a>
+                        }*@
                 </div>
             </div>
         </div>

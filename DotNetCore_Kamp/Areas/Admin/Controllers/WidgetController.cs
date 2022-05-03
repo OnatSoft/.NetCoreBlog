@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer.Concreate;
 using DataAccessLayer.EntityFramework;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

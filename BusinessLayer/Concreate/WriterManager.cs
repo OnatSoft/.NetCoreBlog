@@ -35,7 +35,7 @@ namespace BusinessLayer.Concreate
 
         public void TDelete(Writer tdelete)
         {
-            throw new NotImplementedException();
+            _WriterDal.Delete(tdelete);
         }
 
         public void TUpdate(Writer tupdate)
