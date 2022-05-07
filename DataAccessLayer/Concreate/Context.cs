@@ -14,7 +14,7 @@ namespace DataAccessLayer.Concreate
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //** Veritabanı bağlantı adresi**//
-            optionsBuilder.UseSqlServer("server=LAPTOP-ONATSOFT\\ONATSOFT;database=CoreBlogDB; integrated security=true;");
+            optionsBuilder.UseSqlServer("Data Source = SQL8001.site4now.net;Initial Catalog=db_a866bd_coreblogdb;integrated security=true;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
