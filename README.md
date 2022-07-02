@@ -14,6 +14,3 @@ Projenin bitiş tarihi: 08.04.2022 Cuma
 Projenin yayınlanma tarihi: 03.05.2022 Salı -
 <a href="http://onatsoft20-001-site1.itempurl.com/Blog/Index" target="_blank">Siteye gitmek için buraya tıklayınız</a> (Sadece 1 ay açık duracaktır. - 1 ay süre dolduğundan site kapanmıştır.)
 
-
-<hr>
-<img src="https://media.discordapp.net/attachments/860639392615497738/982605103456473158/ASP.Net_Core_5_Proje_Sertifikas.jpg" width="830px" height="500px">
