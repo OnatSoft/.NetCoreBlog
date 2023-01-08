@@ -5,12 +5,11 @@ Bu proje kampında ASP.Net Core 5.0 ile Entity Framework Core, N Tier Architecht
 
 Proje kampı YouTube'da 150 dersten oluşmakta ve eğitmen Murat Yücedağ olmaktadır, oynatma listesine <a href="https://www.youtube.com/playlist?list=PLKnjBHu2xXNNkinaVhPqPZG0ubaLN63ci" target="_blank">buradan</a> ulaşabilirsiniz.
 
+Proje görsellerini repository üst dizinde bulunan resim dosyalarıyla inceleyebilirsiniz.
 
 <hr>
 Projeye başlangıç tarihi: 03.09.2021 Cuma
-
+<br>
 Projenin bitiş tarihi: 08.04.2022 Cuma
 
-Projenin yayınlanma tarihi: 03.05.2022 Salı -
-<a href="http://onatsoft20-001-site1.itempurl.com/Blog/Index" target="_blank">Siteye gitmek için buraya tıklayınız</a> (Sadece 1 ay açık duracaktır. - 1 ay süre dolduğundan site kapanmıştır.)
-
+Projenin yayınlanma tarihi: 03.05.2022 Salı
