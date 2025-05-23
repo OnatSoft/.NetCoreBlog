@@ -11,7 +11,7 @@ Proje görsellerini repository üst dizinde bulunan resim dosyalarıyla inceleye
 Projeye başlangıç tarihi: 03.09.2021 Cuma
 <br>
 Projenin bitiş tarihi: 08.04.2022 Cuma
-
+<br>
 Projenin yayınlanma tarihi: 03.05.2022 Salı
 
 ## Kullanıcı Sayfası
@@ -22,3 +22,6 @@ Projenin yayınlanma tarihi: 03.05.2022 Salı
 
 ## Admin Paneli
 <img src="https://github.com/user-attachments/assets/e9224e7c-fc80-4886-a36f-27b3f12fa824" alt="Core Blog Admin Paneli" />
+
+## Bitirme Sertifikası
+<img src="https://github.com/user-attachments/assets/b4bd393f-c394-4411-9425-20fa19208830" alt="Eğitimi Bitirme Sertifikası" />
